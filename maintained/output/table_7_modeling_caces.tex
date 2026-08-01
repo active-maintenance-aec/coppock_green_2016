@@ -1,35 +1,38 @@
-
-% Table created by stargazer v.5.2.3 by Marek Hlavac, Social Policy Institute. E-mail: marek.hlavac at gmail.com
-% Date and time: Fri, Jul 31, 2026 - 23:45:28
-% Requires LaTeX packages: dcolumn 
-\begingroup 
-\small 
-\begin{tabular}{@{\extracolsep{0pt}}lD{.}{.}{-4} D{.}{.}{-4} D{.}{.}{-4} D{.}{.}{-4} D{.}{.}{-4} } 
-\\[-1.8ex]\hline \\[-1.8ex] 
-\\[-1.8ex] & \multicolumn{5}{c}{Dependent Variable: CACE Estimate in State-Election Pair} \\ 
-\\[-1.8ex] & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)} & \multicolumn{1}{c}{(5)}\\ 
-\hline \\[-1.8ex] 
- Years between upstream and downstream & 0.0001 & -0.0006 & 0.0002 & 0.0014 & -0.0008 \\ 
-  & (0.0036) & (0.0037) & (0.0034) & (0.0027) & (0.0028) \\ 
-  Youth turnout in upstream election & -0.2520 & -0.2450 & -0.2578 & -0.2261 & -0.1647 \\ 
-  & (0.0635) & (0.0613) & (0.0669) & (0.0653) & (0.0779) \\ 
-  Presidential battleground &  & 0.0322 &  &  &  \\ 
-  &  & (0.0147) &  &  &  \\ 
-  Presidential or midterm battleground &  &  & 0.0155 &  &  \\ 
-  &  &  & (0.0125) &  &  \\ 
-  Presidential upstream &  &  &  &  & -0.0193 \\ 
-  &  &  &  &  & (0.0206) \\ 
-  Presidential downstream &  &  &  &  & 0.0359 \\ 
-  &  &  &  &  & (0.0119) \\ 
-  Constant & 0.2203 & 0.2171 & 0.2164 & 0.2207 & 0.2161 \\ 
-  & (0.0358) & (0.0346) & (0.0354) & (0.0376) & (0.0334) \\ 
- State F.E. & \multicolumn{1}{c}{No} & \multicolumn{1}{c}{No} & \multicolumn{1}{c}{No} & \multicolumn{1}{c}{No} & \multicolumn{1}{c}{No} \\ 
-N & \multicolumn{1}{c}{384} & \multicolumn{1}{c}{384} & \multicolumn{1}{c}{384} & \multicolumn{1}{c}{384} & \multicolumn{1}{c}{384} \\ 
-R$^{2}$ & \multicolumn{1}{c}{0.0851} & \multicolumn{1}{c}{0.1013} & \multicolumn{1}{c}{0.0998} & \multicolumn{1}{c}{0.2630} & \multicolumn{1}{c}{0.3086} \\ 
-\hline \\[-1.8ex] 
-\multicolumn{6}{l}{Youth are defined as 18-29 year-olds.} \\ 
-\multicolumn{6}{l}{Battleground status: two-party vote share difference less than 10 points.} \\ 
-\multicolumn{6}{l}{All models weighted by inverse of squared SE of CACE estimate.} \\ 
-\multicolumn{6}{l}{Robust standard errors in parentheses.} \\ 
-\end{tabular} 
-\endgroup 
+\begin{table}
+\centering
+\begin{talltblr}[         %% tabularray outer open
+caption={Modeling downstream CACEs},
+note{}={Youth are defined as 18 to 29 year-olds.},
+note{ }={Battleground status: two-party vote share difference less than 10 points.},
+note{  }={All models weighted by the inverse of the squared standard error of the CACE estimate.},
+note{   }={Robust standard errors in parentheses.},
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]Q[]Q[]Q[]Q[]},
+hline{2}={1-6}{solid, black, 0.05em},
+hline{16}={1-6}{solid, black, 0.05em},
+hline{1}={1-6}{solid, black, 0.08em},
+hline{19}={1-6}{solid, black, 0.08em},
+column{2-6}={}{halign=c},
+column{1}={}{halign=l},
+}                     %% tabularray inner close
+& (1) & (2) & (3) & (4) & (5) \\
+Years between upstream and downstream & 0.0001 & -0.0006 & 0.0002 & 0.0014 & -0.0008 \\
+& (0.0036) & (0.0037) & (0.0034) & (0.0027) & (0.0028) \\
+Youth turnout in upstream election & -0.2520 & -0.2450 & -0.2578 & -0.2261 & -0.1647 \\
+& (0.0635) & (0.0613) & (0.0669) & (0.0653) & (0.0779) \\
+Presidential battleground &  & 0.0322 &  &  &  \\
+&  & (0.0147) &  &  &  \\
+Presidential or midterm battleground &  &  & 0.0155 &  &  \\
+&  &  & (0.0125) &  &  \\
+Presidential upstream &  &  &  &  & -0.0193 \\
+&  &  &  &  & (0.0206) \\
+Presidential downstream &  &  &  &  & 0.0359 \\
+&  &  &  &  & (0.0119) \\
+Constant & 0.2203 & 0.2171 & 0.2164 & 0.2207 & 0.2161 \\
+& (0.0358) & (0.0346) & (0.0354) & (0.0376) & (0.0334) \\
+State fixed effects & No & No & No & Yes & Yes \\
+N & 384 & 384 & 384 & 384 & 384 \\
+R2 & 0.0851 & 0.1013 & 0.0998 & 0.2630 & 0.3086 \\
+\end{talltblr}
+\end{table}

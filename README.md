@@ -267,6 +267,7 @@ comparison.
 | `coeftest(fit, vcovHC)[2,2]` | `estimatr::iv_robust(se_type = "HC3")` for RD |
 | `library(rmeta)` + `meta.summaries()` | `metafor::rma(method = "FE")` + `rma(method = "REML")` |
 | `library(xtable)` + `print.xtable()` | `write_csv()` to `output/` |
+| `library(stargazer)` + `sink()` | `modelsummary(output = ...)` |
 | `plyr::adply(.margins = c(1,2,3))` | `pmap_dfr()` over `crossing()` grid |
 | `library(beepr)` + `beep()` | (omitted) |
 | `system("say Just finished!")` | (omitted) |
@@ -431,4 +432,4 @@ are unverifiable.
 |:----------|:-----------------------|
 | R version | 4.6.0                  |
 | Platform  | aarch64-apple-darwin23 |
-| Date run  | 2026-07-31             |
+| Date run  | 2026-08-01             |

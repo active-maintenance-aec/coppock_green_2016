@@ -6,7 +6,7 @@ source(here::here("maintained", "helpers.R"))
 load(here::here("original", "USA.habit.rdata"))
 load(here::here("original", "turnoutrates.RData"))
 load(here::here("original", "votemargins.RData"))
-library(stargazer)
+library(modelsummary)
 
 states <- c(
   "AR", "CO", "CT", "IA", "IL", "FL", "FL05",
@@ -92,10 +92,11 @@ fit_5 <- lm(cace ~ timedistance + turnoutrate1829 + state_clean +
              data = metadata, weights = weights)
 
 # Robust SEs ----
-robust_ses <- map(
+robust_vcov <- map(
   list(fit_1, fit_2, fit_3, fit_4, fit_5),
-  \(f) sqrt(diag(sandwich::vcovHC(f)))
+  \(f) sandwich::vcovHC(f)
 )
+robust_ses <- map(robust_vcov, \(v) sqrt(diag(v)))
 
 # Key coefficients ----
 tibble(
@@ -110,41 +111,53 @@ tibble(
 ) |>
   print()
 
-# Stargazer output ----
-sink(here::here("maintained", "output", "table_7_modeling_caces.tex"))
-stargazer(
-  fit_1, fit_2, fit_3, fit_4, fit_5,
-  se          = robust_ses,
-  style       = "apsr",
-  column.sep.width = "0pt",
-  star.cutoffs = c(NA, NA, NA),
-  digits      = 4,
-  omit        = "state_clean",
-  omit.labels = "State F.E.",
-  omit.stat   = c("adj.rsq", "f", "ser"),
-  dep.var.labels = "Dependent Variable: CACE Estimate in State-Election Pair",
-  covariate.labels = c(
-    "Years between upstream and downstream",
-    "Youth turnout in upstream election",
-    "Presidential battleground",
-    "Presidential or midterm battleground",
-    "Presidential upstream",
-    "Presidential downstream",
-    "Constant"
+# Display table ----
+# modelsummary replaces stargazer, which has not been updated since 2022 and
+# required sink() to reach a file. Robust SEs come from the same vcovHC list
+# used above, so the table and the printed check cannot disagree.
+coef_labels <- c(
+  "timedistance"        = "Years between upstream and downstream",
+  "turnoutrate1829"     = "Youth turnout in upstream election",
+  "battleground_P"      = "Presidential battleground",
+  "battleground_PM"     = "Presidential or midterm battleground",
+  "upstream_typePres"   = "Presidential upstream",
+  "downstream_typePres" = "Presidential downstream",
+  "(Intercept)"         = "Constant"
+)
+
+# The state dummies are absorbed rather than shown, so the table says which
+# models carry them. Seven coefficients occupy fourteen body rows, so the
+# indicator sits at row fifteen: last coefficient above it, goodness of fit below.
+state_fe_row <- tibble(
+  term = "State fixed effects",
+  `(1)` = "No", `(2)` = "No", `(3)` = "No", `(4)` = "Yes", `(5)` = "Yes"
+)
+attr(state_fe_row, "position") <- 2 * length(coef_labels) + 1
+
+# siunitx wrapping would put every cell in \\num{}, which needs the package at
+# compile time for no gain here.
+options(modelsummary_format_numeric_latex = "plain")
+
+modelsummary(
+  list(fit_1, fit_2, fit_3, fit_4, fit_5),
+  vcov      = robust_vcov,
+  coef_map  = coef_labels,
+  gof_map   = tibble(
+    raw   = c("nobs", "r.squared"),
+    clean = c("N", "R2"),
+    fmt   = c(0, 4)
   ),
-  title  = "Modeling Downstream CACEs",
-  align  = TRUE,
-  notes  = c(
-    "Youth are defined as 18-29 year-olds.",
+  add_rows  = state_fe_row,
+  stars     = FALSE,
+  fmt       = 4,
+  title     = "Modeling downstream CACEs",
+  notes     = c(
+    "Youth are defined as 18 to 29 year-olds.",
     "Battleground status: two-party vote share difference less than 10 points.",
-    "All models weighted by inverse of squared SE of CACE estimate.",
+    "All models weighted by the inverse of the squared standard error of the CACE estimate.",
     "Robust standard errors in parentheses."
   ),
-  notes.append = FALSE,
-  font.size = "small",
-  label   = "tab:modelingcaces",
-  float   = FALSE
+  output    = here::here("maintained", "output", "table_7_modeling_caces.tex")
 )
-sink()
 
 write_csv(metadata, here::here("maintained", "output", "table_7_metadata.csv"))
