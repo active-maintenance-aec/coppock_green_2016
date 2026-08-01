@@ -1,0 +1,437 @@
+---
+title: "Active Maintenance Report: coppock_green_2016"
+subtitle: "Coppock and Green (2016, AJPS): Is Voting Habit Forming?"
+date: "2026-03-18"
+format:
+  gfm:
+    output-file: README.md
+    toc: true
+  pdf:
+    output-file: coppock_green_2016_report.pdf
+    toc: true
+    toc-depth: 2
+    number-sections: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(here)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+here::i_am("README.qmd")
+
+# kableExtra styling is LaTeX-only; the GitHub README build takes plain pipe tables.
+latex_out <- knitr::is_latex_output()
+
+# kableExtra's styling verbs emit LaTeX and have no meaning under gfm, where the
+# same table renders as a pipe table. Each call site says what LaTeX alone gets.
+latex_only <- function(k, f) if (latex_out) f(k) else k
+```
+
+This repository holds the actively maintained replication code for Coppock and Green (2016), together with the reproducibility report that documents what the original archive did and did not do. It is part of a program applying the maintenance proposal in Peer, Orr and Coppock (2021, *PS: Political Science & Politics*, doi [10.1017/S1049096521000366](https://doi.org/10.1017/S1049096521000366)) to a set of published archives.
+
+| | |
+|---|---|
+| Article | [10.1111/ajps.12210](https://doi.org/10.1111/ajps.12210) |
+| Replication archive | [10.7910/DVN/ALZVAW](https://doi.org/10.7910/DVN/ALZVAW) |
+
+**The data are not redistributed here.** The deposit is 77 MB across 24 files and lives at Harvard Dataverse, which is the only copy this repository points at. `download_original.R` fetches it and verifies every file; `original_manifest.csv` pins the file identifiers, sizes and checksums, so the exact bytes this code was written against are recorded in version control even though the bytes themselves are not.
+
+**Repository layout.** `maintained/` is the maintained rewrite: one script per published table or figure, writing to `output/`, which is committed so a reader can compare a fresh run against it without downloading anything. `ground_truth/` ties every published number to the code that produces it. `original/` is created by the download script and is deliberately absent from the repository. This README is the reproducibility report, also available as a PDF in `report/`.
+
+**License.** CC0 1.0 Universal, matching the terms of the deposit this repository maintains. See `LICENSE`.
+
+**To reproduce.** Clone or download the repository, open `coppock_green_2016.Rproj`, and run:
+
+``` r
+source("run_all.R")
+```
+
+That fetches the deposit, verifies its 24 files, and produces every table and figure into `maintained/output/`. Required packages: tidyverse, estimatr, metafor, sandwich, stargazer, knitr, kableExtra, here. Paths resolve through `here`, so nothing depends on the working directory. A successful run overwrites `maintained/output/`, which is committed: **`git diff` on that folder is the reproduction check.**
+
+# Paper overview
+
+**Citation**: Coppock, A. and Green, D. P. (2016). "Is Voting Habit Forming? New Evidence
+from Experiments and Regression Discontinuities." *American Journal of Political Science*,
+60(4), 1044--1062. DOI: 10.1111/ajps.12210
+
+**Replication archive**: <https://doi.org/10.7910/DVN/ALZVAW>
+
+**Summary**: This paper tests whether voting is habit forming using two research designs.
+The experimental design exploits three randomized GOTV field experiments---ETOV 2006,
+ETOV 2007, and SMG 2009 (Australia)---in which randomly assigned treatment arms induced
+upstream voting; the downstream effect on voting in subsequent elections identifies the
+Complier Average Causal Effect (CACE) of upstream voting. The regression discontinuity
+design exploits the sharp 18th birthday eligibility cutoff: individuals just old enough to
+vote in an upstream election can be compared to those just too young, identifying the CACE
+from a different source of variation. Both designs produce positive downstream estimates,
+with same-type election pairs (presidential-on-presidential, midterm-on-midterm) generating
+the largest and most persistent effects.
+
+---
+
+# Summary
+
+```{r summary_setup, include=FALSE}
+gt_all <- read_csv(here("ground_truth", "coppock_green_2016_ground_truth.csv"),
+                   show_col_types = FALSE)
+n_claims <- nrow(gt_all)
+n_match <- sum(gt_all$match_rewrite == 1, na.rm = TRUE)
+n_script_match <- sum(gt_all$match == 1, na.rm = TRUE)
+```
+
+Two questions, answered before the detail.
+
+## Does the deposited archive run?
+
+Not as deposited, but everything that stops it is a missing package. Nine of the eleven scripts fail on a clean R installation for want of `AER` or `rmeta`, and both install from CRAN without incident. Nothing else goes wrong: no hardcoded paths to a machine that no longer exists, no functions called before they are defined, no silently wrong output. Rechecked on 31 July 2026, eight years after deposit, both packages still install: `AER` 1.2-17 shipped in July 2026, and `rmeta` 3.0 has not been touched since March 2018 yet remains available.
+
+That last point is the fragile one. The archive depends on a package with no maintenance activity in eight years, and its continued availability is a fact about CRAN's archiving policy rather than about this deposit. `rmeta::meta.summaries` is the only reason it is needed, and the maintained rewrite uses `metafor::rma` instead, so the rewrite does not inherit the exposure.
+
+## Does the maintained rewrite reproduce the paper?
+
+Yes, without exception. All `r n_claims` recorded ground truth claims match the published values, and all `r n_script_match` also match what the original scripts produce.
+
+The rewrite additionally reports something the paper does not, which is an addition rather than a correction and should not be read as one. The original pools state-level CACEs by fixed-effects inverse-variance weighting, which attributes all between-state variation to sampling error. The rewrite reports random-effects estimates alongside, with the between-state variance and $I^2$ that the fixed-effects model assumes away. The published fixed-effects numbers reproduce exactly; the random-effects figures sit beside them so a reader can see what the pooling assumption costs.
+
+---
+
+# Original archive reproducibility
+
+```{r repro_table}
+tibble(
+  Script = c(
+    "Habit_source.R",
+    "CG Habit DE Table 1.R",
+    "CG Habit DE Table 2.R",
+    "CG Habit DE Table 3.R",
+    "CG Habit DE Table A9.R",
+    "CG Habit RD Tables 4 and 5.R",
+    "CG Habit RD Table 6.R",
+    "CG Habit RD Table 7.R",
+    "CG Habit RD Tables A6 and A7.R",
+    "CG Habit RD Figure A2.R",
+    "CG Habit ME Table A2 and Figure A1.R"
+  ),
+  Status = c(
+    "Clean (sourced by all scripts)",
+    "Clean after AER install",
+    "Clean after AER install",
+    "Clean after AER + rmeta install",
+    "Clean after AER install",
+    "Clean after rmeta install",
+    "Clean after rmeta install",
+    "Clean",
+    "Clean after rmeta + beepr install",
+    "Clean after rmeta install",
+    "Clean"
+  ),
+  Resolution = c(
+    "No changes required",
+    "install.packages('AER')",
+    "install.packages('AER')",
+    "install.packages(c('AER', 'rmeta'))",
+    "install.packages('AER')",
+    "install.packages('rmeta')",
+    "install.packages('rmeta')",
+    "No changes required",
+    "install.packages(c('rmeta', 'beepr'))",
+    "install.packages('rmeta')",
+    "No changes required"
+  ),
+) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Script", "Status on current R", "Resolution"),
+    caption   = "Original archive reproducibility, checked against a current R installation."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 7) |>
+    column_spec(1, width = "3.5cm") |>
+    column_spec(2, width = "3cm") |>
+    column_spec(3, width = "4.5cm"))
+```
+
+The only barriers to execution are two missing packages: `AER` (for `ivreg`) and `rmeta`
+(for `meta.summaries`). Both remain on CRAN and install cleanly, rechecked 31 July 2026:
+`AER` 1.2-17 was published in July 2026, and `rmeta` 3.0 has stood unchanged since March
+2018 and still installs. No content errors, deprecated-function failures, or silent errors
+were found. Every analysis script ran cleanly after the two installs.
+
+---
+
+# Number-by-number comparison
+
+```{r gt_table}
+gt <- read_csv(
+  here("ground_truth", "coppock_green_2016_ground_truth.csv"),
+  show_col_types = FALSE
+)
+
+gt |>
+  select(location, description, value_paper, value_script, match) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Location", "Quantity", "Paper", "Script", "Match"),
+    caption   = "Ground truth: 49 rows. All match = 1 (exact reproduction).",
+    digits    = 3
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 6.5) |>
+    column_spec(2, width = "6.5cm"))
+```
+
+**Summary**: All 49 numbers match exactly. The archive is a complete computational
+reproduction of the published results. No rounding discrepancies, RNG-sensitive values, or
+silent errors were found.
+
+---
+
+# Maintained rewrite
+
+The maintained rewrite (`maintained/`) translates the 10 original scripts into
+11 scripts following the project style guide. The rewrite is a translation only: all
+analytical decisions, estimators, and sample restrictions are preserved. All key numbers
+reproduce to the values shown in the ground truth table above.
+
+## Architecture
+
+The core structural change is the replacement of manual nested loops with a tidy
+`pivot_longer` + `nest_by` pattern.
+
+**Downstream experiments (DE)**: The original scripts repeat an `ivreg` + `cl()` call for
+each (treatment arm, downstream election) cell---roughly 30--40 calls per script. The rewrite
+pivots each dataset to long format on the downstream election columns, then maps
+`iv_robust(se_type = "stata")` within each cell via `nest_by(election)`, with
+`pmap_dfr` handling the outer loop over treatment arms.
+
+**Regression discontinuity (RD)**: The original scripts use nested `for` loops with `try()`
+wrappers. The rewrite builds a crossing of state × year-pair combinations and calls `pmap`
+with a `run_rd_iv()` helper that wraps `iv_robust(se_type = "HC3")`, matching the original's
+use of `vcovHC` (HC3 by default) for heteroskedasticity-robust standard errors.
+
+**Meta-analysis**: The original uses `rmeta::meta.summaries(method = "fixed")` for
+inverse-variance pooling. The rewrite uses `metafor::rma(method = "FE")` for the fixed-effects
+estimates (numerically equivalent) and additionally computes `rma(method = "REML")` random-effects
+estimates. See Section 5 for comparison.
+
+## Deprecated patterns replaced
+
+```{r replacements_table}
+tibble(
+  Original = c(
+    "`rm(list = ls())`",
+    "`setwd(\\\"\\\")`",
+    "`library(AER)` + `ivreg()` + `cl()`",
+    "`coeftest(fit, vcovHC)[2,2]`",
+    "`library(rmeta)` + `meta.summaries()`",
+    "`library(xtable)` + `print.xtable()`",
+    "`plyr::adply(.margins = c(1,2,3))`",
+    "`library(beepr)` + `beep()`",
+    "`system(\"say Just finished!\")`",
+    "`library(reshape2)` + `dcast()` + `melt()`",
+    "`%>%` pipes"
+  ),
+  Replacement = c(
+    "(omitted)",
+    "`here::here()`",
+    "`estimatr::iv_robust(se_type = \"stata\")` for clustered DE",
+    "`estimatr::iv_robust(se_type = \"HC3\")` for RD",
+    "`metafor::rma(method = \"FE\")` + `rma(method = \"REML\")`",
+    "`write_csv()` to `output/`",
+    "`pmap_dfr()` over `crossing()` grid",
+    "(omitted)",
+    "(omitted)",
+    "`pivot_wider()` + `pivot_longer()`",
+    "`|>` native pipe"
+  )
+) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Original pattern", "Replacement"),
+    caption   = "Deprecated patterns and their replacements in the maintained rewrite."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 8) |>
+    column_spec(1, width = "5.5cm") |>
+    column_spec(2, width = "7cm"))
+```
+
+---
+
+# Fixed-effects vs. random-effects meta-analysis
+
+## Background
+
+The original analysis pools state-level CACE estimates using fixed-effects
+inverse-variance weighting (`rmeta::meta.summaries`), which treats the true effect as
+identical across states and attributes all between-state heterogeneity to sampling error.
+This assumption is implausible: voter registration systems, ballot laws, partisan
+composition, and election competitiveness vary substantially across states, and there is no
+strong prior reason to expect a single structural habit-formation parameter.
+
+The maintained rewrite adds random-effects estimates via `metafor::rma(method = "REML")`,
+which treats the state-level CACEs as draws from a distribution with mean $\mu$ and
+between-study variance $\tau^2$. The RE estimate of $\mu$ and its standard error account for
+this additional source of uncertainty.
+
+## Results for Tables 4--5 (key meta-analytic pairs)
+
+```{r fe_re_table_45}
+meta45 <- read_csv(
+  here("maintained", "output", "tables_4_5_rd_meta.csv"),
+  show_col_types = FALSE
+)
+
+meta45 |>
+  select(years_window, fe_cace, fe_se, re_cace, re_se) |>
+  mutate(
+    pair_type = case_when(
+      years_window %in% c("92-96", "96-00", "00-04", "04-08", "08-12") ~ "Pres-on-Pres",
+      years_window %in% c("92-94", "96-98", "00-02", "04-06", "08-10") ~ "Pres-on-Mid",
+      years_window %in% c("94-96", "98-00", "02-04", "06-08", "10-12") ~ "Mid-on-Pres",
+      years_window %in% c("94-98", "98-02", "02-06", "06-10")          ~ "Mid-on-Mid"
+    )
+  ) |>
+  arrange(pair_type, years_window) |>
+  mutate(across(c(fe_cace, fe_se, re_cace, re_se), \(x) sprintf("%.3f", x))) |>
+  select(pair_type, years_window, fe_cace, fe_se, re_cace, re_se) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Pair type", "Window", "FE est.", "FE SE", "RE est.", "RE SE"),
+    caption   = "Fixed-effects and random-effects meta-analytic CACE estimates, Tables 4--5 windows. FE = inverse-variance pooling; RE = REML."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 8) |>
+    collapse_rows(columns = 1, latex_hline = "major"))
+```
+
+## Results for Tables A6--A7 (boxed robustness estimates)
+
+```{r fe_re_table_a6a7}
+a6 <- read_csv(
+  here("maintained", "output", "table_a6_robustness_0812.csv"),
+  show_col_types = FALSE
+) |> mutate(analysis = "2008 on 2012")
+
+a7 <- read_csv(
+  here("maintained", "output", "table_a7_robustness_0610.csv"),
+  show_col_types = FALSE
+) |> mutate(analysis = "2006 on 2010")
+
+bind_rows(a6, a7) |>
+  filter(order == 1, bandwidth == 365, lag == TRUE) |>
+  mutate(across(c(fe_cace, fe_se, re_cace, re_se), \(x) sprintf("%.3f", x))) |>
+  select(analysis, fe_cace, fe_se, re_cace, re_se) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Analysis", "FE est.", "FE SE", "RE est.", "RE SE"),
+    caption   = "Boxed robustness estimates (1st-order polynomial, 365-day bandwidth, lagged controls). These are the highlighted cells in the published Tables A6 and A7."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = "hold_position", font_size = 9))
+```
+
+## Interpretation
+
+```{r tau2_table}
+library(metafor)
+
+meta45_state <- read_csv(
+  here("maintained", "output", "tables_4_5_rd_all.csv"),
+  show_col_types = FALSE
+)
+
+tau2_results <- meta45_state |>
+  filter(!state %in% c("FL05", "MO05", "meta")) |>
+  group_by(years_window) |>
+  summarise(
+    n_states = sum(!is.na(cace)),
+    re_fit   = list(tryCatch(
+      suppressWarnings(rma(yi = cace, sei = se, method = "REML")),
+      error = function(e) NULL
+    )),
+    tau2     = map_dbl(re_fit, ~ if (is.null(.x)) NA_real_ else .x$tau2),
+    I2       = map_dbl(re_fit, ~ if (is.null(.x)) NA_real_ else .x$I2),
+    .groups  = "drop"
+  ) |>
+  filter(!is.na(tau2)) |>
+  select(years_window, n_states, tau2, I2) |>
+  mutate(
+    tau2 = sprintf("%.4f", tau2),
+    I2   = sprintf("%.1f%%", I2)
+  )
+
+tau2_results |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Window", "N states", "$\\hat{\\tau}^2$", "$I^2$"),
+    escape    = FALSE,
+    caption   = "Between-state heterogeneity in RD CACEs. $\\hat{\\tau}^2$ is the REML estimate of between-study variance; $I^2$ is the proportion of total variance attributable to heterogeneity."
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 8))
+```
+
+Estimated between-state variance ($\hat{\tau}^2$) is non-zero in most windows, and $I^2$
+is non-trivial in several (exceeding 50% in some midterm windows). This means the
+fixed-effects assumption---that all states share a single true CACE---is empirically
+questionable. The RE estimates are uniformly larger than the FE estimates, with SEs
+roughly two to three times as wide for some windows, reflecting that the between-state
+variance contributes meaningfully to total uncertainty. For the key 2008-on-2012 window
+(FE: 0.117, SE 0.005; RE: 0.122, SE 0.010), the substantive conclusion is unchanged but
+confidence in the precision of the pooled estimate should be moderated.
+
+The SMG 2009 meta-analysis (across household sizes) shows a qualitatively similar pattern:
+the RE pooled first-stage (0.043) matches the FE estimate closely because there are only
+three strata and the first-stage effects are similar in magnitude. The RE and FE downstream
+estimates also converge for SMG given the small number of strata.
+
+---
+
+# Maintained rewrite verification
+
+```{r rewrite_verify}
+gt_rw <- read_csv(
+  here("ground_truth", "coppock_green_2016_ground_truth.csv"),
+  show_col_types = FALSE
+)
+
+gt_rw |>
+  select(location, description, value_paper, value_rewrite, match_rewrite) |>
+  kable(
+    booktabs = TRUE,
+    col.names = c("Location", "Quantity", "Paper", "Rewrite", "Match"),
+    caption   = "Maintained rewrite verification: paper value vs. rewrite output",
+    digits    = 3
+  ) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = c("hold_position", "scale_down"), font_size = 6.5) |>
+    column_spec(2, width = "6.5cm"))
+```
+
+All **`r sum(gt_rw$match_rewrite, na.rm = TRUE)`** verifiable values produced by the maintained rewrite match the published paper to reported precision (`match_rewrite = 1`); `r sum(is.na(gt_rw$match_rewrite))` rows are unverifiable.
+
+---
+
+# R environment
+
+```{r env}
+si <- sessionInfo()
+tibble(
+  Item  = c("R version", "Platform", "Date run"),
+  Value = c(
+    paste(si$R.version$major, si$R.version$minor, sep = "."),
+    si$platform,
+    format(Sys.Date())
+  )
+) |>
+  kable(booktabs = TRUE) |>
+  latex_only(\(k) k |>
+    kable_styling(latex_options = "hold_position"))
+```

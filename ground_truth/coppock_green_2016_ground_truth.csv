@@ -1,0 +1,51 @@
+location,description,value_paper,value_script,match,value_rewrite,match_rewrite
+p1049_tbl1,Table 1: Self first-stage (Aug 2006 primary),0.05,0.05,1,0.05000537385478253,1
+p1049_tbl1,Table 1: Self first-stage SE,0.003,0.003,1,0.00338442577093318,1
+p1049_tbl1,Table 1: Neighbors first-stage (Aug 2006 primary),0.083,0.083,1,0.08295561273794393,1
+p1049_tbl1,Table 1: All Instruments downstream Nov 2006 CACE,0.108,0.108,1,0.10795397195625347,1
+p1049_tbl1,Table 1: All Instruments downstream Nov 2006 SE,0.021,0.021,1,0.02064118108649097,1
+p1049_tbl1,Table 1: All Instruments downstream Jan 2008 CACE,0.142,0.142,1,0.14208352815488293,1
+p1049_tbl1,Table 1: All Instruments downstream Aug 2008 CACE,0.135,0.135,1,0.1353342626715493,1
+p1049_tbl1,Table 1: All Instruments downstream Nov 2008 CACE,0.009,0.009,1,0.00853612837794391,1
+p1049_tbl1,Table 1: All Instruments downstream Aug 2010 CACE,0.126,0.126,1,0.1261477694899838,1
+p1049_tbl1,Table 1: All Instruments downstream Nov 2012 CACE,0.011,0.011,1,0.01135390946619166,1
+p1049_tbl1,Table 1: Control first-stage,0.311,0.311,1,0.3112926186339304,1
+p1050_tbl2,Table 2: All Together downstream Jan 2008 CACE,0.336,0.336,1,0.33646807876464435,1
+p1050_tbl2,Table 2: All Together downstream Jan 2008 SE,0.067,0.067,1,0.06746073955299078,1
+p1050_tbl2,Table 2: All Together downstream Aug 2008 CACE,0.183,0.183,1,0.18277386728138245,1
+p1050_tbl2,Table 2: All Together downstream Nov 2008 CACE,0.092,0.092,1,0.0915018633331311,1
+p1050_tbl2,Table 2: Control turnout,0.282,0.282,1,0.2822700680558553,1
+p1052_tbl3,Table 3: Pooled first-stage (Apr 2009 Special),0.043,0.043,1,0.04298882970519386,1
+p1052_tbl3,Table 3: Pooled first-stage SE,0.005,0.005,1,0.00547666444438175,1
+p1052_tbl3,Table 3: Pooled Feb 2010 downstream CACE,0.303,0.303,1,0.30307835966667734,1
+p1052_tbl3,Table 3: Pooled Nov 2010 downstream CACE,0.303,0.303,1,0.30267603002472954,1
+p1052_tbl3,Table 3: Pooled Apr 2011 downstream CACE,0.403,0.403,1,0.4027085803184186,1
+p1054_tbl4,Table 4: Meta-analysis Pres-on-Mid 1992-94,0.147,0.147,1,0.14705724801120013,1
+p1054_tbl4,Table 4: Meta-analysis Pres-on-Mid 1992-94 SE,0.013,0.013,1,0.01267276714275584,1
+p1054_tbl4,Table 4: Meta-analysis Pres-on-Mid 2008-10,0.09,0.09,1,0.09044929468301166,1
+p1054_tbl4,Table 4: Meta-analysis Pres-on-Mid 2008-10 SE,0.002,0.002,1,0.00208909292637059,1
+p1054_tbl4,Table 4: Meta-analysis Mid-on-Pres 1994-96,0.068,0.068,1,0.06794743069304553,1
+p1054_tbl4,Table 4: Meta-analysis Mid-on-Pres 2010-12,0.111,0.111,1,0.11051980303285122,1
+p1054_tbl4,Table 4: Meta-analysis Mid-on-Pres 2010-12 SE,0.019,0.019,1,0.01915604182962656,1
+p1055_tbl5,Table 5: Meta-analysis Pres-on-Pres 1992-96,0.21,0.21,1,0.20994762597205016,1
+p1055_tbl5,Table 5: Meta-analysis Pres-on-Pres 1992-96 SE,0.023,0.023,1,0.02302959368738715,1
+p1055_tbl5,Table 5: Meta-analysis Pres-on-Pres 2008-12,0.117,0.117,1,0.11723830388583346,1
+p1055_tbl5,Table 5: Meta-analysis Pres-on-Pres 2008-12 SE,0.005,0.005,1,0.00468660358010082,1
+p1055_tbl5,Table 5: Meta-analysis Mid-on-Mid 2006-10,0.119,0.119,1,0.11921405256261548,1
+p1055_tbl5,Table 5: Meta-analysis Mid-on-Mid 2006-10 SE,0.009,0.009,1,0.00933040182679502,1
+p1056_tbl6,Table 6: Binomial test successes,83,83,1,83,1
+p1056_tbl6,Table 6: Binomial test trials,86,86,1,86,1
+p1057_tbl6,Table 6: Meta-analysis 2010-12 CACE,0.111,0.111,1,0.11051980303285124,1
+p1057_tbl6,Table 6: Meta-analysis 2008-12 CACE,0.117,0.117,1,0.11723830388583344,1
+p1058_tbl7,Table 7: Years between upstream-downstream coef col1,1e-4,1e-4,1,1e-4,1
+p1058_tbl7,Table 7: Years between upstream-downstream coef col5,-8e-4,-8e-4,1,-8e-4,1
+p1058_tbl7,Table 7: Youth turnout coef col1,-0.252,-0.252,1,-0.252,1
+p1058_tbl7,Table 7: Youth turnout coef col5,-0.1647,-0.1647,1,-0.1647,1
+p1058_tbl7,Table 7: R-squared col5,0.3086,0.3086,1,0.3086,1
+appx_tblA6,"Table A6: Boxed estimate 2008-on-2012 (1st-order poly, 365d, lagged controls)",0.117,0.117,1,0.11723830388583346,1
+appx_tblA6,Table A6: Boxed estimate SE,0.005,0.005,1,0.00468660358010082,1
+appx_tblA7,"Table A7: Boxed estimate 2006-on-2010 (1st-order poly, 365d, lagged controls)",0.119,0.119,1,0.11921405256261548,1
+appx_tblA7,Table A7: Boxed estimate SE,0.009,0.009,1,0.00933040182679502,1
+appx_tblA9,Table A9: Shown Vote downstream Nov 2008,0.088,0.088,1,0.08847298920094737,1
+appx_tblA9,Table A9: Shown Vote downstream Nov 2008 SE,0.052,0.052,1,0.05181204630675296,1
+appx_tblA9,Table A9: Shown Vote + Recontact downstream Nov 2008,0.119,0.119,1,0.11871469237104906,1

@@ -1,0 +1,28 @@
+# coppock_green_2016 — run_all.R
+# Runs the whole reproduction in order: fetch and verify the deposited archive,
+# then every published table and figure.
+# Every script is self-contained and can also be run on its own.
+
+library(here)
+here::i_am("run_all.R")
+
+# Deposited archive ----
+# Downloads from Dataverse on a fresh clone; verifies checksums either way.
+source(here::here("download_original.R"))
+
+# Downstream experiments ----
+source(here::here("maintained", "table_1_etov2006.R"))
+source(here::here("maintained", "table_2_etov2007.R"))
+source(here::here("maintained", "table_3_smg2009.R"))
+source(here::here("maintained", "table_a9_retov2007.R"))
+
+# Regression discontinuities ----
+# The robustness grid refits every state and window combination and is the slow step.
+source(here::here("maintained", "tables_4_5_rd.R"))
+source(here::here("maintained", "table_6_rd_persistence.R"))
+source(here::here("maintained", "table_7_modeling_caces.R"))
+source(here::here("maintained", "tables_a6_a7_robustness.R"))
+source(here::here("maintained", "figure_a2_sawtooth.R"))
+
+# Interstate migration ----
+source(here::here("maintained", "table_a2_figure_a1_movers.R"))
