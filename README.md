@@ -23,6 +23,8 @@
 - [Maintained rewrite verification](#maintained-rewrite-verification)
 - [R environment](#r-environment)
 
+*Drafted by Claude Opus 5 under the supervision of Alex Coppock.*
+
 This repository holds the actively maintained replication code for
 Coppock and Green (2016), together with the reproducibility report that
 documents what the original archive did and did not do. It is part of a

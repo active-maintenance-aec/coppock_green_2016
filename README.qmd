@@ -176,7 +176,7 @@ gt <- read_csv(
 )
 
 gt |>
-  select(location, description, value_paper, value_script, match) |>
+  select(table_figure, claim, value_paper, value_script, match) |>
   kable(
     booktabs = TRUE,
     col.names = c("Location", "Quantity", "Paper", "Script", "Match"),
@@ -407,7 +407,7 @@ gt_rw <- read_csv(
 )
 
 gt_rw |>
-  select(location, description, value_paper, value_rewrite, match_rewrite) |>
+  select(table_figure, claim, value_paper, value_rewrite, match_rewrite) |>
   kable(
     booktabs = TRUE,
     col.names = c("Location", "Quantity", "Paper", "Rewrite", "Match"),
