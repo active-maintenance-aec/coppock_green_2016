@@ -1,4 +1,4 @@
-# coppock_green_2016 — run_all.R
+# coppock_green_2016/run_all.R
 # Runs the whole reproduction in order: fetch and verify the deposited archive,
 # then every published table and figure.
 # Every script is self-contained and can also be run on its own.
