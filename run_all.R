@@ -27,6 +27,17 @@ source(here::here("maintained", "figure_a2_sawtooth.R"))
 # Interstate migration ----
 source(here::here("maintained", "table_a2_figure_a1_movers.R"))
 
+# Figure timestamps ----
+# R's pdf() device stamps a wall-clock /CreationDate and /ModDate into every figure it
+# writes, and those two fields are the only reason two runs of this pipeline produce
+# differing files. Blanking them lets the determinism check cover every file the
+# pipeline writes rather than all but the figures.
+source(here::here("maintained", "helpers.R"))
+walk(
+  list.files(here::here("maintained", "output"), pattern = "\\.pdf$", full.names = TRUE),
+  blank_pdf_timestamps
+)
+
 # Deposited archive, again ----
 # The check at the top of this file is a precondition: it says original/ was intact
 # before anything ran. Nothing above writes to original/, and this second pass is what
