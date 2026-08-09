@@ -1,0 +1,975 @@
+float,panel,row_label,column_label,stat,value_paper
+table_1,main,Civic Duty,Aug. 2006,est,0.018
+table_1,main,Civic Duty,Nov. 2006,est,0.041
+table_1,main,Civic Duty,Jan. 2008,est,0.278
+table_1,main,Civic Duty,Aug. 2008,est,-0.105
+table_1,main,Civic Duty,Nov. 2008,est,-0.078
+table_1,main,Civic Duty,Aug. 2010,est,0.067
+table_1,main,Civic Duty,Nov. 2010,est,-0.035
+table_1,main,Civic Duty,Feb. 2012,est,-0.023
+table_1,main,Civic Duty,Aug. 2012,est,-0.105
+table_1,main,Civic Duty,Nov. 2012,est,-0.173
+table_1,main,Civic Duty,Aug. 2006,se,0.003
+table_1,main,Civic Duty,Nov. 2006,se,0.105
+table_1,main,Civic Duty,Jan. 2008,se,0.180
+table_1,main,Civic Duty,Aug. 2008,se,0.186
+table_1,main,Civic Duty,Nov. 2008,se,0.098
+table_1,main,Civic Duty,Aug. 2010,se,0.183
+table_1,main,Civic Duty,Nov. 2010,se,0.151
+table_1,main,Civic Duty,Feb. 2012,se,0.181
+table_1,main,Civic Duty,Aug. 2012,se,0.187
+table_1,main,Civic Duty,Nov. 2012,se,0.136
+table_1,main,Hawthorne,Aug. 2006,est,0.025
+table_1,main,Hawthorne,Nov. 2006,est,-0.014
+table_1,main,Hawthorne,Jan. 2008,est,0.117
+table_1,main,Hawthorne,Aug. 2008,est,0.118
+table_1,main,Hawthorne,Nov. 2008,est,-0.109
+table_1,main,Hawthorne,Aug. 2010,est,0.166
+table_1,main,Hawthorne,Nov. 2010,est,-0.176
+table_1,main,Hawthorne,Feb. 2012,est,0.114
+table_1,main,Hawthorne,Aug. 2012,est,0.060
+table_1,main,Hawthorne,Nov. 2012,est,-0.001
+table_1,main,Hawthorne,Aug. 2006,se,0.003
+table_1,main,Hawthorne,Nov. 2006,se,0.077
+table_1,main,Hawthorne,Jan. 2008,se,0.130
+table_1,main,Hawthorne,Aug. 2008,se,0.127
+table_1,main,Hawthorne,Nov. 2008,se,0.073
+table_1,main,Hawthorne,Aug. 2010,se,0.131
+table_1,main,Hawthorne,Nov. 2010,se,0.115
+table_1,main,Hawthorne,Feb. 2012,se,0.130
+table_1,main,Hawthorne,Aug. 2012,se,0.131
+table_1,main,Hawthorne,Nov. 2012,se,0.094
+table_1,main,Self,Aug. 2006,est,0.050
+table_1,main,Self,Nov. 2006,est,0.050
+table_1,main,Self,Jan. 2008,est,0.133
+table_1,main,Self,Aug. 2008,est,0.169
+table_1,main,Self,Nov. 2008,est,-0.010
+table_1,main,Self,Aug. 2010,est,0.134
+table_1,main,Self,Nov. 2010,est,0.052
+table_1,main,Self,Feb. 2012,est,0.073
+table_1,main,Self,Aug. 2012,est,0.185
+table_1,main,Self,Nov. 2012,est,0.055
+table_1,main,Self,Aug. 2006,se,0.003
+table_1,main,Self,Nov. 2006,se,0.038
+table_1,main,Self,Jan. 2008,se,0.066
+table_1,main,Self,Aug. 2008,se,0.064
+table_1,main,Self,Nov. 2008,se,0.035
+table_1,main,Self,Aug. 2010,se,0.066
+table_1,main,Self,Nov. 2010,se,0.055
+table_1,main,Self,Feb. 2012,se,0.066
+table_1,main,Self,Aug. 2012,se,0.065
+table_1,main,Self,Nov. 2012,se,0.047
+table_1,main,Neighbors,Aug. 2006,est,0.083
+table_1,main,Neighbors,Nov. 2006,est,0.128
+table_1,main,Neighbors,Jan. 2008,est,0.146
+table_1,main,Neighbors,Aug. 2008,est,0.125
+table_1,main,Neighbors,Nov. 2008,est,0.017
+table_1,main,Neighbors,Aug. 2010,est,0.122
+table_1,main,Neighbors,Nov. 2010,est,0.047
+table_1,main,Neighbors,Feb. 2012,est,0.072
+table_1,main,Neighbors,Aug. 2012,est,0.061
+table_1,main,Neighbors,Nov. 2012,est,-0.002
+table_1,main,Neighbors,Aug. 2006,se,0.003
+table_1,main,Neighbors,Nov. 2006,se,0.022
+table_1,main,Neighbors,Jan. 2008,se,0.040
+table_1,main,Neighbors,Aug. 2008,se,0.039
+table_1,main,Neighbors,Nov. 2008,se,0.021
+table_1,main,Neighbors,Aug. 2010,se,0.040
+table_1,main,Neighbors,Nov. 2010,se,0.033
+table_1,main,Neighbors,Feb. 2012,se,0.040
+table_1,main,Neighbors,Aug. 2012,se,0.040
+table_1,main,Neighbors,Nov. 2012,se,0.029
+table_1,main,All Instruments,Nov. 2006,est,0.108
+table_1,main,All Instruments,Jan. 2008,est,0.142
+table_1,main,All Instruments,Aug. 2008,est,0.135
+table_1,main,All Instruments,Nov. 2008,est,0.009
+table_1,main,All Instruments,Aug. 2010,est,0.126
+table_1,main,All Instruments,Nov. 2010,est,0.043
+table_1,main,All Instruments,Feb. 2012,est,0.073
+table_1,main,All Instruments,Aug. 2012,est,0.089
+table_1,main,All Instruments,Nov. 2012,est,0.011
+table_1,main,All Instruments,Nov. 2006,se,0.021
+table_1,main,All Instruments,Jan. 2008,se,0.036
+table_1,main,All Instruments,Aug. 2008,se,0.036
+table_1,main,All Instruments,Nov. 2008,se,0.019
+table_1,main,All Instruments,Aug. 2010,se,0.037
+table_1,main,All Instruments,Nov. 2010,se,0.030
+table_1,main,All Instruments,Feb. 2012,se,0.036
+table_1,main,All Instruments,Aug. 2012,se,0.036
+table_1,main,All Instruments,Nov. 2012,se,0.026
+table_1,main,Control,Aug. 2006,est,0.311
+table_1,main,Control,Aug. 2006,se,0.001
+table_1,main,Civic Duty,n,n,36903
+table_1,main,Hawthorne,n,n,37005
+table_1,main,Self,n,n,37011
+table_1,main,Neighbors,n,n,36893
+table_1,main,Control,n,n,184749
+table_1,main,Untreated Compliers,Nov. 2006,lo,0.845
+table_1,main,Untreated Compliers,Nov. 2006,hi,0.943
+table_1,main,Untreated Compliers,Jan. 2008,lo,0.194
+table_1,main,Untreated Compliers,Jan. 2008,hi,0.362
+table_1,main,Untreated Compliers,Aug. 2008,lo,0.274
+table_1,main,Untreated Compliers,Aug. 2008,hi,0.398
+table_1,main,Untreated Compliers,Nov. 2008,lo,0.912
+table_1,main,Untreated Compliers,Nov. 2008,hi,1.034
+table_1,main,Untreated Compliers,Aug. 2010,lo,0.419
+table_1,main,Untreated Compliers,Aug. 2010,hi,0.472
+table_1,main,Untreated Compliers,Nov. 2010,lo,0.766
+table_1,main,Untreated Compliers,Nov. 2010,hi,0.986
+table_1,main,Untreated Compliers,Feb. 2012,lo,0.330
+table_1,main,Untreated Compliers,Feb. 2012,hi,0.453
+table_1,main,Untreated Compliers,Aug. 2012,lo,0.286
+table_1,main,Untreated Compliers,Aug. 2012,hi,0.469
+table_1,main,Untreated Compliers,Nov. 2012,lo,0.806
+table_1,main,Untreated Compliers,Nov. 2012,hi,0.950
+table_2,main,Civic Duty,Nov. 2007,est,0.014
+table_2,main,Civic Duty,Jan. 2008,est,0.180
+table_2,main,Civic Duty,Aug. 2008,est,0.642
+table_2,main,Civic Duty,Nov. 2008,est,-0.016
+table_2,main,Civic Duty,Aug. 2010,est,0.814
+table_2,main,Civic Duty,Nov. 2010,est,-0.101
+table_2,main,Civic Duty,Feb. 2012,est,0.248
+table_2,main,Civic Duty,Aug. 2012,est,-0.322
+table_2,main,Civic Duty,Nov. 2012,est,-0.042
+table_2,main,Civic Duty,Nov. 2007,se,0.006
+table_2,main,Civic Duty,Jan. 2008,se,0.466
+table_2,main,Civic Duty,Aug. 2008,se,0.468
+table_2,main,Civic Duty,Nov. 2008,se,0.326
+table_2,main,Civic Duty,Aug. 2010,se,0.522
+table_2,main,Civic Duty,Nov. 2010,se,0.493
+table_2,main,Civic Duty,Feb. 2012,se,0.423
+table_2,main,Civic Duty,Aug. 2012,se,0.539
+table_2,main,Civic Duty,Nov. 2012,se,0.433
+table_2,main,Shown 2005 Vote,Nov. 2007,est,0.050
+table_2,main,Shown 2005 Vote,Jan. 2008,est,0.373
+table_2,main,Shown 2005 Vote,Aug. 2008,est,0.218
+table_2,main,Shown 2005 Vote,Nov. 2008,est,0.066
+table_2,main,Shown 2005 Vote,Aug. 2010,est,0.121
+table_2,main,Shown 2005 Vote,Nov. 2010,est,0.077
+table_2,main,Shown 2005 Vote,Feb. 2012,est,-0.148
+table_2,main,Shown 2005 Vote,Aug. 2012,est,-0.036
+table_2,main,Shown 2005 Vote,Nov. 2012,est,0.140
+table_2,main,Shown 2005 Vote,Nov. 2007,se,0.005
+table_2,main,Shown 2005 Vote,Jan. 2008,se,0.091
+table_2,main,Shown 2005 Vote,Aug. 2008,se,0.086
+table_2,main,Shown 2005 Vote,Nov. 2008,se,0.062
+table_2,main,Shown 2005 Vote,Aug. 2010,se,0.091
+table_2,main,Shown 2005 Vote,Nov. 2010,se,0.089
+table_2,main,Shown 2005 Vote,Feb. 2012,se,0.086
+table_2,main,Shown 2005 Vote,Aug. 2012,se,0.091
+table_2,main,Shown 2005 Vote,Nov. 2012,se,0.081
+table_2,main,Shown 2006 Vote,Nov. 2007,est,0.045
+table_2,main,Shown 2006 Vote,Jan. 2008,est,0.298
+table_2,main,Shown 2006 Vote,Aug. 2008,est,0.120
+table_2,main,Shown 2006 Vote,Nov. 2008,est,0.128
+table_2,main,Shown 2006 Vote,Aug. 2010,est,0.032
+table_2,main,Shown 2006 Vote,Nov. 2010,est,0.181
+table_2,main,Shown 2006 Vote,Feb. 2012,est,-0.096
+table_2,main,Shown 2006 Vote,Aug. 2012,est,-0.235
+table_2,main,Shown 2006 Vote,Nov. 2012,est,0.066
+table_2,main,Shown 2006 Vote,Nov. 2007,se,0.005
+table_2,main,Shown 2006 Vote,Jan. 2008,se,0.101
+table_2,main,Shown 2006 Vote,Aug. 2008,se,0.097
+table_2,main,Shown 2006 Vote,Nov. 2008,se,0.068
+table_2,main,Shown 2006 Vote,Aug. 2010,se,0.103
+table_2,main,Shown 2006 Vote,Nov. 2010,se,0.099
+table_2,main,Shown 2006 Vote,Feb. 2012,se,0.094
+table_2,main,Shown 2006 Vote,Aug. 2012,se,0.109
+table_2,main,Shown 2006 Vote,Nov. 2012,se,0.091
+table_2,main,All Instruments,Jan. 2008,est,0.336
+table_2,main,All Instruments,Aug. 2008,est,0.183
+table_2,main,All Instruments,Nov. 2008,est,0.092
+table_2,main,All Instruments,Aug. 2010,est,0.095
+table_2,main,All Instruments,Nov. 2010,est,0.119
+table_2,main,All Instruments,Feb. 2012,est,-0.118
+table_2,main,All Instruments,Aug. 2012,est,-0.128
+table_2,main,All Instruments,Nov. 2012,est,0.104
+table_2,main,All Instruments,Jan. 2008,se,0.067
+table_2,main,All Instruments,Aug. 2008,se,0.064
+table_2,main,All Instruments,Nov. 2008,se,0.046
+table_2,main,All Instruments,Aug. 2010,se,0.068
+table_2,main,All Instruments,Nov. 2010,se,0.066
+table_2,main,All Instruments,Feb. 2012,se,0.063
+table_2,main,All Instruments,Aug. 2012,se,0.070
+table_2,main,All Instruments,Nov. 2012,se,0.061
+table_2,main,Control,Nov. 2007,est,0.282
+table_2,main,Control,Nov. 2007,se,0.001
+table_2,main,Civic Duty,n,n,6815
+table_2,main,Shown 2005 Vote,n,n,13592
+table_2,main,Shown 2006 Vote,n,n,13546
+table_2,main,Control,n,n,759964
+table_2,main,Untreated Compliers,Jan. 2008,lo,0.191
+table_2,main,Untreated Compliers,Jan. 2008,hi,0.525
+table_2,main,Untreated Compliers,Aug. 2008,lo,-0.157
+table_2,main,Untreated Compliers,Aug. 2008,hi,0.247
+table_2,main,Untreated Compliers,Nov. 2008,lo,0.838
+table_2,main,Untreated Compliers,Nov. 2008,hi,1.024
+table_2,main,Untreated Compliers,Aug. 2010,lo,0.017
+table_2,main,Untreated Compliers,Aug. 2010,hi,0.425
+table_2,main,Untreated Compliers,Nov. 2010,lo,0.591
+table_2,main,Untreated Compliers,Nov. 2010,hi,0.994
+table_2,main,Untreated Compliers,Feb. 2012,lo,-0.001
+table_2,main,Untreated Compliers,Feb. 2012,hi,0.310
+table_2,main,Untreated Compliers,Aug. 2012,lo,0.393
+table_2,main,Untreated Compliers,Aug. 2012,hi,0.779
+table_2,main,Untreated Compliers,Nov. 2012,lo,0.755
+table_2,main,Untreated Compliers,Nov. 2012,hi,0.845
+table_3,main,Household Size = 1,Apr. 2009,est,0.049
+table_3,main,Household Size = 1,Feb. 2010,est,0.478
+table_3,main,Household Size = 1,Nov. 2010,est,0.399
+table_3,main,Household Size = 1,Feb. 2011,est,0.306
+table_3,main,Household Size = 1,Apr. 2011,est,0.462
+table_3,main,Household Size = 1,Mar. 2012,est,0.446
+table_3,main,Household Size = 1,Nov. 2012,est,0.236
+table_3,main,Household Size = 1,Apr. 2009,se,0.008
+table_3,main,Household Size = 1,Feb. 2010,se,0.165
+table_3,main,Household Size = 1,Nov. 2010,se,0.177
+table_3,main,Household Size = 1,Feb. 2011,se,0.22
+table_3,main,Household Size = 1,Apr. 2011,se,0.183
+table_3,main,Household Size = 1,Mar. 2012,se,0.15
+table_3,main,Household Size = 1,Nov. 2012,se,0.163
+table_3,main,Household Size = 2,Apr. 2009,est,0.035
+table_3,main,Household Size = 2,Feb. 2010,est,-0.366
+table_3,main,Household Size = 2,Nov. 2010,est,0.06
+table_3,main,Household Size = 2,Feb. 2011,est,0.301
+table_3,main,Household Size = 2,Apr. 2011,est,0.463
+table_3,main,Household Size = 2,Mar. 2012,est,0.043
+table_3,main,Household Size = 2,Nov. 2012,est,0.231
+table_3,main,Household Size = 2,Apr. 2009,se,0.009
+table_3,main,Household Size = 2,Feb. 2010,se,0.322
+table_3,main,Household Size = 2,Nov. 2010,se,0.263
+table_3,main,Household Size = 2,Feb. 2011,se,0.328
+table_3,main,Household Size = 2,Apr. 2011,se,0.276
+table_3,main,Household Size = 2,Mar. 2012,se,0.257
+table_3,main,Household Size = 2,Nov. 2012,se,0.233
+table_3,main,Household Size = 3,Apr. 2009,est,0.044
+table_3,main,Household Size = 3,Feb. 2010,est,0.309
+table_3,main,Household Size = 3,Nov. 2010,est,0.389
+table_3,main,Household Size = 3,Feb. 2011,est,0.149
+table_3,main,Household Size = 3,Apr. 2011,est,-0.223
+table_3,main,Household Size = 3,Mar. 2012,est,-0.063
+table_3,main,Household Size = 3,Nov. 2012,est,0.142
+table_3,main,Household Size = 3,Apr. 2009,se,0.018
+table_3,main,Household Size = 3,Feb. 2010,se,0.422
+table_3,main,Household Size = 3,Nov. 2010,se,0.437
+table_3,main,Household Size = 3,Feb. 2011,se,0.487
+table_3,main,Household Size = 3,Apr. 2011,se,0.493
+table_3,main,Household Size = 3,Mar. 2012,se,0.437
+table_3,main,Household Size = 3,Nov. 2012,se,0.409
+table_3,main,Pooled Estimate,Apr. 2009,est,0.043
+table_3,main,Pooled Estimate,Feb. 2010,est,0.303
+table_3,main,Pooled Estimate,Nov. 2010,est,0.303
+table_3,main,Pooled Estimate,Feb. 2011,est,0.285
+table_3,main,Pooled Estimate,Apr. 2011,est,0.403
+table_3,main,Pooled Estimate,Mar. 2012,est,0.311
+table_3,main,Pooled Estimate,Nov. 2012,est,0.226
+table_3,main,Pooled Estimate,Apr. 2009,se,0.005
+table_3,main,Pooled Estimate,Feb. 2010,se,0.139
+table_3,main,Pooled Estimate,Nov. 2010,se,0.139
+table_3,main,Pooled Estimate,Feb. 2011,se,0.171
+table_3,main,Pooled Estimate,Apr. 2011,se,0.146
+table_3,main,Pooled Estimate,Mar. 2012,se,0.124
+table_3,main,Pooled Estimate,Nov. 2012,se,0.127
+table_3,main,Untreated Compliers HH1,Feb. 2010,est,0.307
+table_3,main,Untreated Compliers HH1,Nov. 2010,est,0.437
+table_3,main,Untreated Compliers HH1,Feb. 2011,est,0.404
+table_3,main,Untreated Compliers HH1,Apr. 2011,est,0.151
+table_3,main,Untreated Compliers HH1,Mar. 2012,est,0.158
+table_3,main,Untreated Compliers HH1,Nov. 2012,est,0.660
+table_3,main,Untreated Compliers HH2,Feb. 2010,est,0.742
+table_3,main,Untreated Compliers HH2,Nov. 2010,est,0.735
+table_3,main,Untreated Compliers HH2,Feb. 2011,est,0.356
+table_3,main,Untreated Compliers HH2,Apr. 2011,est,0.154
+table_3,main,Untreated Compliers HH2,Mar. 2012,est,0.172
+table_3,main,Untreated Compliers HH2,Nov. 2012,est,0.645
+table_3,main,Untreated Compliers HH3,Feb. 2010,est,0.474
+table_3,main,Untreated Compliers HH3,Nov. 2010,est,0.465
+table_3,main,Untreated Compliers HH3,Feb. 2011,est,0.582
+table_3,main,Untreated Compliers HH3,Apr. 2011,est,0.680
+table_3,main,Untreated Compliers HH3,Mar. 2012,est,0.252
+table_3,main,Untreated Compliers HH3,Nov. 2012,est,0.949
+table_3,main,Household Size = 1,n,n,16638
+table_3,main,Household Size = 2,n,n,16915
+table_3,main,Household Size = 3,n,n,5086
+table_3,main,Pooled Estimate,n,n,38639
+table_4,Presidential on Midterm,Arkansas,1996-98,est,0.179
+table_4,Presidential on Midterm,Arkansas,1996-98,se,0.058
+table_4,Presidential on Midterm,Arkansas,2000-02,est,0.133
+table_4,Presidential on Midterm,Arkansas,2000-02,se,0.049
+table_4,Presidential on Midterm,Arkansas,2004-06,est,0.157
+table_4,Presidential on Midterm,Arkansas,2004-06,se,0.019
+table_4,Presidential on Midterm,Arkansas,2008-10,est,0.106
+table_4,Presidential on Midterm,Arkansas,2008-10,se,0.015
+table_4,Presidential on Midterm,Colorado,1992-94,est,0.156
+table_4,Presidential on Midterm,Colorado,1992-94,se,0.031
+table_4,Presidential on Midterm,Colorado,1996-98,est,0.037
+table_4,Presidential on Midterm,Colorado,1996-98,se,0.039
+table_4,Presidential on Midterm,Colorado,2000-02,est,0.086
+table_4,Presidential on Midterm,Colorado,2000-02,se,0.024
+table_4,Presidential on Midterm,Colorado,2004-06,est,0.148
+table_4,Presidential on Midterm,Colorado,2004-06,se,0.011
+table_4,Presidential on Midterm,Connecticut,2000-02,est,0.117
+table_4,Presidential on Midterm,Connecticut,2000-02,se,0.026
+table_4,Presidential on Midterm,Connecticut,2004-06,est,0.113
+table_4,Presidential on Midterm,Connecticut,2004-06,se,0.012
+table_4,Presidential on Midterm,Connecticut,2008-10,est,0.083
+table_4,Presidential on Midterm,Connecticut,2008-10,se,0.009
+table_4,Presidential on Midterm,Iowa,2004-06,est,0.142
+table_4,Presidential on Midterm,Iowa,2004-06,se,0.049
+table_4,Presidential on Midterm,Iowa,2008-10,est,0.038
+table_4,Presidential on Midterm,Iowa,2008-10,se,0.019
+table_4,Presidential on Midterm,Illinois,1992-94,est,0.100
+table_4,Presidential on Midterm,Illinois,1992-94,se,0.019
+table_4,Presidential on Midterm,Illinois,1996-98,est,0.159
+table_4,Presidential on Midterm,Illinois,1996-98,se,0.023
+table_4,Presidential on Midterm,Illinois,2000-02,est,0.120
+table_4,Presidential on Midterm,Illinois,2000-02,se,0.014
+table_4,Presidential on Midterm,Illinois,2004-06,est,0.097
+table_4,Presidential on Midterm,Illinois,2004-06,se,0.008
+table_4,Presidential on Midterm,Illinois,2008-10,est,0.096
+table_4,Presidential on Midterm,Illinois,2008-10,se,0.006
+table_4,Presidential on Midterm,Florida,1992-94,est,0.184
+table_4,Presidential on Midterm,Florida,1992-94,se,0.024
+table_4,Presidential on Midterm,Florida,1996-98,est,0.102
+table_4,Presidential on Midterm,Florida,1996-98,se,0.019
+table_4,Presidential on Midterm,Florida,2000-02,est,0.164
+table_4,Presidential on Midterm,Florida,2000-02,se,0.017
+table_4,Presidential on Midterm,Florida,2004-06,est,0.223
+table_4,Presidential on Midterm,Florida,2004-06,se,0.013
+table_4,Presidential on Midterm,Florida,2008-10,est,0.082
+table_4,Presidential on Midterm,Florida,2008-10,se,0.005
+table_4,Presidential on Midterm,Florida 2005,1992-94,est,0.155
+table_4,Presidential on Midterm,Florida 2005,1992-94,se,0.021
+table_4,Presidential on Midterm,Florida 2005,1996-98,est,0.060
+table_4,Presidential on Midterm,Florida 2005,1996-98,se,0.017
+table_4,Presidential on Midterm,Florida 2005,2000-02,est,0.063
+table_4,Presidential on Midterm,Florida 2005,2000-02,se,0.018
+table_4,Presidential on Midterm,Kentucky,2008-10,est,0.117
+table_4,Presidential on Midterm,Kentucky,2008-10,se,0.012
+table_4,Presidential on Midterm,Michigan,1996-98,est,0.465
+table_4,Presidential on Midterm,Michigan,1996-98,se,0.043
+table_4,Presidential on Midterm,Michigan,2000-02,est,0.129
+table_4,Presidential on Midterm,Michigan,2000-02,se,0.012
+table_4,Presidential on Midterm,Missouri,1992-94,est,0.215
+table_4,Presidential on Midterm,Missouri,1992-94,se,0.037
+table_4,Presidential on Midterm,Missouri,1996-98,est,0.098
+table_4,Presidential on Midterm,Missouri,1996-98,se,0.027
+table_4,Presidential on Midterm,Missouri,2000-02,est,0.110
+table_4,Presidential on Midterm,Missouri,2000-02,se,0.015
+table_4,Presidential on Midterm,Missouri,2004-06,est,0.095
+table_4,Presidential on Midterm,Missouri,2004-06,se,0.012
+table_4,Presidential on Midterm,Missouri,2008-10,est,0.090
+table_4,Presidential on Midterm,Missouri,2008-10,se,0.009
+table_4,Presidential on Midterm,Missouri 2005,1992-94,est,0.216
+table_4,Presidential on Midterm,Missouri 2005,1992-94,se,0.034
+table_4,Presidential on Midterm,Missouri 2005,1996-98,est,0.082
+table_4,Presidential on Midterm,Missouri 2005,1996-98,se,0.025
+table_4,Presidential on Midterm,Missouri 2005,2000-02,est,0.102
+table_4,Presidential on Midterm,Missouri 2005,2000-02,se,0.013
+table_4,Presidential on Midterm,Montana,2000-02,est,0.138
+table_4,Presidential on Midterm,Montana,2000-02,se,0.053
+table_4,Presidential on Midterm,Montana,2004-06,est,0.205
+table_4,Presidential on Midterm,Montana,2004-06,se,0.038
+table_4,Presidential on Midterm,Montana,2008-10,est,0.122
+table_4,Presidential on Midterm,Montana,2008-10,se,0.017
+table_4,Presidential on Midterm,New Jersey,2004-06,est,0.081
+table_4,Presidential on Midterm,New Jersey,2004-06,se,0.007
+table_4,Presidential on Midterm,New Jersey,2008-10,est,0.085
+table_4,Presidential on Midterm,New Jersey,2008-10,se,0.005
+table_4,Presidential on Midterm,Nevada,2000-02,est,0.238
+table_4,Presidential on Midterm,Nevada,2000-02,se,0.051
+table_4,Presidential on Midterm,Nevada,2004-06,est,0.150
+table_4,Presidential on Midterm,Nevada,2004-06,se,0.019
+table_4,Presidential on Midterm,Nevada,2008-10,est,0.169
+table_4,Presidential on Midterm,Nevada,2008-10,se,0.015
+table_4,Presidential on Midterm,New York,2004-06,est,0.075
+table_4,Presidential on Midterm,New York,2004-06,se,0.006
+table_4,Presidential on Midterm,New York,2008-10,est,0.060
+table_4,Presidential on Midterm,New York,2008-10,se,0.005
+table_4,Presidential on Midterm,Oklahoma,2000-02,est,0.156
+table_4,Presidential on Midterm,Oklahoma,2000-02,se,0.036
+table_4,Presidential on Midterm,Oklahoma,2004-06,est,0.112
+table_4,Presidential on Midterm,Oklahoma,2004-06,se,0.017
+table_4,Presidential on Midterm,Oklahoma,2008-10,est,0.114
+table_4,Presidential on Midterm,Oklahoma,2008-10,se,0.012
+table_4,Presidential on Midterm,Oregon,2008-10,est,0.102
+table_4,Presidential on Midterm,Oregon,2008-10,se,0.016
+table_4,Presidential on Midterm,Pennsylvania,2004-06,est,0.253
+table_4,Presidential on Midterm,Pennsylvania,2004-06,se,0.016
+table_4,Presidential on Midterm,Pennsylvania,2008-10,est,0.132
+table_4,Presidential on Midterm,Pennsylvania,2008-10,se,0.006
+table_4,Presidential on Midterm,Rhode Island,2008-10,est,0.066
+table_4,Presidential on Midterm,Rhode Island,2008-10,se,0.017
+table_4,Presidential on Midterm,Meta-Analysis,1992-94,est,0.147
+table_4,Presidential on Midterm,Meta-Analysis,1992-94,se,0.013
+table_4,Presidential on Midterm,Meta-Analysis,1996-98,est,0.138
+table_4,Presidential on Midterm,Meta-Analysis,1996-98,se,0.011
+table_4,Presidential on Midterm,Meta-Analysis,2000-02,est,0.127
+table_4,Presidential on Midterm,Meta-Analysis,2000-02,se,0.006
+table_4,Presidential on Midterm,Meta-Analysis,2004-06,est,0.109
+table_4,Presidential on Midterm,Meta-Analysis,2004-06,se,0.003
+table_4,Presidential on Midterm,Meta-Analysis,2008-10,est,0.090
+table_4,Presidential on Midterm,Meta-Analysis,2008-10,se,0.002
+table_4,Midterm on Presidential,Arkansas,1998-2000,est,1.122
+table_4,Midterm on Presidential,Arkansas,1998-2000,se,0.211
+table_4,Midterm on Presidential,Arkansas,2002-04,est,0.326
+table_4,Midterm on Presidential,Arkansas,2002-04,se,0.150
+table_4,Midterm on Presidential,Arkansas,2006-08,est,0.330
+table_4,Midterm on Presidential,Arkansas,2006-08,se,0.117
+table_4,Midterm on Presidential,Arkansas,2010-12,est,0.200
+table_4,Midterm on Presidential,Arkansas,2010-12,se,0.123
+table_4,Midterm on Presidential,Colorado,1994-96,est,-0.011
+table_4,Midterm on Presidential,Colorado,1994-96,se,0.107
+table_4,Midterm on Presidential,Colorado,1998-2000,est,0.074
+table_4,Midterm on Presidential,Colorado,1998-2000,se,0.066
+table_4,Midterm on Presidential,Colorado,2002-04,est,0.143
+table_4,Midterm on Presidential,Colorado,2002-04,se,0.097
+table_4,Midterm on Presidential,Colorado,2006-08,est,0.088
+table_4,Midterm on Presidential,Colorado,2006-08,se,0.079
+table_4,Midterm on Presidential,Connecticut,2002-04,est,0.090
+table_4,Midterm on Presidential,Connecticut,2002-04,se,0.156
+table_4,Midterm on Presidential,Connecticut,2006-08,est,0.231
+table_4,Midterm on Presidential,Connecticut,2006-08,se,0.092
+table_4,Midterm on Presidential,Connecticut,2010-12,est,0.097
+table_4,Midterm on Presidential,Connecticut,2010-12,se,0.063
+table_4,Midterm on Presidential,Iowa,2006-08,est,0.228
+table_4,Midterm on Presidential,Iowa,2006-08,se,0.067
+table_4,Midterm on Presidential,Iowa,2010-12,est,0.086
+table_4,Midterm on Presidential,Iowa,2010-12,se,0.066
+table_4,Midterm on Presidential,Illinois,1994-96,est,0.099
+table_4,Midterm on Presidential,Illinois,1994-96,se,0.082
+table_4,Midterm on Presidential,Illinois,1998-2000,est,0.337
+table_4,Midterm on Presidential,Illinois,1998-2000,se,0.092
+table_4,Midterm on Presidential,Illinois,2002-04,est,0.185
+table_4,Midterm on Presidential,Illinois,2002-04,se,0.071
+table_4,Midterm on Presidential,Illinois,2006-08,est,0.238
+table_4,Midterm on Presidential,Illinois,2006-08,se,0.067
+table_4,Midterm on Presidential,Illinois,2010-12,est,0.041
+table_4,Midterm on Presidential,Illinois,2010-12,se,0.059
+table_4,Midterm on Presidential,Florida,1994-96,est,-0.047
+table_4,Midterm on Presidential,Florida,1994-96,se,0.104
+table_4,Midterm on Presidential,Florida,1998-2000,est,0.220
+table_4,Midterm on Presidential,Florida,1998-2000,se,0.119
+table_4,Midterm on Presidential,Florida,2002-04,est,0.064
+table_4,Midterm on Presidential,Florida,2002-04,se,0.066
+table_4,Midterm on Presidential,Florida,2006-08,est,0.024
+table_4,Midterm on Presidential,Florida,2006-08,se,0.038
+table_4,Midterm on Presidential,Florida,2010-12,est,0.014
+table_4,Midterm on Presidential,Florida,2010-12,se,0.062
+table_4,Midterm on Presidential,Florida 2005,1994-96,est,-0.030
+table_4,Midterm on Presidential,Florida 2005,1994-96,se,0.120
+table_4,Midterm on Presidential,Florida 2005,1998-2000,est,0.131
+table_4,Midterm on Presidential,Florida 2005,1998-2000,se,0.121
+table_4,Midterm on Presidential,Florida 2005,2002-04,est,0.141
+table_4,Midterm on Presidential,Florida 2005,2002-04,se,0.115
+table_4,Midterm on Presidential,Kentucky,2010-12,est,0.235
+table_4,Midterm on Presidential,Kentucky,2010-12,se,0.052
+table_4,Midterm on Presidential,Michigan,1998-2000,est,0.227
+table_4,Midterm on Presidential,Michigan,1998-2000,se,0.058
+table_4,Midterm on Presidential,Missouri,1994-96,est,0.162
+table_4,Midterm on Presidential,Missouri,1994-96,se,0.085
+table_4,Midterm on Presidential,Missouri,1998-2000,est,0.260
+table_4,Midterm on Presidential,Missouri,1998-2000,se,0.177
+table_4,Midterm on Presidential,Missouri,2002-04,est,0.242
+table_4,Midterm on Presidential,Missouri,2002-04,se,0.075
+table_4,Midterm on Presidential,Missouri,2006-08,est,0.129
+table_4,Midterm on Presidential,Missouri,2006-08,se,0.045
+table_4,Midterm on Presidential,Missouri,2010-12,est,0.025
+table_4,Midterm on Presidential,Missouri,2010-12,se,0.069
+table_4,Midterm on Presidential,Missouri 2005,1994-96,est,0.243
+table_4,Midterm on Presidential,Missouri 2005,1994-96,se,0.074
+table_4,Midterm on Presidential,Missouri 2005,1998-2000,est,0.319
+table_4,Midterm on Presidential,Missouri 2005,1998-2000,se,0.136
+table_4,Midterm on Presidential,Missouri 2005,2002-04,est,0.101
+table_4,Midterm on Presidential,Missouri 2005,2002-04,se,0.054
+table_4,Midterm on Presidential,Montana,2002-04,est,0.425
+table_4,Midterm on Presidential,Montana,2002-04,se,0.099
+table_4,Midterm on Presidential,Montana,2006-08,est,0.188
+table_4,Midterm on Presidential,Montana,2006-08,se,0.059
+table_4,Midterm on Presidential,Montana,2010-12,est,0.165
+table_4,Midterm on Presidential,Montana,2010-12,se,0.091
+table_4,Midterm on Presidential,New Jersey,2010-12,est,-0.138
+table_4,Midterm on Presidential,New Jersey,2006-08,est,0.281
+table_4,Midterm on Presidential,New Jersey,2006-08,se,0.092
+table_4,Midterm on Presidential,New Jersey,2010-12,se,0.118
+table_4,Midterm on Presidential,Nevada,2002-04,est,0.383
+table_4,Midterm on Presidential,Nevada,2002-04,se,0.122
+table_4,Midterm on Presidential,Nevada,2006-08,est,0.567
+table_4,Midterm on Presidential,Nevada,2006-08,se,0.129
+table_4,Midterm on Presidential,Nevada,2010-12,est,0.287
+table_4,Midterm on Presidential,Nevada,2010-12,se,0.088
+table_4,Midterm on Presidential,New York,2002-04,est,0.130
+table_4,Midterm on Presidential,New York,2002-04,se,0.079
+table_4,Midterm on Presidential,New York,2006-08,est,0.156
+table_4,Midterm on Presidential,New York,2006-08,se,0.065
+table_4,Midterm on Presidential,New York,2010-12,est,0.036
+table_4,Midterm on Presidential,New York,2010-12,se,0.096
+table_4,Midterm on Presidential,Oklahoma,2002-04,est,0.395
+table_4,Midterm on Presidential,Oklahoma,2002-04,se,0.158
+table_4,Midterm on Presidential,Oklahoma,2006-08,est,0.229
+table_4,Midterm on Presidential,Oklahoma,2006-08,se,0.116
+table_4,Midterm on Presidential,Oklahoma,2010-12,est,0.149
+table_4,Midterm on Presidential,Oklahoma,2010-12,se,0.090
+table_4,Midterm on Presidential,Oregon,2006-08,est,0.258
+table_4,Midterm on Presidential,Oregon,2006-08,se,0.060
+table_4,Midterm on Presidential,Oregon,2010-12,est,0.118
+table_4,Midterm on Presidential,Oregon,2010-12,se,0.053
+table_4,Midterm on Presidential,Pennsylvania,2006-08,est,0.226
+table_4,Midterm on Presidential,Pennsylvania,2006-08,se,0.102
+table_4,Midterm on Presidential,Pennsylvania,2010-12,est,0.104
+table_4,Midterm on Presidential,Pennsylvania,2010-12,se,0.128
+table_4,Midterm on Presidential,Rhode Island,2010-12,est,0.239
+table_4,Midterm on Presidential,Rhode Island,2010-12,se,0.117
+table_4,Midterm on Presidential,Meta-Analysis,1994-96,est,0.068
+table_4,Midterm on Presidential,Meta-Analysis,1994-96,se,0.046
+table_4,Midterm on Presidential,Meta-Analysis,1998-2000,est,0.226
+table_4,Midterm on Presidential,Meta-Analysis,1998-2000,se,0.036
+table_4,Midterm on Presidential,Meta-Analysis,2002-04,est,0.200
+table_4,Midterm on Presidential,Meta-Analysis,2002-04,se,0.029
+table_4,Midterm on Presidential,Meta-Analysis,2006-08,est,0.166
+table_4,Midterm on Presidential,Meta-Analysis,2006-08,se,0.018
+table_4,Midterm on Presidential,Meta-Analysis,2010-12,est,0.111
+table_4,Midterm on Presidential,Meta-Analysis,2010-12,se,0.019
+table_5,Presidential on Presidential,Arkansas,1996-2000,est,0.246
+table_5,Presidential on Presidential,Arkansas,1996-2000,se,0.096
+table_5,Presidential on Presidential,Arkansas,2000-04,est,0.239
+table_5,Presidential on Presidential,Arkansas,2000-04,se,0.089
+table_5,Presidential on Presidential,Arkansas,2004-08,est,0.221
+table_5,Presidential on Presidential,Arkansas,2004-08,se,0.043
+table_5,Presidential on Presidential,Arkansas,2008-12,est,0.200
+table_5,Presidential on Presidential,Arkansas,2008-12,se,0.027
+table_5,Presidential on Presidential,Colorado,1992-96,est,0.091
+table_5,Presidential on Presidential,Colorado,1992-96,se,0.063
+table_5,Presidential on Presidential,Colorado,1996-2000,est,0.158
+table_5,Presidential on Presidential,Colorado,1996-2000,se,0.057
+table_5,Presidential on Presidential,Colorado,2000-04,est,0.143
+table_5,Presidential on Presidential,Colorado,2000-04,se,0.050
+table_5,Presidential on Presidential,Colorado,2004-08,est,0.091
+table_5,Presidential on Presidential,Colorado,2004-08,se,0.025
+table_5,Presidential on Presidential,Connecticut,2000-04,est,0.289
+table_5,Presidential on Presidential,Connecticut,2000-04,se,0.074
+table_5,Presidential on Presidential,Connecticut,2004-08,est,0.161
+table_5,Presidential on Presidential,Connecticut,2004-08,se,0.029
+table_5,Presidential on Presidential,Connecticut,2008-12,est,0.161
+table_5,Presidential on Presidential,Connecticut,2008-12,se,0.015
+table_5,Presidential on Presidential,Iowa,2004-08,est,-0.024
+table_5,Presidential on Presidential,Iowa,2004-08,se,0.095
+table_5,Presidential on Presidential,Iowa,2008-12,est,0.081
+table_5,Presidential on Presidential,Iowa,2008-12,se,0.035
+table_5,Presidential on Presidential,Illinois,1992-96,est,0.187
+table_5,Presidential on Presidential,Illinois,1992-96,se,0.035
+table_5,Presidential on Presidential,Illinois,1996-2000,est,0.144
+table_5,Presidential on Presidential,Illinois,1996-2000,se,0.043
+table_5,Presidential on Presidential,Illinois,2000-04,est,0.125
+table_5,Presidential on Presidential,Illinois,2000-04,se,0.030
+table_5,Presidential on Presidential,Illinois,2004-08,est,0.081
+table_5,Presidential on Presidential,Illinois,2004-08,se,0.020
+table_5,Presidential on Presidential,Illinois,2008-12,est,0.080
+table_5,Presidential on Presidential,Illinois,2008-12,se,0.013
+table_5,Presidential on Presidential,Florida,1992-96,est,0.240
+table_5,Presidential on Presidential,Florida,1992-96,se,0.045
+table_5,Presidential on Presidential,Florida,1996-2000,est,0.189
+table_5,Presidential on Presidential,Florida,1996-2000,se,0.039
+table_5,Presidential on Presidential,Florida,2000-04,est,0.250
+table_5,Presidential on Presidential,Florida,2000-04,se,0.038
+table_5,Presidential on Presidential,Florida,2004-08,est,0.081
+table_5,Presidential on Presidential,Florida,2004-08,se,0.020
+table_5,Presidential on Presidential,Florida,2008-12,est,0.105
+table_5,Presidential on Presidential,Florida,2008-12,se,0.012
+table_5,Presidential on Presidential,Florida 2005,2000-04,est,-0.070
+table_5,Presidential on Presidential,Florida 2005,1992-96,est,0.253
+table_5,Presidential on Presidential,Florida 2005,1992-96,se,0.051
+table_5,Presidential on Presidential,Florida 2005,1996-2000,est,0.111
+table_5,Presidential on Presidential,Florida 2005,1996-2000,se,0.040
+table_5,Presidential on Presidential,Florida 2005,2000-04,se,0.070
+table_5,Presidential on Presidential,Kentucky,2008-12,est,0.075
+table_5,Presidential on Presidential,Kentucky,2008-12,se,0.022
+table_5,Presidential on Presidential,Michigan,1996-2000,est,0.316
+table_5,Presidential on Presidential,Michigan,1996-2000,se,0.073
+table_5,Presidential on Presidential,Missouri,1992-96,est,0.324
+table_5,Presidential on Presidential,Missouri,1992-96,se,0.058
+table_5,Presidential on Presidential,Missouri,1996-2000,est,0.209
+table_5,Presidential on Presidential,Missouri,1996-2000,se,0.063
+table_5,Presidential on Presidential,Missouri,2000-04,est,0.168
+table_5,Presidential on Presidential,Missouri,2000-04,se,0.031
+table_5,Presidential on Presidential,Missouri,2004-08,est,0.079
+table_5,Presidential on Presidential,Missouri,2004-08,se,0.022
+table_5,Presidential on Presidential,Missouri,2008-12,est,0.155
+table_5,Presidential on Presidential,Missouri,2008-12,se,0.017
+table_5,Presidential on Presidential,Missouri 2005,1992-96,est,0.312
+table_5,Presidential on Presidential,Missouri 2005,1992-96,se,0.052
+table_5,Presidential on Presidential,Missouri 2005,1996-2000,est,0.179
+table_5,Presidential on Presidential,Missouri 2005,1996-2000,se,0.057
+table_5,Presidential on Presidential,Missouri 2005,2000-04,est,0.111
+table_5,Presidential on Presidential,Missouri 2005,2000-04,se,0.022
+table_5,Presidential on Presidential,Montana,2000-04,est,0.241
+table_5,Presidential on Presidential,Montana,2000-04,se,0.084
+table_5,Presidential on Presidential,Montana,2004-08,est,0.222
+table_5,Presidential on Presidential,Montana,2004-08,se,0.062
+table_5,Presidential on Presidential,Montana,2008-12,est,0.111
+table_5,Presidential on Presidential,Montana,2008-12,se,0.029
+table_5,Presidential on Presidential,New Jersey,2004-08,est,0.124
+table_5,Presidential on Presidential,New Jersey,2004-08,se,0.021
+table_5,Presidential on Presidential,New Jersey,2008-12,est,0.155
+table_5,Presidential on Presidential,New Jersey,2008-12,se,0.014
+table_5,Presidential on Presidential,Nevada,2000-04,est,0.407
+table_5,Presidential on Presidential,Nevada,2000-04,se,0.093
+table_5,Presidential on Presidential,Nevada,2004-08,est,0.116
+table_5,Presidential on Presidential,Nevada,2004-08,se,0.037
+table_5,Presidential on Presidential,Nevada,2008-12,est,0.174
+table_5,Presidential on Presidential,Nevada,2008-12,se,0.027
+table_5,Presidential on Presidential,New York,2004-08,est,0.132
+table_5,Presidential on Presidential,New York,2004-08,se,0.013
+table_5,Presidential on Presidential,New York,2008-12,est,0.068
+table_5,Presidential on Presidential,New York,2008-12,se,0.013
+table_5,Presidential on Presidential,Oklahoma,2000-04,est,0.075
+table_5,Presidential on Presidential,Oklahoma,2000-04,se,0.076
+table_5,Presidential on Presidential,Oklahoma,2004-08,est,0.164
+table_5,Presidential on Presidential,Oklahoma,2004-08,se,0.038
+table_5,Presidential on Presidential,Oklahoma,2008-12,est,0.138
+table_5,Presidential on Presidential,Oklahoma,2008-12,se,0.023
+table_5,Presidential on Presidential,Oregon,2008-12,est,0.108
+table_5,Presidential on Presidential,Oregon,2008-12,se,0.025
+table_5,Presidential on Presidential,Pennsylvania,2004-08,est,0.203
+table_5,Presidential on Presidential,Pennsylvania,2004-08,se,0.050
+table_5,Presidential on Presidential,Pennsylvania,2008-12,est,0.121
+table_5,Presidential on Presidential,Pennsylvania,2008-12,se,0.019
+table_5,Presidential on Presidential,Rhode Island,2008-12,est,0.113
+table_5,Presidential on Presidential,Rhode Island,2008-12,se,0.030
+table_5,Presidential on Presidential,Meta-Analysis,1992-96,est,0.210
+table_5,Presidential on Presidential,Meta-Analysis,1992-96,se,0.023
+table_5,Presidential on Presidential,Meta-Analysis,1996-2000,est,0.189
+table_5,Presidential on Presidential,Meta-Analysis,1996-2000,se,0.022
+table_5,Presidential on Presidential,Meta-Analysis,2000-04,est,0.181
+table_5,Presidential on Presidential,Meta-Analysis,2000-04,se,0.016
+table_5,Presidential on Presidential,Meta-Analysis,2004-08,est,0.117
+table_5,Presidential on Presidential,Meta-Analysis,2004-08,se,0.007
+table_5,Presidential on Presidential,Meta-Analysis,2008-12,est,0.117
+table_5,Presidential on Presidential,Meta-Analysis,2008-12,se,0.005
+table_5,Midterm on Midterm,Arkansas,1998-2002,est,0.466
+table_5,Midterm on Midterm,Arkansas,1998-2002,se,0.197
+table_5,Midterm on Midterm,Arkansas,2002-06,est,0.147
+table_5,Midterm on Midterm,Arkansas,2002-06,se,0.100
+table_5,Midterm on Midterm,Arkansas,2006-10,est,0.212
+table_5,Midterm on Midterm,Arkansas,2006-10,se,0.065
+table_5,Midterm on Midterm,Colorado,1994-98,est,-0.029
+table_5,Midterm on Midterm,Colorado,1994-98,se,0.102
+table_5,Midterm on Midterm,Colorado,1998-2002,est,0.106
+table_5,Midterm on Midterm,Colorado,1998-2002,se,0.053
+table_5,Midterm on Midterm,Colorado,2002-06,est,0.202
+table_5,Midterm on Midterm,Colorado,2002-06,se,0.066
+table_5,Midterm on Midterm,Connecticut,2002-06,est,0.235
+table_5,Midterm on Midterm,Connecticut,2002-06,se,0.101
+table_5,Midterm on Midterm,Connecticut,2006-10,est,0.209
+table_5,Midterm on Midterm,Connecticut,2006-10,se,0.046
+table_5,Midterm on Midterm,Iowa,2006-10,est,0.097
+table_5,Midterm on Midterm,Iowa,2006-10,se,0.045
+table_5,Midterm on Midterm,Illinois,1994-98,est,0.168
+table_5,Midterm on Midterm,Illinois,1994-98,se,0.073
+table_5,Midterm on Midterm,Illinois,1998-2002,est,0.327
+table_5,Midterm on Midterm,Illinois,1998-2002,se,0.066
+table_5,Midterm on Midterm,Illinois,2002-06,est,0.178
+table_5,Midterm on Midterm,Illinois,2002-06,se,0.040
+table_5,Midterm on Midterm,Illinois,2006-10,est,0.183
+table_5,Midterm on Midterm,Illinois,2006-10,se,0.036
+table_5,Midterm on Midterm,Florida,1994-98,est,0.066
+table_5,Midterm on Midterm,Florida,1994-98,se,0.073
+table_5,Midterm on Midterm,Florida,1998-2002,est,0.335
+table_5,Midterm on Midterm,Florida,1998-2002,se,0.098
+table_5,Midterm on Midterm,Florida,2002-06,est,0.244
+table_5,Midterm on Midterm,Florida,2002-06,se,0.070
+table_5,Midterm on Midterm,Florida,2006-10,est,0.051
+table_5,Midterm on Midterm,Florida,2006-10,se,0.019
+table_5,Midterm on Midterm,Florida 2005,1994-98,est,0.074
+table_5,Midterm on Midterm,Florida 2005,1994-98,se,0.071
+table_5,Midterm on Midterm,Florida 2005,1998-2002,est,0.258
+table_5,Midterm on Midterm,Florida 2005,1998-2002,se,0.089
+table_5,Midterm on Midterm,Michigan,1998-2002,est,0.185
+table_5,Midterm on Midterm,Michigan,1998-2002,se,0.038
+table_5,Midterm on Midterm,Missouri,1994-98,est,0.052
+table_5,Midterm on Midterm,Missouri,1994-98,se,0.061
+table_5,Midterm on Midterm,Missouri,1998-2002,est,0.387
+table_5,Midterm on Midterm,Missouri,1998-2002,se,0.123
+table_5,Midterm on Midterm,Missouri,2002-06,est,0.286
+table_5,Midterm on Midterm,Missouri,2002-06,se,0.054
+table_5,Midterm on Midterm,Missouri,2006-10,est,0.060
+table_5,Midterm on Midterm,Missouri,2006-10,se,0.023
+table_5,Midterm on Midterm,Missouri 2005,1994-98,est,0.101
+table_5,Midterm on Midterm,Missouri 2005,1994-98,se,0.067
+table_5,Midterm on Midterm,Missouri 2005,1998-2002,est,0.375
+table_5,Midterm on Midterm,Missouri 2005,1998-2002,se,0.099
+table_5,Midterm on Midterm,Montana,2002-06,est,0.272
+table_5,Midterm on Midterm,Montana,2002-06,se,0.104
+table_5,Midterm on Midterm,Montana,2006-10,est,0.086
+table_5,Midterm on Midterm,Montana,2006-10,se,0.039
+table_5,Midterm on Midterm,New Jersey,2006-10,est,0.259
+table_5,Midterm on Midterm,New Jersey,2006-10,se,0.038
+table_5,Midterm on Midterm,Nevada,2002-06,est,0.238
+table_5,Midterm on Midterm,Nevada,2002-06,se,0.075
+table_5,Midterm on Midterm,Nevada,2006-10,est,0.168
+table_5,Midterm on Midterm,Nevada,2006-10,se,0.078
+table_5,Midterm on Midterm,New York,2002-06,est,0.288
+table_5,Midterm on Midterm,New York,2002-06,se,0.036
+table_5,Midterm on Midterm,New York,2006-10,est,0.183
+table_5,Midterm on Midterm,New York,2006-10,se,0.025
+table_5,Midterm on Midterm,Oklahoma,2002-06,est,0.078
+table_5,Midterm on Midterm,Oklahoma,2002-06,se,0.093
+table_5,Midterm on Midterm,Oklahoma,2006-10,est,0.107
+table_5,Midterm on Midterm,Oklahoma,2006-10,se,0.067
+table_5,Midterm on Midterm,Oregon,2006-10,est,0.203
+table_5,Midterm on Midterm,Oregon,2006-10,se,0.040
+table_5,Midterm on Midterm,Pennsylvania,2006-10,est,0.073
+table_5,Midterm on Midterm,Pennsylvania,2006-10,se,0.041
+table_5,Midterm on Midterm,Meta-Analysis,1994-98,est,0.075
+table_5,Midterm on Midterm,Meta-Analysis,1994-98,se,0.037
+table_5,Midterm on Midterm,Meta-Analysis,1998-2002,est,0.213
+table_5,Midterm on Midterm,Meta-Analysis,1998-2002,se,0.026
+table_5,Midterm on Midterm,Meta-Analysis,2002-06,est,0.232
+table_5,Midterm on Midterm,Meta-Analysis,2002-06,se,0.019
+table_5,Midterm on Midterm,Meta-Analysis,2006-10,est,0.119
+table_5,Midterm on Midterm,Meta-Analysis,2006-10,se,0.009
+table_6,upper,Arkansas,1996-2012,est,0.009
+table_6,upper,Arkansas,1996-2012,se,0.185
+table_6,upper,Arkansas,1998-2012,est,1.204
+table_6,upper,Arkansas,1998-2012,se,0.451
+table_6,upper,Arkansas,2000-12,est,0.214
+table_6,upper,Arkansas,2000-12,se,0.122
+table_6,upper,Connecticut,2000-12,est,0.106
+table_6,upper,Connecticut,2000-12,se,0.095
+table_6,upper,Illinois,1992-2012,est,0.536
+table_6,upper,Illinois,1992-2012,se,0.107
+table_6,upper,Illinois,1994-2012,est,0.494
+table_6,upper,Illinois,1994-2012,se,0.252
+table_6,upper,Illinois,1996-2012,est,0.414
+table_6,upper,Illinois,1996-2012,se,0.088
+table_6,upper,Illinois,1998-2012,est,0.968
+table_6,upper,Illinois,1998-2012,se,0.204
+table_6,upper,Illinois,2000-12,est,0.254
+table_6,upper,Illinois,2000-12,se,0.047
+table_6,upper,Florida,1994-2012,est,-0.293
+table_6,upper,Florida,1992-2012,est,0.688
+table_6,upper,Florida,1992-2012,se,0.165
+table_6,upper,Florida,1994-2012,se,0.376
+table_6,upper,Florida,1996-2012,est,0.175
+table_6,upper,Florida,1996-2012,se,0.094
+table_6,upper,Florida,1998-2012,est,1.088
+table_6,upper,Florida,1998-2012,se,0.311
+table_6,upper,Florida,2000-12,est,0.176
+table_6,upper,Florida,2000-12,se,0.061
+table_6,upper,Missouri,1992-2012,est,0.857
+table_6,upper,Missouri,1992-2012,se,0.177
+table_6,upper,Missouri,1994-2012,est,0.284
+table_6,upper,Missouri,1994-2012,se,0.254
+table_6,upper,Missouri,1996-2012,est,0.245
+table_6,upper,Missouri,1996-2012,se,0.129
+table_6,upper,Missouri,1998-2012,est,0.830
+table_6,upper,Missouri,1998-2012,se,0.302
+table_6,upper,Missouri,2000-12,est,0.117
+table_6,upper,Missouri,2000-12,se,0.039
+table_6,upper,Montana,2000-12,est,0.343
+table_6,upper,Montana,2000-12,se,0.123
+table_6,upper,Nevada,2000-12,est,0.457
+table_6,upper,Nevada,2000-12,se,0.143
+table_6,upper,Oklahoma,2000-12,est,0.195
+table_6,upper,Oklahoma,2000-12,se,0.109
+table_6,upper,Meta-Analysis,1992-2012,est,0.638
+table_6,upper,Meta-Analysis,1992-2012,se,0.080
+table_6,upper,Meta-Analysis,1994-2012,est,0.264
+table_6,upper,Meta-Analysis,1994-2012,se,0.162
+table_6,upper,Meta-Analysis,1996-2012,est,0.266
+table_6,upper,Meta-Analysis,1996-2012,se,0.055
+table_6,upper,Meta-Analysis,1998-2012,est,0.986
+table_6,upper,Meta-Analysis,1998-2012,se,0.141
+table_6,upper,Meta-Analysis,2000-12,est,0.186
+table_6,upper,Meta-Analysis,2000-12,se,0.024
+table_6,lower,Arkansas,2002-12,est,0.480
+table_6,lower,Arkansas,2002-12,se,0.195
+table_6,lower,Arkansas,2004-12,est,0.147
+table_6,lower,Arkansas,2004-12,se,0.045
+table_6,lower,Arkansas,2006-12,est,0.198
+table_6,lower,Arkansas,2006-12,se,0.127
+table_6,lower,Arkansas,2008-12,est,0.200
+table_6,lower,Arkansas,2008-12,se,0.027
+table_6,lower,Arkansas,2010-12,est,0.200
+table_6,lower,Arkansas,2010-12,se,0.123
+table_6,lower,Connecticut,2002-12,est,0.608
+table_6,lower,Connecticut,2002-12,se,0.192
+table_6,lower,Connecticut,2004-12,est,0.100
+table_6,lower,Connecticut,2004-12,se,0.027
+table_6,lower,Connecticut,2006-12,est,0.176
+table_6,lower,Connecticut,2006-12,se,0.080
+table_6,lower,Connecticut,2008-12,est,0.161
+table_6,lower,Connecticut,2008-12,se,0.015
+table_6,lower,Connecticut,2010-12,est,0.097
+table_6,lower,Connecticut,2010-12,se,0.063
+table_6,lower,Iowa,2004-12,est,-0.028
+table_6,lower,Iowa,2004-12,se,0.115
+table_6,lower,Iowa,2006-12,est,0.258
+table_6,lower,Iowa,2006-12,se,0.078
+table_6,lower,Iowa,2008-12,est,0.081
+table_6,lower,Iowa,2008-12,se,0.035
+table_6,lower,Iowa,2010-12,est,0.086
+table_6,lower,Iowa,2010-12,se,0.066
+table_6,lower,Illinois,2002-12,est,0.325
+table_6,lower,Illinois,2002-12,se,0.100
+table_6,lower,Illinois,2004-12,est,0.150
+table_6,lower,Illinois,2004-12,se,0.022
+table_6,lower,Illinois,2006-12,est,0.309
+table_6,lower,Illinois,2006-12,se,0.075
+table_6,lower,Illinois,2008-12,est,0.080
+table_6,lower,Illinois,2008-12,se,0.013
+table_6,lower,Illinois,2010-12,est,0.041
+table_6,lower,Illinois,2010-12,se,0.059
+table_6,lower,Florida,2002-12,est,0.046
+table_6,lower,Florida,2002-12,se,0.096
+table_6,lower,Florida,2004-12,est,0.060
+table_6,lower,Florida,2004-12,se,0.023
+table_6,lower,Florida,2006-12,est,0.060
+table_6,lower,Florida,2006-12,se,0.043
+table_6,lower,Florida,2008-12,est,0.105
+table_6,lower,Florida,2008-12,se,0.012
+table_6,lower,Florida,2010-12,est,0.014
+table_6,lower,Florida,2010-12,se,0.062
+table_6,lower,Kentucky,2008-12,est,0.075
+table_6,lower,Kentucky,2008-12,se,0.022
+table_6,lower,Kentucky,2010-12,est,0.235
+table_6,lower,Kentucky,2010-12,se,0.052
+table_6,lower,Missouri,2002-12,est,0.238
+table_6,lower,Missouri,2002-12,se,0.095
+table_6,lower,Missouri,2004-12,est,0.048
+table_6,lower,Missouri,2004-12,se,0.023
+table_6,lower,Missouri,2006-12,est,0.132
+table_6,lower,Missouri,2006-12,se,0.044
+table_6,lower,Missouri,2008-12,est,0.155
+table_6,lower,Missouri,2008-12,se,0.017
+table_6,lower,Missouri,2010-12,est,0.025
+table_6,lower,Missouri,2010-12,se,0.069
+table_6,lower,Montana,2002-12,est,0.514
+table_6,lower,Montana,2002-12,se,0.153
+table_6,lower,Montana,2004-12,est,0.196
+table_6,lower,Montana,2004-12,se,0.060
+table_6,lower,Montana,2006-12,est,0.166
+table_6,lower,Montana,2006-12,se,0.060
+table_6,lower,Montana,2008-12,est,0.111
+table_6,lower,Montana,2008-12,se,0.029
+table_6,lower,Montana,2010-12,est,0.165
+table_6,lower,Montana,2010-12,se,0.091
+table_6,lower,New Jersey,2010-12,est,-0.138
+table_6,lower,New Jersey,2004-12,est,0.063
+table_6,lower,New Jersey,2004-12,se,0.021
+table_6,lower,New Jersey,2006-12,est,0.268
+table_6,lower,New Jersey,2006-12,se,0.090
+table_6,lower,New Jersey,2008-12,est,0.155
+table_6,lower,New Jersey,2008-12,se,0.014
+table_6,lower,New Jersey,2010-12,se,0.118
+table_6,lower,Nevada,2002-12,est,0.614
+table_6,lower,Nevada,2002-12,se,0.188
+table_6,lower,Nevada,2004-12,est,0.132
+table_6,lower,Nevada,2004-12,se,0.042
+table_6,lower,Nevada,2006-12,est,0.543
+table_6,lower,Nevada,2006-12,se,0.131
+table_6,lower,Nevada,2008-12,est,0.174
+table_6,lower,Nevada,2008-12,se,0.027
+table_6,lower,Nevada,2010-12,est,0.287
+table_6,lower,Nevada,2010-12,se,0.088
+table_6,lower,New York,2002-12,est,0.208
+table_6,lower,New York,2002-12,se,0.073
+table_6,lower,New York,2004-12,est,0.071
+table_6,lower,New York,2004-12,se,0.013
+table_6,lower,New York,2006-12,est,0.127
+table_6,lower,New York,2006-12,se,0.061
+table_6,lower,New York,2008-12,est,0.068
+table_6,lower,New York,2008-12,se,0.013
+table_6,lower,New York,2010-12,est,0.036
+table_6,lower,New York,2010-12,se,0.096
+table_6,lower,Oklahoma,2002-12,est,0.282
+table_6,lower,Oklahoma,2002-12,se,0.210
+table_6,lower,Oklahoma,2004-12,est,0.147
+table_6,lower,Oklahoma,2004-12,se,0.042
+table_6,lower,Oklahoma,2006-12,est,0.241
+table_6,lower,Oklahoma,2006-12,se,0.120
+table_6,lower,Oklahoma,2008-12,est,0.138
+table_6,lower,Oklahoma,2008-12,se,0.023
+table_6,lower,Oklahoma,2010-12,est,0.149
+table_6,lower,Oklahoma,2010-12,se,0.090
+table_6,lower,Oregon,2006-12,est,0.275
+table_6,lower,Oregon,2006-12,se,0.071
+table_6,lower,Oregon,2008-12,est,0.108
+table_6,lower,Oregon,2008-12,se,0.025
+table_6,lower,Oregon,2010-12,est,0.118
+table_6,lower,Oregon,2010-12,se,0.053
+table_6,lower,Pennsylvania,2004-12,est,0.243
+table_6,lower,Pennsylvania,2004-12,se,0.054
+table_6,lower,Pennsylvania,2006-12,est,0.253
+table_6,lower,Pennsylvania,2006-12,se,0.105
+table_6,lower,Pennsylvania,2008-12,est,0.121
+table_6,lower,Pennsylvania,2008-12,se,0.019
+table_6,lower,Pennsylvania,2010-12,est,0.104
+table_6,lower,Pennsylvania,2010-12,se,0.128
+table_6,lower,Rhode Island,2008-12,est,0.113
+table_6,lower,Rhode Island,2008-12,se,0.030
+table_6,lower,Rhode Island,2010-12,est,0.239
+table_6,lower,Rhode Island,2010-12,se,0.117
+table_6,lower,Meta-Analysis,2002-12,est,0.271
+table_6,lower,Meta-Analysis,2002-12,se,0.039
+table_6,lower,Meta-Analysis,2004-12,est,0.089
+table_6,lower,Meta-Analysis,2004-12,se,0.007
+table_6,lower,Meta-Analysis,2006-12,est,0.176
+table_6,lower,Meta-Analysis,2006-12,se,0.019
+table_6,lower,Meta-Analysis,2008-12,est,0.117
+table_6,lower,Meta-Analysis,2008-12,se,0.005
+table_6,lower,Meta-Analysis,2010-12,est,0.111
+table_6,lower,Meta-Analysis,2010-12,se,0.019
+table_7,main,Years between upstream and downstream,(2),est,-0.0006
+table_7,main,Years between upstream and downstream,(5),est,-0.0008
+table_7,main,Years between upstream and downstream,(1),est,0.0001
+table_7,main,Years between upstream and downstream,(3),est,0.0002
+table_7,main,Years between upstream and downstream,(4),est,0.0014
+table_7,main,Years between upstream and downstream,(1),se,0.0036
+table_7,main,Years between upstream and downstream,(2),se,0.0037
+table_7,main,Years between upstream and downstream,(3),se,0.0034
+table_7,main,Years between upstream and downstream,(4),se,0.0027
+table_7,main,Years between upstream and downstream,(5),se,0.0028
+table_7,main,Youth turnout in upstream election,(1),est,-0.2520
+table_7,main,Youth turnout in upstream election,(2),est,-0.2450
+table_7,main,Youth turnout in upstream election,(3),est,-0.2578
+table_7,main,Youth turnout in upstream election,(4),est,-0.2261
+table_7,main,Youth turnout in upstream election,(5),est,-0.1647
+table_7,main,Youth turnout in upstream election,(1),se,0.0635
+table_7,main,Youth turnout in upstream election,(2),se,0.0613
+table_7,main,Youth turnout in upstream election,(3),se,0.0669
+table_7,main,Youth turnout in upstream election,(4),se,0.0653
+table_7,main,Youth turnout in upstream election,(5),se,0.0779
+table_7,main,Presidential battleground,(2),est,0.0322
+table_7,main,Presidential battleground,(2),se,0.0147
+table_7,main,Presidential or midterm battleground,(3),est,0.0155
+table_7,main,Presidential or midterm battleground,(3),se,0.0125
+table_7,main,Presidential upstream,(5),est,-0.0193
+table_7,main,Presidential upstream,(5),se,0.0207
+table_7,main,Presidential downstream,(5),est,0.0359
+table_7,main,Presidential downstream,(5),se,0.0119
+table_7,main,Constant,(1),est,0.2203
+table_7,main,Constant,(2),est,0.2171
+table_7,main,Constant,(3),est,0.2164
+table_7,main,Constant,(4),est,0.2207
+table_7,main,Constant,(5),est,0.2161
+table_7,main,Constant,(1),se,0.0358
+table_7,main,Constant,(2),se,0.0346
+table_7,main,Constant,(3),se,0.0354
+table_7,main,Constant,(4),se,0.0376
+table_7,main,Constant,(5),se,0.0334
+table_7,main,N,(1),est,384
+table_7,main,N,(2),est,384
+table_7,main,N,(3),est,384
+table_7,main,N,(4),est,384
+table_7,main,N,(5),est,384
+table_7,main,R2,(1),est,0.0851
+table_7,main,R2,(2),est,0.1013
+table_7,main,R2,(3),est,0.0998
+table_7,main,R2,(4),est,0.2630
+table_7,main,R2,(5),est,0.3086
+table_7,main,State fixed effects,(1),est,No
+table_7,main,State fixed effects,(2),est,No
+table_7,main,State fixed effects,(3),est,No
+table_7,main,State fixed effects,(4),est,Yes
+table_7,main,State fixed effects,(5),est,Yes

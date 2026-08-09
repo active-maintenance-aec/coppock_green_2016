@@ -1,0 +1,356 @@
+float,panel,row_label,column_label,stat,value_paper
+table_a2,main,PA,Net Migrants,est,-1033
+table_a2,main,PA,Nc 2008,est,95175
+table_a2,main,PA,CACE 08-12,est,0.121
+table_a2,main,PA,Bias Estimate,est,-0.001
+table_a2,main,PA,Corrected CACE,est,0.122
+table_a2,main,IA,Net Migrants,est,-517
+table_a2,main,IA,Nc 2008,est,5318
+table_a2,main,IA,CACE 08-12,est,0.086
+table_a2,main,IA,Bias Estimate,est,-0.008
+table_a2,main,IA,Corrected CACE,est,0.094
+table_a2,main,CT,Net Migrants,est,-183
+table_a2,main,CT,Nc 2008,est,22413
+table_a2,main,CT,CACE 08-12,est,0.161
+table_a2,main,CT,Bias Estimate,est,-0.001
+table_a2,main,CT,Corrected CACE,est,0.162
+table_a2,main,NV,Net Migrants,est,-182
+table_a2,main,NV,Nc 2008,est,12465
+table_a2,main,NV,CACE 08-12,est,0.174
+table_a2,main,NV,Bias Estimate,est,-0.003
+table_a2,main,NV,Corrected CACE,est,0.177
+table_a2,main,RI,Net Migrants,est,-117
+table_a2,main,RI,Nc 2008,est,6867
+table_a2,main,RI,CACE 08-12,est,0.113
+table_a2,main,RI,Bias Estimate,est,-0.002
+table_a2,main,RI,Corrected CACE,est,0.115
+table_a2,main,OK,Net Migrants,est,-50
+table_a2,main,OK,Nc 2008,est,15584
+table_a2,main,OK,CACE 08-12,est,0.138
+table_a2,main,OK,Bias Estimate,est,-0.000
+table_a2,main,OK,Corrected CACE,est,0.138
+table_a2,main,NJ,Net Migrants,est,8
+table_a2,main,NJ,Nc 2008,est,51983
+table_a2,main,NJ,CACE 08-12,est,0.155
+table_a2,main,NJ,Bias Estimate,est,0.000
+table_a2,main,NJ,Corrected CACE,est,0.155
+table_a2,main,MO,Net Migrants,est,17
+table_a2,main,MO,Nc 2008,est,35535
+table_a2,main,MO,CACE 08-12,est,0.155
+table_a2,main,MO,Bias Estimate,est,0.000
+table_a2,main,MO,Corrected CACE,est,0.155
+table_a2,main,MT,Net Migrants,est,50
+table_a2,main,MT,Nc 2008,est,6770
+table_a2,main,MT,CACE 08-12,est,0.111
+table_a2,main,MT,Bias Estimate,est,0.001
+table_a2,main,MT,Corrected CACE,est,0.110
+table_a2,main,KY,Net Migrants,est,133
+table_a2,main,KY,Nc 2008,est,21964
+table_a2,main,KY,CACE 08-12,est,0.075
+table_a2,main,KY,Bias Estimate,est,0.000
+table_a2,main,KY,Corrected CACE,est,0.075
+table_a2,main,OR,Net Migrants,est,134
+table_a2,main,OR,Nc 2008,est,17853
+table_a2,main,OR,CACE 08-12,est,0.108
+table_a2,main,OR,Bias Estimate,est,0.001
+table_a2,main,OR,Corrected CACE,est,0.107
+table_a2,main,AR,Net Migrants,est,183
+table_a2,main,AR,Nc 2008,est,11778
+table_a2,main,AR,CACE 08-12,est,0.200
+table_a2,main,AR,Bias Estimate,est,0.003
+table_a2,main,AR,Corrected CACE,est,0.197
+table_a2,main,NY,Net Migrants,est,292
+table_a2,main,NY,Nc 2008,est,79908
+table_a2,main,NY,CACE 08-12,est,0.068
+table_a2,main,NY,Bias Estimate,est,0.000
+table_a2,main,NY,Corrected CACE,est,0.068
+table_a2,main,FL,Net Migrants,est,641
+table_a2,main,FL,Nc 2008,est,88519
+table_a2,main,FL,CACE 08-12,est,0.105
+table_a2,main,FL,Bias Estimate,est,0.001
+table_a2,main,FL,Corrected CACE,est,0.104
+table_a2,main,IL,Net Migrants,est,750
+table_a2,main,IL,Nc 2008,est,58991
+table_a2,main,IL,CACE 08-12,est,0.080
+table_a2,main,IL,Bias Estimate,est,0.001
+table_a2,main,IL,Corrected CACE,est,0.079
+table_a6,No additional controls,Difference-in-Means,90 Days,est,0.132
+table_a6,No additional controls,Difference-in-Means,180 Days,est,0.132
+table_a6,No additional controls,Difference-in-Means,270 Days,est,0.125
+table_a6,No additional controls,Difference-in-Means,365 Days,est,0.110
+table_a6,No additional controls,Difference-in-Means,455 Days,est,0.124
+table_a6,No additional controls,Difference-in-Means,545 Days,est,0.131
+table_a6,No additional controls,Difference-in-Means,635 Days,est,0.126
+table_a6,No additional controls,Difference-in-Means,730 Days,est,0.120
+table_a6,No additional controls,Difference-in-Means,90 Days,se,0.006
+table_a6,No additional controls,Difference-in-Means,180 Days,se,0.004
+table_a6,No additional controls,Difference-in-Means,270 Days,se,0.003
+table_a6,No additional controls,Difference-in-Means,365 Days,se,0.003
+table_a6,No additional controls,Difference-in-Means,455 Days,se,0.003
+table_a6,No additional controls,Difference-in-Means,545 Days,se,0.002
+table_a6,No additional controls,Difference-in-Means,635 Days,se,0.002
+table_a6,No additional controls,Difference-in-Means,730 Days,se,0.002
+table_a6,No additional controls,First-order Polynomial,90 Days,est,0.068
+table_a6,No additional controls,First-order Polynomial,180 Days,est,0.122
+table_a6,No additional controls,First-order Polynomial,270 Days,est,0.137
+table_a6,No additional controls,First-order Polynomial,365 Days,est,0.148
+table_a6,No additional controls,First-order Polynomial,455 Days,est,0.115
+table_a6,No additional controls,First-order Polynomial,545 Days,est,0.111
+table_a6,No additional controls,First-order Polynomial,635 Days,est,0.125
+table_a6,No additional controls,First-order Polynomial,730 Days,est,0.136
+table_a6,No additional controls,First-order Polynomial,90 Days,se,0.012
+table_a6,No additional controls,First-order Polynomial,180 Days,se,0.008
+table_a6,No additional controls,First-order Polynomial,270 Days,se,0.006
+table_a6,No additional controls,First-order Polynomial,365 Days,se,0.005
+table_a6,No additional controls,First-order Polynomial,455 Days,se,0.005
+table_a6,No additional controls,First-order Polynomial,545 Days,se,0.005
+table_a6,No additional controls,First-order Polynomial,635 Days,se,0.004
+table_a6,No additional controls,First-order Polynomial,730 Days,se,0.004
+table_a6,No additional controls,Second-order Polynomial,90 Days,est,-0.028
+table_a6,No additional controls,Second-order Polynomial,180 Days,est,0.057
+table_a6,No additional controls,Second-order Polynomial,270 Days,est,0.098
+table_a6,No additional controls,Second-order Polynomial,365 Days,est,0.123
+table_a6,No additional controls,Second-order Polynomial,455 Days,est,0.155
+table_a6,No additional controls,Second-order Polynomial,545 Days,est,0.144
+table_a6,No additional controls,Second-order Polynomial,635 Days,est,0.118
+table_a6,No additional controls,Second-order Polynomial,730 Days,est,0.108
+table_a6,No additional controls,Second-order Polynomial,90 Days,se,0.019
+table_a6,No additional controls,Second-order Polynomial,180 Days,se,0.013
+table_a6,No additional controls,Second-order Polynomial,270 Days,se,0.010
+table_a6,No additional controls,Second-order Polynomial,365 Days,se,0.008
+table_a6,No additional controls,Second-order Polynomial,455 Days,se,0.007
+table_a6,No additional controls,Second-order Polynomial,545 Days,se,0.007
+table_a6,No additional controls,Second-order Polynomial,635 Days,se,0.007
+table_a6,No additional controls,Second-order Polynomial,730 Days,se,0.006
+table_a6,No additional controls,Third-order Polynomial,90 Days,est,-0.063
+table_a6,No additional controls,Third-order Polynomial,180 Days,est,-0.016
+table_a6,No additional controls,Third-order Polynomial,270 Days,est,0.044
+table_a6,No additional controls,Third-order Polynomial,365 Days,est,0.063
+table_a6,No additional controls,Third-order Polynomial,455 Days,est,0.073
+table_a6,No additional controls,Third-order Polynomial,545 Days,est,0.126
+table_a6,No additional controls,Third-order Polynomial,635 Days,est,0.129
+table_a6,No additional controls,Third-order Polynomial,730 Days,est,0.128
+table_a6,No additional controls,Third-order Polynomial,90 Days,se,0.032
+table_a6,No additional controls,Third-order Polynomial,180 Days,se,0.021
+table_a6,No additional controls,Third-order Polynomial,270 Days,se,0.015
+table_a6,No additional controls,Third-order Polynomial,365 Days,se,0.013
+table_a6,No additional controls,Third-order Polynomial,455 Days,se,0.012
+table_a6,No additional controls,Third-order Polynomial,545 Days,se,0.009
+table_a6,No additional controls,Third-order Polynomial,635 Days,se,0.008
+table_a6,No additional controls,Third-order Polynomial,730 Days,se,0.007
+table_a6,Controls for lagged vote totals,Difference-in-Means,90 Days,est,0.108
+table_a6,Controls for lagged vote totals,Difference-in-Means,180 Days,est,0.118
+table_a6,Controls for lagged vote totals,Difference-in-Means,270 Days,est,0.124
+table_a6,Controls for lagged vote totals,Difference-in-Means,365 Days,est,0.119
+table_a6,Controls for lagged vote totals,Difference-in-Means,455 Days,est,0.118
+table_a6,Controls for lagged vote totals,Difference-in-Means,545 Days,est,0.117
+table_a6,Controls for lagged vote totals,Difference-in-Means,635 Days,est,0.110
+table_a6,Controls for lagged vote totals,Difference-in-Means,730 Days,est,0.103
+table_a6,Controls for lagged vote totals,Difference-in-Means,90 Days,se,0.005
+table_a6,Controls for lagged vote totals,Difference-in-Means,180 Days,se,0.003
+table_a6,Controls for lagged vote totals,Difference-in-Means,270 Days,se,0.003
+table_a6,Controls for lagged vote totals,Difference-in-Means,365 Days,se,0.003
+table_a6,Controls for lagged vote totals,Difference-in-Means,455 Days,se,0.002
+table_a6,Controls for lagged vote totals,Difference-in-Means,545 Days,se,0.002
+table_a6,Controls for lagged vote totals,Difference-in-Means,635 Days,se,0.002
+table_a6,Controls for lagged vote totals,Difference-in-Means,730 Days,se,0.002
+table_a6,Controls for lagged vote totals,First-order Polynomial,90 Days,est,0.058
+table_a6,Controls for lagged vote totals,First-order Polynomial,180 Days,est,0.089
+table_a6,Controls for lagged vote totals,First-order Polynomial,270 Days,est,0.101
+table_a6,Controls for lagged vote totals,First-order Polynomial,365 Days,est,0.117
+table_a6,Controls for lagged vote totals,First-order Polynomial,455 Days,est,0.118
+table_a6,Controls for lagged vote totals,First-order Polynomial,545 Days,est,0.121
+table_a6,Controls for lagged vote totals,First-order Polynomial,635 Days,est,0.130
+table_a6,Controls for lagged vote totals,First-order Polynomial,730 Days,est,0.136
+table_a6,Controls for lagged vote totals,First-order Polynomial,90 Days,se,0.010
+table_a6,Controls for lagged vote totals,First-order Polynomial,180 Days,se,0.007
+table_a6,Controls for lagged vote totals,First-order Polynomial,270 Days,se,0.005
+table_a6,Controls for lagged vote totals,First-order Polynomial,365 Days,se,0.005
+table_a6,Controls for lagged vote totals,First-order Polynomial,455 Days,se,0.004
+table_a6,Controls for lagged vote totals,First-order Polynomial,545 Days,se,0.004
+table_a6,Controls for lagged vote totals,First-order Polynomial,635 Days,se,0.004
+table_a6,Controls for lagged vote totals,First-order Polynomial,730 Days,se,0.003
+table_a6,Controls for lagged vote totals,Second-order Polynomial,90 Days,est,0.016
+table_a6,Controls for lagged vote totals,Second-order Polynomial,180 Days,est,0.055
+table_a6,Controls for lagged vote totals,Second-order Polynomial,270 Days,est,0.074
+table_a6,Controls for lagged vote totals,Second-order Polynomial,365 Days,est,0.083
+table_a6,Controls for lagged vote totals,Second-order Polynomial,455 Days,est,0.102
+table_a6,Controls for lagged vote totals,Second-order Polynomial,545 Days,est,0.104
+table_a6,Controls for lagged vote totals,Second-order Polynomial,635 Days,est,0.099
+table_a6,Controls for lagged vote totals,Second-order Polynomial,730 Days,est,0.103
+table_a6,Controls for lagged vote totals,Second-order Polynomial,90 Days,se,0.015
+table_a6,Controls for lagged vote totals,Second-order Polynomial,180 Days,se,0.010
+table_a6,Controls for lagged vote totals,Second-order Polynomial,270 Days,se,0.008
+table_a6,Controls for lagged vote totals,Second-order Polynomial,365 Days,se,0.007
+table_a6,Controls for lagged vote totals,Second-order Polynomial,455 Days,se,0.006
+table_a6,Controls for lagged vote totals,Second-order Polynomial,545 Days,se,0.006
+table_a6,Controls for lagged vote totals,Second-order Polynomial,635 Days,se,0.006
+table_a6,Controls for lagged vote totals,Second-order Polynomial,730 Days,se,0.005
+table_a6,Controls for lagged vote totals,Third-order Polynomial,90 Days,est,0.012
+table_a6,Controls for lagged vote totals,Third-order Polynomial,180 Days,est,0.035
+table_a6,Controls for lagged vote totals,Third-order Polynomial,270 Days,est,0.050
+table_a6,Controls for lagged vote totals,Third-order Polynomial,365 Days,est,0.056
+table_a6,Controls for lagged vote totals,Third-order Polynomial,455 Days,est,0.060
+table_a6,Controls for lagged vote totals,Third-order Polynomial,545 Days,est,0.086
+table_a6,Controls for lagged vote totals,Third-order Polynomial,635 Days,est,0.095
+table_a6,Controls for lagged vote totals,Third-order Polynomial,730 Days,est,0.097
+table_a6,Controls for lagged vote totals,Third-order Polynomial,90 Days,se,0.022
+table_a6,Controls for lagged vote totals,Third-order Polynomial,180 Days,se,0.015
+table_a6,Controls for lagged vote totals,Third-order Polynomial,270 Days,se,0.012
+table_a6,Controls for lagged vote totals,Third-order Polynomial,365 Days,se,0.010
+table_a6,Controls for lagged vote totals,Third-order Polynomial,455 Days,se,0.010
+table_a6,Controls for lagged vote totals,Third-order Polynomial,545 Days,se,0.009
+table_a6,Controls for lagged vote totals,Third-order Polynomial,635 Days,se,0.009
+table_a6,Controls for lagged vote totals,Third-order Polynomial,730 Days,se,0.007
+table_a7,No additional controls,Difference-in-Means,90 Days,est,0.121
+table_a7,No additional controls,Difference-in-Means,180 Days,est,0.116
+table_a7,No additional controls,Difference-in-Means,270 Days,est,0.095
+table_a7,No additional controls,Difference-in-Means,365 Days,est,0.071
+table_a7,No additional controls,Difference-in-Means,455 Days,est,0.087
+table_a7,No additional controls,Difference-in-Means,545 Days,est,0.092
+table_a7,No additional controls,Difference-in-Means,635 Days,est,0.087
+table_a7,No additional controls,Difference-in-Means,730 Days,est,0.076
+table_a7,No additional controls,Difference-in-Means,90 Days,se,0.010
+table_a7,No additional controls,Difference-in-Means,180 Days,se,0.007
+table_a7,No additional controls,Difference-in-Means,270 Days,se,0.006
+table_a7,No additional controls,Difference-in-Means,365 Days,se,0.005
+table_a7,No additional controls,Difference-in-Means,455 Days,se,0.005
+table_a7,No additional controls,Difference-in-Means,545 Days,se,0.004
+table_a7,No additional controls,Difference-in-Means,635 Days,se,0.004
+table_a7,No additional controls,Difference-in-Means,730 Days,se,0.004
+table_a7,No additional controls,First-order Polynomial,90 Days,est,0.073
+table_a7,No additional controls,First-order Polynomial,180 Days,est,0.111
+table_a7,No additional controls,First-order Polynomial,270 Days,est,0.140
+table_a7,No additional controls,First-order Polynomial,365 Days,est,0.147
+table_a7,No additional controls,First-order Polynomial,455 Days,est,0.103
+table_a7,No additional controls,First-order Polynomial,545 Days,est,0.092
+table_a7,No additional controls,First-order Polynomial,635 Days,est,0.103
+table_a7,No additional controls,First-order Polynomial,730 Days,est,0.117
+table_a7,No additional controls,First-order Polynomial,90 Days,se,0.024
+table_a7,No additional controls,First-order Polynomial,180 Days,se,0.014
+table_a7,No additional controls,First-order Polynomial,270 Days,se,0.011
+table_a7,No additional controls,First-order Polynomial,365 Days,se,0.010
+table_a7,No additional controls,First-order Polynomial,455 Days,se,0.009
+table_a7,No additional controls,First-order Polynomial,545 Days,se,0.008
+table_a7,No additional controls,First-order Polynomial,635 Days,se,0.008
+table_a7,No additional controls,First-order Polynomial,730 Days,se,0.007
+table_a7,No additional controls,Second-order Polynomial,90 Days,est,-0.025
+table_a7,No additional controls,Second-order Polynomial,180 Days,est,0.043
+table_a7,No additional controls,Second-order Polynomial,270 Days,est,0.060
+table_a7,No additional controls,Second-order Polynomial,365 Days,est,0.112
+table_a7,No additional controls,Second-order Polynomial,455 Days,est,0.160
+table_a7,No additional controls,Second-order Polynomial,545 Days,est,0.159
+table_a7,No additional controls,Second-order Polynomial,635 Days,est,0.119
+table_a7,No additional controls,Second-order Polynomial,730 Days,est,0.098
+table_a7,No additional controls,Second-order Polynomial,90 Days,se,0.047
+table_a7,No additional controls,Second-order Polynomial,180 Days,se,0.028
+table_a7,No additional controls,Second-order Polynomial,270 Days,se,0.020
+table_a7,No additional controls,Second-order Polynomial,365 Days,se,0.015
+table_a7,No additional controls,Second-order Polynomial,455 Days,se,0.013
+table_a7,No additional controls,Second-order Polynomial,545 Days,se,0.012
+table_a7,No additional controls,Second-order Polynomial,635 Days,se,0.012
+table_a7,No additional controls,Second-order Polynomial,730 Days,se,0.011
+table_a7,No additional controls,Third-order Polynomial,90 Days,est,-0.019
+table_a7,No additional controls,Third-order Polynomial,180 Days,est,0.027
+table_a7,No additional controls,Third-order Polynomial,270 Days,est,0.081
+table_a7,No additional controls,Third-order Polynomial,365 Days,est,0.004
+table_a7,No additional controls,Third-order Polynomial,455 Days,est,0.052
+table_a7,No additional controls,Third-order Polynomial,545 Days,est,0.101
+table_a7,No additional controls,Third-order Polynomial,635 Days,est,0.130
+table_a7,No additional controls,Third-order Polynomial,730 Days,est,0.157
+table_a7,No additional controls,Third-order Polynomial,90 Days,se,0.071
+table_a7,No additional controls,Third-order Polynomial,180 Days,se,0.040
+table_a7,No additional controls,Third-order Polynomial,270 Days,se,0.034
+table_a7,No additional controls,Third-order Polynomial,365 Days,se,0.029
+table_a7,No additional controls,Third-order Polynomial,455 Days,se,0.023
+table_a7,No additional controls,Third-order Polynomial,545 Days,se,0.018
+table_a7,No additional controls,Third-order Polynomial,635 Days,se,0.018
+table_a7,No additional controls,Third-order Polynomial,730 Days,se,0.016
+table_a7,Controls for lagged vote totals,Difference-in-Means,90 Days,est,0.097
+table_a7,Controls for lagged vote totals,Difference-in-Means,180 Days,est,0.092
+table_a7,Controls for lagged vote totals,Difference-in-Means,270 Days,est,0.079
+table_a7,Controls for lagged vote totals,Difference-in-Means,365 Days,est,0.060
+table_a7,Controls for lagged vote totals,Difference-in-Means,455 Days,est,0.062
+table_a7,Controls for lagged vote totals,Difference-in-Means,545 Days,est,0.059
+table_a7,Controls for lagged vote totals,Difference-in-Means,635 Days,est,0.050
+table_a7,Controls for lagged vote totals,Difference-in-Means,730 Days,est,0.038
+table_a7,Controls for lagged vote totals,Difference-in-Means,90 Days,se,0.010
+table_a7,Controls for lagged vote totals,Difference-in-Means,180 Days,se,0.007
+table_a7,Controls for lagged vote totals,Difference-in-Means,270 Days,se,0.006
+table_a7,Controls for lagged vote totals,Difference-in-Means,365 Days,se,0.005
+table_a7,Controls for lagged vote totals,Difference-in-Means,455 Days,se,0.004
+table_a7,Controls for lagged vote totals,Difference-in-Means,545 Days,se,0.004
+table_a7,Controls for lagged vote totals,Difference-in-Means,635 Days,se,0.004
+table_a7,Controls for lagged vote totals,Difference-in-Means,730 Days,se,0.004
+table_a7,Controls for lagged vote totals,First-order Polynomial,90 Days,est,0.061
+table_a7,Controls for lagged vote totals,First-order Polynomial,180 Days,est,0.090
+table_a7,Controls for lagged vote totals,First-order Polynomial,270 Days,est,0.112
+table_a7,Controls for lagged vote totals,First-order Polynomial,365 Days,est,0.119
+table_a7,Controls for lagged vote totals,First-order Polynomial,455 Days,est,0.098
+table_a7,Controls for lagged vote totals,First-order Polynomial,545 Days,est,0.091
+table_a7,Controls for lagged vote totals,First-order Polynomial,635 Days,est,0.098
+table_a7,Controls for lagged vote totals,First-order Polynomial,730 Days,est,0.106
+table_a7,Controls for lagged vote totals,First-order Polynomial,90 Days,se,0.023
+table_a7,Controls for lagged vote totals,First-order Polynomial,180 Days,se,0.014
+table_a7,Controls for lagged vote totals,First-order Polynomial,270 Days,se,0.011
+table_a7,Controls for lagged vote totals,First-order Polynomial,365 Days,se,0.009
+table_a7,Controls for lagged vote totals,First-order Polynomial,455 Days,se,0.008
+table_a7,Controls for lagged vote totals,First-order Polynomial,545 Days,se,0.008
+table_a7,Controls for lagged vote totals,First-order Polynomial,635 Days,se,0.007
+table_a7,Controls for lagged vote totals,First-order Polynomial,730 Days,se,0.007
+table_a7,Controls for lagged vote totals,Second-order Polynomial,90 Days,est,-0.006
+table_a7,Controls for lagged vote totals,Second-order Polynomial,180 Days,est,0.038
+table_a7,Controls for lagged vote totals,Second-order Polynomial,270 Days,est,0.046
+table_a7,Controls for lagged vote totals,Second-order Polynomial,365 Days,est,0.086
+table_a7,Controls for lagged vote totals,Second-order Polynomial,455 Days,est,0.125
+table_a7,Controls for lagged vote totals,Second-order Polynomial,545 Days,est,0.129
+table_a7,Controls for lagged vote totals,Second-order Polynomial,635 Days,est,0.099
+table_a7,Controls for lagged vote totals,Second-order Polynomial,730 Days,est,0.089
+table_a7,Controls for lagged vote totals,Second-order Polynomial,90 Days,se,0.044
+table_a7,Controls for lagged vote totals,Second-order Polynomial,180 Days,se,0.026
+table_a7,Controls for lagged vote totals,Second-order Polynomial,270 Days,se,0.019
+table_a7,Controls for lagged vote totals,Second-order Polynomial,365 Days,se,0.015
+table_a7,Controls for lagged vote totals,Second-order Polynomial,455 Days,se,0.013
+table_a7,Controls for lagged vote totals,Second-order Polynomial,545 Days,se,0.012
+table_a7,Controls for lagged vote totals,Second-order Polynomial,635 Days,se,0.011
+table_a7,Controls for lagged vote totals,Second-order Polynomial,730 Days,se,0.011
+table_a7,Controls for lagged vote totals,Third-order Polynomial,90 Days,est,0.002
+table_a7,Controls for lagged vote totals,Third-order Polynomial,180 Days,est,0.032
+table_a7,Controls for lagged vote totals,Third-order Polynomial,270 Days,est,0.077
+table_a7,Controls for lagged vote totals,Third-order Polynomial,365 Days,est,0.010
+table_a7,Controls for lagged vote totals,Third-order Polynomial,455 Days,est,0.042
+table_a7,Controls for lagged vote totals,Third-order Polynomial,545 Days,est,0.067
+table_a7,Controls for lagged vote totals,Third-order Polynomial,635 Days,est,0.123
+table_a7,Controls for lagged vote totals,Third-order Polynomial,730 Days,est,0.132
+table_a7,Controls for lagged vote totals,Third-order Polynomial,90 Days,se,0.065
+table_a7,Controls for lagged vote totals,Third-order Polynomial,180 Days,se,0.038
+table_a7,Controls for lagged vote totals,Third-order Polynomial,270 Days,se,0.032
+table_a7,Controls for lagged vote totals,Third-order Polynomial,365 Days,se,0.026
+table_a7,Controls for lagged vote totals,Third-order Polynomial,455 Days,se,0.022
+table_a7,Controls for lagged vote totals,Third-order Polynomial,545 Days,se,0.018
+table_a7,Controls for lagged vote totals,Third-order Polynomial,635 Days,se,0.018
+table_a7,Controls for lagged vote totals,Third-order Polynomial,730 Days,se,0.017
+table_a9,main,Shown Vote + Recontact,Nov 2008,est,0.119
+table_a9,main,Shown Vote + Recontact,Aug 2010,est,0.041
+table_a9,main,Shown Vote + Recontact,Nov 2010,est,0.167
+table_a9,main,Shown Vote + Recontact,Feb 2012,est,-0.060
+table_a9,main,Shown Vote + Recontact,Aug 2012,est,-0.204
+table_a9,main,Shown Vote + Recontact,Nov 2012,est,0.017
+table_a9,main,Shown Vote + Recontact,Nov 2008,se,0.091
+table_a9,main,Shown Vote + Recontact,Aug 2010,se,0.130
+table_a9,main,Shown Vote + Recontact,Nov 2010,se,0.127
+table_a9,main,Shown Vote + Recontact,Feb 2012,se,0.116
+table_a9,main,Shown Vote + Recontact,Aug 2012,se,0.136
+table_a9,main,Shown Vote + Recontact,Nov 2012,se,0.120
+table_a9,main,Shown Vote,Nov 2008,est,0.088
+table_a9,main,Shown Vote,Aug 2010,est,0.090
+table_a9,main,Shown Vote,Nov 2010,est,0.115
+table_a9,main,Shown Vote,Feb 2012,est,-0.142
+table_a9,main,Shown Vote,Aug 2012,est,-0.108
+table_a9,main,Shown Vote,Nov 2012,est,0.130
+table_a9,main,Shown Vote,Nov 2008,se,0.052
+table_a9,main,Shown Vote,Aug 2010,se,0.076
+table_a9,main,Shown Vote,Nov 2010,se,0.075
+table_a9,main,Shown Vote,Feb 2012,se,0.071
+table_a9,main,Shown Vote,Aug 2012,se,0.078
+table_a9,main,Shown Vote,Nov 2012,se,0.068

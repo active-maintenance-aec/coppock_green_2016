@@ -1,0 +1,227 @@
+---
+title: "Errata"
+subtitle: "On Coppock and Green (2016), *American Journal of Political Science* 60(4)"
+format:
+  pdf:
+    output-file: coppock_green_2016_errata.pdf
+    geometry: margin=1.25in
+    fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(here)
+library(tidyverse)
+library(knitr)
+here::i_am("errata.qmd")
+
+# Every number in the corrected sentences and in the notes beneath them is computed here,
+# from the maintained pipeline's output, at the time this document is rendered. Nothing
+# below is typed. Where a correction quotes a published cell rather than a recomputed
+# one, it is read from the transcription of the printed page.
+out <- function(f) read_csv(here("maintained", "output", f), show_col_types = FALSE)
+
+rd <- out("tables_4_5_rd_all.csv")
+migration <- out("table_a2_migration.csv")
+coefficients <- out("table_7_coefficients.csv")
+pair_metadata <- out("table_7_metadata.csv")
+like_elections <- out("text_like_elections.csv")
+
+published_appendix <- read_csv(here("ground_truth", "published_appendix_values.csv"),
+                               col_types = cols(.default = col_character()))
+published_maintext <- read_csv(here("ground_truth", "published_maintext_tables.csv"),
+                               col_types = cols(.default = col_character()))
+n_published_cells <- nrow(published_appendix) + nrow(published_maintext)
+
+f3 <- function(x) sprintf("%.3f", x)
+f4 <- function(x) sprintf("%.4f", x)
+
+spell <- function(n) {
+  words <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+             "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+             "seventeen", "eighteen", "nineteen", "twenty")
+  stopifnot(n >= 1, n <= length(words))
+  words[n]
+}
+
+# Entry 1: the primary-on-primary standard error.
+pp <- like_elections |> filter(upstream_type == "primary", downstream_type == "primary")
+pg <- like_elections |> filter(upstream_type == "primary", downstream_type == "general")
+pp_z <- pp$estimate / pp$std_error
+pp_published_se <- 0.0010
+pp_z_published <- pp$estimate / pp_published_se
+
+# Entry 2: Table A2's Iowa row.
+a2_rd <- rd |>
+  filter(years_window == "08-12", !state %in% c("meta", "FL05", "MO05"), !is.na(cace)) |>
+  select(state, rd_cace = cace)
+a2_published <- published_appendix |>
+  filter(float == "table_a2") |>
+  select(state = row_label, column_label, value_paper) |>
+  pivot_wider(names_from = column_label, values_from = value_paper)
+a2_check <- migration |>
+  left_join(a2_rd, by = "state") |>
+  left_join(a2_published |> transmute(state, published_cace = as.numeric(`CACE 08-12`)),
+            by = "state") |>
+  mutate(same = published_cace == round(rd_cace, 3))
+state_names <- c(AR = "Arkansas", CT = "Connecticut", IA = "Iowa", IL = "Illinois",
+                 FL = "Florida", KY = "Kentucky", MO = "Missouri", MT = "Montana",
+                 NJ = "New Jersey", NV = "Nevada", NY = "New York", OK = "Oklahoma",
+                 OR = "Oregon", PA = "Pennsylvania", RI = "Rhode Island")
+wrong_state <- a2_check |> filter(!same) |> mutate(name = state_names[state])
+stopifnot(nrow(wrong_state) == 1)
+iowa <- migration |> filter(state == wrong_state$state)
+iowa_published <- a2_published |> filter(state == wrong_state$state)
+
+a2_corrected <- migration |>
+  transmute(
+    State = state,
+    `Net Migrants` = sprintf("%.0f", net_migrants_100),
+    `$N_c$ 2008` = sprintf("%.0f", N_c_08),
+    `CACE 08-12` = f3(cace),
+    `Bias Estimate` = f3(bias_estimate),
+    `Corrected CACE` = f3(corrected_estimate)
+  )
+
+# Entry 3: the counts in the lower panel of Table 4.
+mop <- rd |>
+  filter(state != "meta", !is.na(cace),
+         years_window %in% c("94-96", "98-00", "02-04", "06-08", "10-12"))
+pom <- rd |>
+  filter(state != "meta", !is.na(cace),
+         years_window %in% c("92-94", "96-98", "00-02", "04-06", "08-10"))
+oregon_only <- setdiff(
+  mop$state[mop$years_window == "06-08"], pom$state[pom$years_window == "04-06"]
+)
+
+# Entry 4: battleground status of the five strongest 2008-12 estimates.
+battleground <- pair_metadata |>
+  filter(downYear == 2012) |>
+  distinct(state_clean, battleground_P, downstream_margin)
+five_strongest <- rd |>
+  filter(years_window == "08-12", state != "meta", !is.na(cace),
+         !str_detect(state, "05$")) |>
+  arrange(desc(cace)) |>
+  slice_head(n = 5) |>
+  left_join(battleground, by = c("state" = "state_clean")) |>
+  mutate(name = recode(state, AR = "Arkansas", NV = "Nevada", CT = "Connecticut",
+                       MO = "Missouri", NJ = "New Jersey"))
+battlegrounds_among_five <- five_strongest |>
+  filter(battleground_P == 1) |>
+  arrange(downstream_margin)
+nonbattlegrounds_among_five <- five_strongest |> filter(battleground_P == 0)
+# Each state carries its own margin; sorting the two columns separately would pair them
+# in the wrong order.
+battleground_phrases <- str_glue_data(
+  battlegrounds_among_five,
+  "{name} at {sprintf('%.1f', 100 * downstream_margin)} points"
+)
+
+# Entry 5: the battleground coefficient across columns 2 and 3 of Table 7.
+coefficient <- function(name, model_no, column) {
+  row <- coefficients |> filter(term == name, model == model_no)
+  stopifnot(nrow(row) == 1)
+  row[[column]]
+}
+bg_ratio <- coefficient("battleground_P", 2, "estimate") /
+  coefficient("battleground_PM", 3, "estimate")
+
+# Entry 6: the number of states in Table A2.
+n_a2_states <- nrow(migration)
+
+# Entry 7: the general-on-general pairs and where they are reported.
+gg_pairs <- like_elections |>
+  filter(upstream_type == "general", downstream_type == "general") |>
+  pull(n)
+t6_pairs <- out("table_6_rd_persistence.csv") |>
+  filter(type == "state", !is.na(cace), !str_detect(state, "05$")) |>
+  nrow()
+
+# Entry 8: the mislabelled panel of Table A4.
+analysis_states <- setdiff(unique(str_remove(rd$state, "05$")), "meta")
+```
+
+This note lists eight corrections to "Is Voting Habit Forming? New Evidence from Experiments and Regression Discontinuities," published in the *American Journal of Political Science* 60(4):1044--1062, doi [10.1111/ajps.12210](https://doi.org/10.1111/ajps.12210). **None of them changes any conclusion of the paper.** One is a standard error, one is a row of an appendix table, and the other six are sentences or a heading that miscount or misdescribe something the article prints correctly. Everything else in the `r format(n_published_cells, big.mark = ",")` published table cells this note's supporting analysis reads off the page reproduces from the deposited replication archive ([10.7910/DVN/ALZVAW](https://doi.org/10.7910/DVN/ALZVAW)).
+
+Every number in the corrected sentences and in the notes beneath them is computed from the deposited archive at the time this document is rendered. The code and output supporting the corrections are at [github.com/active-maintenance-aec/coppock_green_2016](https://github.com/active-maintenance-aec/coppock_green_2016).
+
+## 1. The standard error of the primary-on-primary estimate
+
+> The average estimated primary-on-general CACE is 0.0086 (SE = 0.0236), while the average estimated primary-on-primary CACE is 0.0068 (SE=**0.0010**).
+
+Corrected:
+
+> The average estimated primary-on-general CACE is 0.0086 (SE = 0.0236), while the average estimated primary-on-primary CACE is 0.0068 (SE=**`r f4(pp$std_error)`**).
+
+The estimate and the other three figures in the sentence reproduce exactly. As printed, a standard error of `r f4(pp_published_se)` would put the primary-on-primary estimate `r sprintf("%.1f", pp_z_published)` standard errors from zero, which contradicts the sentence's own point that inducement to vote in a primary has negligible downstream effects. Recomputed, the estimate is `r sprintf("%.2f", pp_z)` standard errors from zero, and is indistinguishable from zero as the passage says.
+
+## 2. Appendix Table A2's Iowa row
+
+Table A2's CACE 08-12 column holds each state's estimated effect of voting in 2008 on voting in 2012, and for `r spell(nrow(a2_check) - nrow(wrong_state))` of its `r spell(nrow(a2_check))` states it agrees with Tables 5 and 6 exactly. For `r wrong_state$name` it does not: the appendix prints `r iowa_published[["CACE 08-12"]]`, where Tables 5 and 6 both print `r f3(round(wrong_state$rd_cace, 3))`. The bias estimate and the corrected CACE in that row follow from the wrong figure, so all three cells move. The corrected table:
+
+```{r a2-table}
+kable(a2_corrected, booktabs = TRUE, linesep = "", align = "lrrrrr",
+      caption = "Table A2 corrected: Migrants, Number of Compliers, and Associated Bias")
+```
+
+The changed artifact is the `r wrong_state$name` row alone; every other cell is as published. The deposited code for this table types its fifteen CACEs in as constants rather than reading them from the regression discontinuity output the rest of the paper uses, and the constant for `r wrong_state$name` is not the estimate that analysis produces.
+
+## 3. The count of midterm-on-presidential estimates
+
+> The pattern of midterm-on-presidential estimates argues strongly for habit formation as well. Here, **50** out of **54** estimates are positive.
+
+Corrected:
+
+> The pattern of midterm-on-presidential estimates argues strongly for habit formation as well. Here, **`r sum(mop$cace > 0)`** out of **`r nrow(mop)`** estimates are positive.
+
+The lower panel of Table 4 prints `r nrow(mop)` state estimates, not `r nrow(pom)`; the upper panel prints `r nrow(pom)`, which is the figure the preceding sentence correctly gives for the presidential-on-midterm effects. The two panels differ because `r recode(oregon_only, OR = "Oregon")` enters the midterm-on-presidential series in 2006--08 and has no 2004--06 counterpart in the presidential-on-midterm series. Of the `r nrow(mop)` estimates, `r spell(sum(mop$cace < 0))` are negative, so `r sum(mop$cace > 0)` are positive. Table 4 itself is correct.
+
+## 4. Battleground status among the strongest presidential-on-presidential estimates
+
+> The top panel of Table 5, for example, reports 15 estimates of the presidential-on-presidential downstream effect for 2008--12. The top **four** of the five strongest estimates (Arkansas, Nevada, Connecticut, Missouri, and New Jersey) are found in nonbattleground states.
+
+Corrected:
+
+> The top panel of Table 5, for example, reports 15 estimates of the presidential-on-presidential downstream effect for 2008--12. The top **`r spell(nrow(nonbattlegrounds_among_five))`** of the five strongest estimates (Arkansas, Nevada, Connecticut, Missouri, and New Jersey) are found in nonbattleground states.
+
+Under the article's own coding, a state is a presidential battleground when the two-party vote share difference in the downstream election is ten points or fewer. `r knitr::combine_words(battleground_phrases)` clear that threshold in 2012, so `r spell(nrow(nonbattlegrounds_among_five))` of the five strongest estimates are in nonbattleground states rather than four. The point the sentence makes is unaffected: the strongest estimates are not concentrated in battlegrounds.
+
+## 5. The change in the battleground coefficient between columns 2 and 3 of Table 7
+
+> When we include the close midterm elections in the definition of battleground, this pattern does not persist---the coefficient drops by a factor of **three** and is no longer significant.
+
+Corrected:
+
+> When we include the close midterm elections in the definition of battleground, this pattern does not persist---the coefficient drops by a factor of **`r spell(round(bg_ratio))`** and is no longer significant.
+
+Table 7 prints `r f4(coefficient("battleground_P", 2, "estimate"))` in column 2 and `r f4(coefficient("battleground_PM", 3, "estimate"))` in column 3, a ratio of `r sprintf("%.1f", bg_ratio)`. Both cells reproduce exactly; only the description of the ratio is wrong, and the coefficient is indeed no longer significant.
+
+## 6. The number of states in Table A2
+
+> Table A2 presents the estimated number of net migrants, the estimated number of compliers in 2008 (computed using a 365-day window), and the associated bias according to Equation A10 for **sixteen** states.
+
+Corrected:
+
+> Table A2 presents the estimated number of net migrants, the estimated number of compliers in 2008 (computed using a 365-day window), and the associated bias according to Equation A10 for **`r spell(n_a2_states)`** states.
+
+The table has `r spell(n_a2_states)` rows, one for every state with a 2008-on-2012 estimate. Colorado and Michigan have no such estimate, so the analysis covers `r spell(n_a2_states)` of the seventeen states.
+
+## 7. The cross-reference for the general-on-general election pairs
+
+> Across the 384 general-on-general election pairs (the pairs reported in **Table 6** of the main text), the average estimated CACE is 0.101 with a standard error of 0.007.
+
+Corrected:
+
+> Across the 384 general-on-general election pairs (the pairs reported in **Table 7** of the main text), the average estimated CACE is 0.101 with a standard error of 0.007.
+
+Table 6 reports `r t6_pairs` pairs, every upstream general election on downstream voting in 2012. The `r gg_pairs` general-on-general pairs are the set Table 7 pools, and Table 7's own N row prints that figure in all five columns. Both averages in the sentence reproduce exactly.
+
+## 8. The first panel of appendix Table A4
+
+> **Arizona 2013**
+
+Corrected:
+
+> **Arkansas 2013**
+
+Tables A4 and A5 give descriptive statistics for one panel per voter file, nineteen in all: the seventeen states the article analyses plus the two historical files for Florida and Missouri. Every other panel corresponds to one of those states. Arkansas is one of the seventeen, appears in Tables 4, 5, 6 and A2, and has no panel of its own; Arizona appears in no table in the article and is nowhere in the deposited data, whose states are `r knitr::combine_words(sort(analysis_states))`. The changed artifact is the panel heading alone; every figure beneath it is as published.

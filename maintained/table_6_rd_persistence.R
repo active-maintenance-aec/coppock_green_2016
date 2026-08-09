@@ -51,9 +51,12 @@ meta_results <- grid_fits |>
   select(years_window, upstream_year, state, fe_cace, fe_se, re_cace, re_se)
 
 # Binomial test: how many of the 86 state-window estimates are positive? ----
+# The two historical voter files are excluded, as they are from every meta-analysis
+# here. Colorado and Michigan have no 2012 downstream data at all, so they drop out
+# through the missing-value filter rather than by name.
 positive_count <- grid_fits |>
   filter(
-    !state %in% c("FL05", "MO05", "Colorado", "Michigan"),
+    !state %in% c("FL05", "MO05"),
     !is.na(cace)
   ) |>
   summarise(
@@ -75,6 +78,20 @@ all_results <- bind_rows(
 )
 
 write_csv(all_results, here::here("maintained", "output", "table_6_rd_persistence.csv"))
+
+# The nonparametric test the text reports, written out rather than only printed ----
+binom_out <- tibble(
+  n_positive = positive_count$n_positive,
+  n_negative = positive_count$n_total - positive_count$n_positive,
+  n_total    = positive_count$n_total,
+  p_value    = binom_result$p.value,
+  n_negative_significant = sum(
+    with(grid_fits, !is.na(cace) & !state %in% c("FL05", "MO05") &
+           cace < 0 & abs(cace / se) > qnorm(0.975))
+  )
+)
+
+write_csv(binom_out, here::here("maintained", "output", "table_6_binomial_test.csv"))
 
 # Quick inspection (FE and RE) ----
 meta_results |>

@@ -38,6 +38,13 @@ walk(
   blank_pdf_timestamps
 )
 
+# Ground truth and the second instrument ----
+# build_ground_truth.R assembles the comparison table and, as its last step, runs
+# in_text_claims.R under capture.output as the coverage gate. It is sourced again below
+# for the human-readable log, which is the only reason it runs twice.
+source(here::here("ground_truth", "build_ground_truth.R"))
+source(here::here("maintained", "in_text_claims.R"))
+
 # Deposited archive, again ----
 # The check at the top of this file is a precondition: it says original/ was intact
 # before anything ran. Nothing above writes to original/, and this second pass is what

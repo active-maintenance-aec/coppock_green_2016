@@ -26,11 +26,9 @@ all_pairs <- crossing(
   filter(
     match(downstream_year, years) > match(upstream_year, years)
   ) |>
-  # Original script removes downstream_year at positions 56-57 of the original loop
-  # which corresponds to the pair (10, 12) and (12, ?). Checking: the original generates
-  # all i < j pairs in the triangular grid, giving 11*10/2 = 55 pairs, then removes indices
-  # 56,57 which don't exist in a 55-element vector... so effectively no removal beyond bounds.
-  # The original downstream_year vector has 55 elements and removes [56,57] which is a no-op.
+  # The deposit builds the same 55 pairs by a loop whose last iteration indexes
+  # years[12:11], appending an NA and a duplicate "12"; its downstream_year[-c(56, 57)]
+  # drops exactly those two. The triangular filter above is that loop's intent.
   mutate(years_window = paste0(upstream_year, "-", downstream_year))
 
 # Run RD IV for every state × pair ----
@@ -97,6 +95,49 @@ robust_vcov <- map(
   \(f) sandwich::vcovHC(f)
 )
 robust_ses <- map(robust_vcov, \(v) sqrt(diag(v)))
+
+# Every cell of Table 7, unrounded ----
+# The typeset table rounds to four decimals; a ground truth reading a value back out
+# of it would round twice. The state dummies are absorbed in the printed table and
+# are kept here, flagged, so the file is the fit rather than the display.
+fits <- list(fit_1, fit_2, fit_3, fit_4, fit_5)
+
+table_7_coefficients <- imap(fits, function(f, i) {
+  tibble(
+    model     = i,
+    term      = names(coef(f)),
+    estimate  = as.numeric(coef(f)),
+    std_error = as.numeric(robust_ses[[i]][names(coef(f))]),
+    state_fe  = str_starts(names(coef(f)), "state_clean")
+  )
+}) |>
+  list_rbind()
+
+table_7_gof <- imap(fits, function(f, i) {
+  tibble(model = i, n = nobs(f), r_squared = summary(f)$r.squared,
+         has_state_fe = any(str_starts(names(coef(f)), "state_clean")))
+}) |>
+  list_rbind()
+
+write_csv(table_7_coefficients,
+          here::here("maintained", "output", "table_7_coefficients.csv"))
+write_csv(table_7_gof, here::here("maintained", "output", "table_7_gof.csv"))
+
+# The precision-weighted average across every state-election pair ----
+# The Discussion quotes it, and the deposit computes it in this script.
+write_csv(
+  tibble(
+    n_pairs   = nrow(metadata),
+    mean_cace = weighted.mean(metadata$cace, metadata$weights),
+    # downstream_margin is missing exactly where a midterm year had neither a
+    # gubernatorial nor a senate race; downstream_margin_b is the filled version the
+    # battleground indicators are built from.
+    n_no_gubernatorial_or_senate = sum(is.na(metadata$downstream_margin)),
+    n_battleground_p  = sum(metadata$battleground_P),
+    n_battleground_pm = sum(metadata$battleground_PM)
+  ),
+  here::here("maintained", "output", "text_average_cace.csv")
+)
 
 # Key coefficients ----
 tibble(

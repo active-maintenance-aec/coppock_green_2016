@@ -1,0 +1,11 @@
+script,status
+CG Habit DE Table 1.R,ok
+CG Habit DE Table 2.R,ok
+CG Habit DE Table 3.R,ok
+CG Habit DE Table A9.R,ok
+CG Habit ME Table A2 and Figure A1.R,ok
+CG Habit RD Tables 4 and 5.R,ok
+CG Habit RD Table 6.R,ok
+CG Habit RD Table 7.R,ok
+CG Habit RD Tables A6 and A7.R,ok
+CG Habit RD Figure A2.R,error: subscript out of bounds

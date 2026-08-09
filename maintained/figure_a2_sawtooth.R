@@ -110,7 +110,8 @@ plot_dat <- grid_fits |>
     upyear   = if_else(upyear   > 50, upyear   + 1900L, upyear   + 2000L),
     downyear = if_else(downyear > 50, downyear + 1900L, downyear + 2000L),
     downyear = if_else(down_primary == "primary", downyear - 0.5, as.double(downyear)),
-    weights  = 1 / se^2
+    weights  = 1 / se^2,
+    bandwidth = 365
   )
 
 # Figure A2: sawtooth of CACEs (general-election upstream, excluding 2012 and FL05/MO05) ----
@@ -145,5 +146,85 @@ ggsave(
 )
 
 write_csv(plot_dat, here::here("maintained", "output", "figure_a2_data.csv"))
+
+# The "like elections" comparison the appendix reports in prose ----
+# Upstream general elections at the 365-day window: the precision-weighted average
+# downstream CACE, separately for general and primary downstream elections. A
+# no-intercept weighted regression on the downstream type gives both averages and
+# their robust standard errors in one fit, which is what the deposit does for the
+# primary-upstream case below.
+general_upstream <- plot_dat |>
+  filter(up_primary == "general", upyear != 2012, !state %in% c("FL05", "MO05"))
+
+fit_general <- lm(cace ~ down_primary - 1, weights = weights, data = general_upstream)
+
+# Upstream primary elections need a 60-day window, because at 365 days the next
+# general election's own discontinuity is inside the window. Only primary-upstream
+# pairs are refit, since those are the only ones the 60-day analysis reports.
+primary_pairs <- pairs |>
+  filter(str_detect(up_label, "primary"))
+
+grid_60 <- crossing(primary_pairs, state = states)
+
+grid_fits_60 <- grid_60 |>
+  mutate(
+    result = pmap(
+      list(up_days, up_treat, up_voted, down_voted, down_lag, state),
+      \(ud, ut, uv, dv, dl, s) tryCatch(
+        run_rd_primary(USA, ud, ut, uv, dv, dl, 60, s),
+        error = function(e) NULL
+      )
+    ),
+    cace = map_dbl(result, ~ if (is.null(.x)) NA_real_ else .x$cace),
+    se   = map_dbl(result, ~ if (is.null(.x)) NA_real_ else .x$se)
+  ) |>
+  select(up_label, down_label, state, cace, se)
+
+primary_upstream <- grid_fits_60 |>
+  filter(!is.na(cace)) |>
+  mutate(
+    down_primary = if_else(str_detect(down_label, "primary"), "primary", "general"),
+    upyear_char  = str_remove_all(up_label, "(primary)|(presprimary)"),
+    upyear       = as.integer(upyear_char),
+    upyear       = if_else(upyear > 50, upyear + 1900L, upyear + 2000L),
+    weights      = 1 / se^2
+  ) |>
+  filter(upyear != 2012, !state %in% c("FL05", "MO05")) |>
+  mutate(bandwidth = 60)
+
+fit_primary <- lm(cace ~ down_primary - 1, weights = weights, data = primary_upstream)
+
+write_csv(primary_upstream,
+          here::here("maintained", "output", "figure_a2_data_60day.csv"))
+
+like_elections <- bind_rows(
+  tibble(
+    upstream_type = "general", bandwidth = 365,
+    downstream_type = str_remove(names(coef(fit_general)), "^down_primary"),
+    estimate = as.numeric(coef(fit_general)),
+    std_error = as.numeric(sqrt(diag(sandwich::vcovHC(fit_general))))
+  ),
+  tibble(
+    upstream_type = "primary", bandwidth = 60,
+    downstream_type = str_remove(names(coef(fit_primary)), "^down_primary"),
+    estimate = as.numeric(coef(fit_primary)),
+    std_error = as.numeric(sqrt(diag(sandwich::vcovHC(fit_primary))))
+  )
+) |>
+  left_join(
+    bind_rows(
+      general_upstream |> count(downstream_type = down_primary) |>
+        mutate(upstream_type = "general"),
+      primary_upstream |> count(downstream_type = down_primary) |>
+        mutate(upstream_type = "primary")
+    ),
+    by = c("upstream_type", "downstream_type")
+  )
+
+write_csv(like_elections, here::here("maintained", "output", "text_like_elections.csv"))
+
+like_elections |>
+  mutate(check = "appendix section 3, average CACE by upstream and downstream type") |>
+  print()
 
 

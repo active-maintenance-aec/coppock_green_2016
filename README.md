@@ -1,6 +1,5 @@
 # Active Maintenance Report: coppock_green_2016
 
-2026-03-18
 
 - [Paper overview](#paper-overview)
 - [Summary](#summary)
@@ -8,19 +7,20 @@
   - [Does the maintained rewrite reproduce the
     paper?](#does-the-maintained-rewrite-reproduce-the-paper)
 - [Original archive reproducibility](#original-archive-reproducibility)
+- [The extraction and the two
+  instruments](#the-extraction-and-the-two-instruments)
 - [Number-by-number comparison](#number-by-number-comparison)
+  - [Float coverage](#float-coverage)
+  - [Where the numbers disagree](#where-the-numbers-disagree)
+- [Errata](#errata)
+  - [Corrections the rewrite made to the deposited
+    code](#corrections-the-rewrite-made-to-the-deposited-code)
 - [Maintained rewrite](#maintained-rewrite)
   - [Architecture](#architecture)
-  - [Deprecated patterns replaced](#deprecated-patterns-replaced)
-- [Fixed-effects vs. random-effects
-  meta-analysis](#fixed-effects-vs-random-effects-meta-analysis)
-  - [Background](#background)
-  - [Results for Tables 4–5 (key meta-analytic
-    pairs)](#results-for-tables-45-key-meta-analytic-pairs)
-  - [Results for Tables A6–A7 (boxed robustness
-    estimates)](#results-for-tables-a6a7-boxed-robustness-estimates)
-  - [Interpretation](#interpretation)
-- [Maintained rewrite verification](#maintained-rewrite-verification)
+- [Figure verification](#figure-verification)
+- [Fixed-effects and random-effects
+  meta-analysis](#fixed-effects-and-random-effects-meta-analysis)
+- [Rewrite verification](#rewrite-verification)
 - [R environment](#r-environment)
 
 *Drafted by Claude Opus 5 under the supervision of Alex Coppock.*
@@ -37,6 +37,7 @@ to a set of published archives.
 |----|----|
 | Article | [10.1111/ajps.12210](https://doi.org/10.1111/ajps.12210) |
 | Replication archive | [10.7910/DVN/ALZVAW](https://doi.org/10.7910/DVN/ALZVAW) |
+| Errata | `coppock_green_2016_errata.pdf` |
 
 **The data are not redistributed here.** The deposit is 77 MB across 24
 files and lives at Harvard Dataverse, which is the only copy this
@@ -63,12 +64,21 @@ repository maintains. See `LICENSE`.
 source("run_all.R")
 ```
 
-That fetches the deposit, verifies its 24 files, and produces every
-table and figure into `maintained/output/`. Required packages:
-tidyverse, estimatr, metafor, sandwich, stargazer, knitr, kableExtra,
-here. Paths resolve through `here`, so nothing depends on the working
-directory. A successful run overwrites `maintained/output/`, which is
-committed: **`git diff` on that folder is the reproduction check.**
+That fetches the deposit, verifies its 24 files, produces every table
+and figure into `maintained/output/`, rebuilds the ground truth and runs
+the coverage gate. Required packages: tidyverse, estimatr, metafor,
+sandwich, modelsummary, knitr, kableExtra, here. Paths resolve through
+`here`, so nothing depends on the working directory. A successful run
+overwrites `maintained/output/`, which is committed: **`git diff` on
+that folder is the reproduction check.**
+
+Two scripts in `ground_truth/` are not part of `run_all.R`, because they
+read things this repository does not carry. `run_archive.R` runs the
+deposit’s own ten scripts in a scratch copy and
+`extract_archive_values.R` parses what they printed;
+`extract_published_values.R` reads the published article and its
+supporting information. Both write committed CSVs, and both take the
+directory they need from an environment variable.
 
 # Paper overview
 
@@ -77,20 +87,18 @@ Forming? New Evidence from Experiments and Regression Discontinuities.”
 *American Journal of Political Science*, 60(4), 1044–1062. DOI:
 10.1111/ajps.12210
 
-**Replication archive**: <https://doi.org/10.7910/DVN/ALZVAW>
-
 **Summary**: This paper tests whether voting is habit forming using two
 research designs. The experimental design exploits three randomized GOTV
-field experiments—ETOV 2006, ETOV 2007, and SMG 2009 (Australia)—in
-which randomly assigned treatment arms induced upstream voting; the
-downstream effect on voting in subsequent elections identifies the
-Complier Average Causal Effect (CACE) of upstream voting. The regression
-discontinuity design exploits the sharp 18th birthday eligibility
-cutoff: individuals just old enough to vote in an upstream election can
-be compared to those just too young, identifying the CACE from a
-different source of variation. Both designs produce positive downstream
-estimates, with same-type election pairs (presidential-on-presidential,
-midterm-on-midterm) generating the largest and most persistent effects.
+field experiments—ETOV 2006, ETOV 2007, and SMG 2009—in which randomly
+assigned treatment arms induced upstream voting; the downstream effect
+on voting in subsequent elections identifies the Complier Average Causal
+Effect (CACE) of upstream voting. The regression discontinuity design
+exploits the sharp 18th birthday eligibility cutoff: individuals just
+old enough to vote in an upstream election can be compared to those just
+too young, identifying the CACE from a different source of variation.
+Both designs produce positive downstream estimates, with same-type
+election pairs (presidential-on-presidential, midterm-on-midterm)
+generating the largest and most persistent effects.
 
 ------------------------------------------------------------------------
 
@@ -100,166 +108,343 @@ Two questions, answered before the detail.
 
 ## Does the deposited archive run?
 
-Not as deposited, but everything that stops it is a missing package.
-Nine of the eleven scripts fail on a clean R installation for want of
-`AER` or `rmeta`, and both install from CRAN without incident. Nothing
-else goes wrong: no hardcoded paths to a machine that no longer exists,
-no functions called before they are defined, no silently wrong output.
-Rechecked on 31 July 2026, eight years after deposit, both packages
-still install: `AER` 1.2-17 shipped in July 2026, and `rmeta` 3.0 has
-not been touched since March 2018 yet remains available.
+Nine of the ten analysis scripts do, once two packages are installed.
+`AER` supplies `ivreg` and `rmeta` supplies `meta.summaries`; both
+remain on CRAN and install without incident, rechecked 9 August 2026.
+Nothing else stops those nine: no hardcoded paths to a machine that no
+longer exists, no functions called before they are defined.
 
-That last point is the fragile one. The archive depends on a package
-with no maintenance activity in eight years, and its continued
-availability is a fact about CRAN’s archiving policy rather than about
-this deposit. `rmeta::meta.summaries` is the only reason it is needed,
-and the maintained rewrite uses `metafor::rma` instead, so the rewrite
-does not inherit the exposure.
+The tenth does not run. `CG Habit RD Figure A2.R` indexes one position
+past the end of its own loop on the last upstream election, and the
+resulting subscript error is not inside the `try()` the loop wraps
+around the estimator. The script stops before it assembles the frame it
+plots, so neither Figure A2 nor the 60-day primary-election analysis
+printed beneath it is ever reached. The maintained rewrite produces
+both.
+
+One script also cannot find its data.
+`CG Habit ME Table A2 and Figure A1.R` reads
+`Measurement Error/interstatemovers.txt`; the deposit ships
+`interstatemovers.txt` at the top level and no such directory.
+`ground_truth/run_archive.R` puts a copy where the code looks, and says
+so.
+
+Two further facts about the deposit are worth recording. Running it
+writes nine files into its working directory—four `.tex` tables, four
+household tables and an `Rplots.pdf`—which is why it is never run inside
+`original/`. And four of its tables are built as `xtable` objects whose
+print calls are commented out, so those scripts compute Table 6 and
+Tables A6 and A7 and display nothing at all.
 
 ## Does the maintained rewrite reproduce the paper?
 
-Yes, without exception. All 50 recorded ground truth claims match the
-published values, and all 50 also match what the original scripts
-produce.
+Almost exactly. The ground truth carries 1,457 rows: 1,329 published
+table cells compared one at a time, and 128 claims the article states in
+prose. 1,397 reproduce at the precision the page prints, 18 do not, and
+23 of the 27 claims with a computed truth value hold.
 
-The rewrite additionally reports something the paper does not, which is
-an addition rather than a correction and should not be read as one. The
-original pools state-level CACEs by fixed-effects inverse-variance
-weighting, which attributes all between-state variation to sampling
-error. The rewrite reports random-effects estimates alongside, with the
-between-state variance and $I^2$ that the fixed-effects model assumes
-away. The published fixed-effects numbers reproduce exactly; the
-random-effects figures sit beside them so a reader can see what the
-pooling assumption costs.
+The 18 that do not divide into three groups, set out in the errata and
+in the sections below: eleven standard errors that differ from the
+published ones in the fifth decimal, where two packages define the same
+nominal estimator differently; three cells of one appendix table row
+that the deposit fills from a typed constant its own analysis does not
+produce; and four sentences that miscount or misdescribe a table the
+article prints correctly.
 
 ------------------------------------------------------------------------
 
 # Original archive reproducibility
 
-| Script | Status on current R | Resolution |
-|:---|:---|:---|
-| Habit_source.R | Clean (sourced by all scripts) | No changes required |
-| CG Habit DE Table 1.R | Clean after AER install | install.packages(‘AER’) |
-| CG Habit DE Table 2.R | Clean after AER install | install.packages(‘AER’) |
-| CG Habit DE Table 3.R | Clean after AER + rmeta install | install.packages(c(‘AER’, ‘rmeta’)) |
-| CG Habit DE Table A9.R | Clean after AER install | install.packages(‘AER’) |
-| CG Habit RD Tables 4 and 5.R | Clean after rmeta install | install.packages(‘rmeta’) |
-| CG Habit RD Table 6.R | Clean after rmeta install | install.packages(‘rmeta’) |
-| CG Habit RD Table 7.R | Clean | No changes required |
-| CG Habit RD Tables A6 and A7.R | Clean after rmeta + beepr install | install.packages(c(‘rmeta’, ‘beepr’)) |
-| CG Habit RD Figure A2.R | Clean after rmeta install | install.packages(‘rmeta’) |
-| CG Habit ME Table A2 and Figure A1.R | Clean | No changes required |
+| Deposited script                     | Status on a current R installation |
+|:-------------------------------------|:-----------------------------------|
+| CG Habit DE Table 1.R                | ok                                 |
+| CG Habit DE Table 2.R                | ok                                 |
+| CG Habit DE Table 3.R                | ok                                 |
+| CG Habit DE Table A9.R               | ok                                 |
+| CG Habit ME Table A2 and Figure A1.R | ok                                 |
+| CG Habit RD Tables 4 and 5.R         | ok                                 |
+| CG Habit RD Table 6.R                | ok                                 |
+| CG Habit RD Table 7.R                | ok                                 |
+| CG Habit RD Tables A6 and A7.R       | ok                                 |
+| CG Habit RD Figure A2.R              | Error: subscript out of bounds     |
 
-Original archive reproducibility, checked against a current R
-installation.
+Every deposited script, run in a scratch copy of the archive rather than
+in place.
 
-The only barriers to execution are two missing packages: `AER` (for
-`ivreg`) and `rmeta` (for `meta.summaries`). Both remain on CRAN and
-install cleanly, rechecked 31 July 2026: `AER` 1.2-17 was published in
-July 2026, and `rmeta` 3.0 has stood unchanged since March 2018 and
-still installs. No content errors, deprecated-function failures, or
-silent errors were found. Every analysis script ran cleanly after the
-two installs.
+The deposit ships no intermediate objects: its 24 files are ten R
+scripts, a helper file, five data files, four codebooks, a README and
+one text file of migration counts. There is therefore nothing to strip,
+and the usual test of running the archive without its own saved
+intermediates has nothing to remove. That is asserted from the manifest
+rather than assumed.
+
+Category 2 in this program’s vocabulary, but the category records
+whether code executes, not whether the numbers reproduce. Those are
+separate questions and the next section answers the second.
+
+------------------------------------------------------------------------
+
+# The extraction and the two instruments
+
+Two files stand between the published pages and the code, and they are
+deliberately independent of one another.
+
+`ground_truth/published_claims.csv` is the extraction: every numeric
+token in the article and its supporting information, read line by line
+rather than searched for, classified by hand into the five claim types
+this program uses, and carrying the precision at which the page prints
+each one. It has 210 rows.
+
+| Claim type   | No block | Block required |
+|:-------------|---------:|---------------:|
+| definitional |       24 |              5 |
+| descriptive  |        0 |             35 |
+| pipeline     |        0 |             88 |
+| structural   |       21 |              0 |
+| transcribed  |       37 |              0 |
+
+The extraction, by claim type and whether the second instrument must
+print it.
+
+**The coverage boundary.** Every number in the article’s body, its
+footnotes, its table notes and its supporting information is in the
+extraction, including numbers spelled as words. Five classes are
+excluded, and nothing else is: bibliographic years and page numbers in
+citations, and the reference list entire; years used as an election or
+study label, where “the August 2006 primary” names a period rather than
+asserting a quantity; equation, section, table and figure numbers, and
+footnote markers; the affiliation, address and IRB identifiers on the
+title page; and the journal’s own volume, issue, page-range and DOI
+line. Sentences that define what a column of a table contains are in,
+whether or not they carry a digit, and three of the corrections below
+descend from such a sentence.
+
+`maintained/in_text_claims.R` is the second instrument. It recomputes
+every one of the 128 claims the extraction marks as needing a block,
+reading only the pipeline’s output and reaching each quantity by a path
+of its own: where the ground truth selects a row by the label the
+published table prints, the claims file selects it by the treatment arm
+the deposit names. It prints one line per claim, and
+`ground_truth/build_ground_truth.R` runs it as a program, counts what it
+printed, and compares each printed value against the ground truth’s own.
+Where the two disagree, one of them is wrong; three such disagreements
+surfaced while this was being built, and all three were errors in the
+checking code rather than in the pipeline.
+
+**What the gate asserts, in order.** The checks that depend only on the
+extraction run first, so a wrong precision trips its own check rather
+than a value comparison downstream: no duplicate claim ids, a known
+claim type and comparison mode on every row, a block required for every
+`pipeline` and `descriptive` claim, and a round trip proving each stored
+`value_paper` renders back to itself at its own recorded precision. Then
+the locus rule in three states, then the extraction reconciled against
+the ground truth’s transcription of the same pages, then the float
+inventory, then the second instrument. The gate was tested by breaking
+it three ways: deleting a block fails the count, corrupting a computed
+value fails the cross-instrument comparison, and corrupting a `digits`
+entry fails the round trip before anything consumes it.
 
 ------------------------------------------------------------------------
 
 # Number-by-number comparison
 
-| Location | Quantity | Paper | Script | Match |
-|:---|:---|---:|---:|---:|
-| p1049_tbl1 | Table 1: Self first-stage (Aug 2006 primary) | 0.050 | 0.050 | 1 |
-| p1049_tbl1 | Table 1: Self first-stage SE | 0.003 | 0.003 | 1 |
-| p1049_tbl1 | Table 1: Neighbors first-stage (Aug 2006 primary) | 0.083 | 0.083 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Nov 2006 CACE | 0.108 | 0.108 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Nov 2006 SE | 0.021 | 0.021 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Jan 2008 CACE | 0.142 | 0.142 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Aug 2008 CACE | 0.135 | 0.135 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Nov 2008 CACE | 0.009 | 0.009 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Aug 2010 CACE | 0.126 | 0.126 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Nov 2012 CACE | 0.011 | 0.011 | 1 |
-| p1049_tbl1 | Table 1: Control first-stage | 0.311 | 0.311 | 1 |
-| p1050_tbl2 | Table 2: All Together downstream Jan 2008 CACE | 0.336 | 0.336 | 1 |
-| p1050_tbl2 | Table 2: All Together downstream Jan 2008 SE | 0.067 | 0.067 | 1 |
-| p1050_tbl2 | Table 2: All Together downstream Aug 2008 CACE | 0.183 | 0.183 | 1 |
-| p1050_tbl2 | Table 2: All Together downstream Nov 2008 CACE | 0.092 | 0.092 | 1 |
-| p1050_tbl2 | Table 2: Control turnout | 0.282 | 0.282 | 1 |
-| p1052_tbl3 | Table 3: Pooled first-stage (Apr 2009 Special) | 0.043 | 0.043 | 1 |
-| p1052_tbl3 | Table 3: Pooled first-stage SE | 0.005 | 0.005 | 1 |
-| p1052_tbl3 | Table 3: Pooled Feb 2010 downstream CACE | 0.303 | 0.303 | 1 |
-| p1052_tbl3 | Table 3: Pooled Nov 2010 downstream CACE | 0.303 | 0.303 | 1 |
-| p1052_tbl3 | Table 3: Pooled Apr 2011 downstream CACE | 0.403 | 0.403 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Pres-on-Mid 1992-94 | 0.147 | 0.147 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Pres-on-Mid 1992-94 SE | 0.013 | 0.013 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Pres-on-Mid 2008-10 | 0.090 | 0.090 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Pres-on-Mid 2008-10 SE | 0.002 | 0.002 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Mid-on-Pres 1994-96 | 0.068 | 0.068 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Mid-on-Pres 2010-12 | 0.111 | 0.111 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Mid-on-Pres 2010-12 SE | 0.019 | 0.019 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Pres-on-Pres 1992-96 | 0.210 | 0.210 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Pres-on-Pres 1992-96 SE | 0.023 | 0.023 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Pres-on-Pres 2008-12 | 0.117 | 0.117 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Pres-on-Pres 2008-12 SE | 0.005 | 0.005 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Mid-on-Mid 2006-10 | 0.119 | 0.119 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Mid-on-Mid 2006-10 SE | 0.009 | 0.009 | 1 |
-| p1056_tbl6 | Table 6: Binomial test successes | 83.000 | 83.000 | 1 |
-| p1056_tbl6 | Table 6: Binomial test trials | 86.000 | 86.000 | 1 |
-| p1057_tbl6 | Table 6: Meta-analysis 2010-12 CACE | 0.111 | 0.111 | 1 |
-| p1057_tbl6 | Table 6: Meta-analysis 2008-12 CACE | 0.117 | 0.117 | 1 |
-| p1058_tbl7 | Table 7: Years between upstream-downstream coef col1 | 0.000 | 0.000 | 1 |
-| p1058_tbl7 | Table 7: Years between upstream-downstream coef col5 | -0.001 | -0.001 | 1 |
-| p1058_tbl7 | Table 7: Youth turnout coef col1 | -0.252 | -0.252 | 1 |
-| p1058_tbl7 | Table 7: Youth turnout coef col5 | -0.165 | -0.165 | 1 |
-| p1058_tbl7 | Table 7: R-squared col5 | 0.309 | 0.309 | 1 |
-| appx_tblA6 | Table A6: Boxed estimate 2008-on-2012 (1st-order poly, 365d, lagged controls) | 0.117 | 0.117 | 1 |
-| appx_tblA6 | Table A6: Boxed estimate SE | 0.005 | 0.005 | 1 |
-| appx_tblA7 | Table A7: Boxed estimate 2006-on-2010 (1st-order poly, 365d, lagged controls) | 0.119 | 0.119 | 1 |
-| appx_tblA7 | Table A7: Boxed estimate SE | 0.009 | 0.009 | 1 |
-| appx_tblA9 | Table A9: Shown Vote downstream Nov 2008 | 0.088 | 0.088 | 1 |
-| appx_tblA9 | Table A9: Shown Vote downstream Nov 2008 SE | 0.052 | 0.052 | 1 |
-| appx_tblA9 | Table A9: Shown Vote + Recontact downstream Nov 2008 | 0.119 | 0.119 | 1 |
+`value_paper` comes only from the published pages. The 1,329 table cells
+were read off the two PDFs by `ground_truth/extract_published_values.R`,
+positionally where a table has holes in it and in reading order where it
+does not, and spot-checked against rendered pages. `value_script` is
+what the deposit’s own scripts printed. `value_rewrite` is read out of
+`maintained/output/`. No published number is an input to any computation
+in `maintained/`.
 
-Ground truth: 49 rows. All match = 1 (exact reproduction).
+| Comparison                              | Agree | Disagree | No verdict |
+|:----------------------------------------|------:|---------:|-----------:|
+| The deposit against the published pages |  1314 |        2 |        141 |
+| The rewrite against the published pages |  1397 |       18 |         42 |
 
-**Summary**: All 49 numbers match exactly. The archive is a complete
-computational reproduction of the published results. No rounding
-discrepancies, RNG-sensitive values, or silent errors were found.
+Ground truth verdicts. A row has no verdict where the quantity is not
+one the deposit prints, where the claim is a hedge, or where its verdict
+is a truth value rather than a number.
+
+## Float coverage
+
+| Float     | Numbers printed | Covered | Rewrite reproduces | Deposit reproduces |
+|:----------|----------------:|--------:|:-------------------|:-------------------|
+| Table 1   |             123 |     123 | 123                | 116                |
+| Table 2   |              92 |      92 | 92                 | 86                 |
+| Table 3   |              78 |      78 | 78                 | 78                 |
+| Table 4   |             238 |     238 | 237                | 238                |
+| Table 5   |             198 |     198 | 197                | 198                |
+| Table 6   |             192 |     192 | 190                | 192                |
+| Table 7   |              53 |      53 | 52                 | 51                 |
+| Figure A1 |               0 |       0 | –                  | –                  |
+| Table A1  |              72 |       0 | –                  | –                  |
+| Table A2  |              75 |      75 | 72                 | 75                 |
+| Table A3  |              72 |       0 | –                  | –                  |
+| Table A4  |             264 |       0 | –                  | –                  |
+| Table A5  |             171 |       0 | –                  | –                  |
+| Table A6  |             128 |     128 | 126                | 128                |
+| Table A7  |             128 |     128 | 124                | 128                |
+| Figure A2 |               0 |       0 | –                  | –                  |
+| Table A8  |              40 |       0 | –                  | –                  |
+| Table A9  |              24 |      24 | 24                 | 24                 |
+
+Every published float, the numbers it prints, and how many of them this
+repository compares.
+
+The article and its supporting information print 1,948 numbers across 18
+floats, of which this repository compares 1,329, or 68 per cent. Six
+floats have no coverage, and each has a reason that was tested rather
+than assumed:
+
+- **Tables A1 and A3** are typologies of measurement-error cases,
+  enumerating twelve types of residentially mobile voter. Nothing in the
+  deposit produces them and nothing could: they are a taxonomy, not an
+  analysis output.
+- **Tables A4 and A5** give statewide official turnout and statewide
+  counts of votes recorded on each voter file. Official turnout comes
+  from an external website. The counts cannot be recomputed from the
+  deposit, which aggregates each voter file to votes cast per birthdate
+  cohort within a narrow band around the eligibility cutoff: summing
+  Illinois’s 2012 column of the deposited file gives 1,682,532 against
+  the 5,175,513 the table prints, because the deposited file is not the
+  voter file.
+- **Table A8** has neither code nor data in the deposit. Its ANES file
+  is confidential, which the deposit’s own README states.
+- **Figure A1** draws a continuous bias surface and prints no estimate
+  on its face, so there is nothing discrete to count. The rewrite
+  commits the surface at the ten complier counts the figure’s own legend
+  labels, and the three quantities the page does state—the assumed true
+  CACE, the range of the horizontal axis and the number of legend
+  labels—are claims in the extraction with blocks of their own.
+- **Figure A2** prints no numbers either. What it states is a count of
+  plotted estimates, which is a claim with a block.
+
+## Where the numbers disagree
+
+| Location | Quantity | Paper | Rewrite | Locus |
+|:---|:---|:---|:---|:---|
+| Table 4 | Iowa, 2004-06 (Presidential on Midterm), se | 0.049 | 0.048498 | environment |
+| Table 5 | Kentucky, 2008-12 (Presidential on Presidential), se | 0.022 | 0.021496 | environment |
+| Table 6 | Kentucky, 2008-12 (lower), se | 0.022 | 0.021496 | environment |
+| Table 6 | Meta-Analysis, 2002-12 (lower), est | 0.271 | 0.2715 | environment |
+| Table 7 | Presidential upstream, (5), se | 0.0207 | 0.020649 | environment |
+| Table 7 | State fixed effects, (4), est | Yes | 1 | environment |
+| Table 7 | State fixed effects, (5), est | Yes | 1 | environment |
+| Table A2 | IA, CACE 08-12, est | 0.086 | 0.081 | archive |
+| Table A2 | IA, Bias Estimate, est | -0.008 | -0.0071769 | archive |
+| Table A2 | IA, Corrected CACE, est | 0.094 | 0.088177 | archive |
+| Table A6 | Second-order Polynomial, 90 Days (No additional controls), est | -0.028 | -0.027383 | environment |
+| Table A6 | Third-order Polynomial, 635 Days (Controls for lagged vote totals), se | 0.009 | 0.0084919 | environment |
+| Table A7 | Third-order Polynomial, 90 Days (No additional controls), est | -0.019 | -0.019576 | environment |
+| Table A7 | Third-order Polynomial, 545 Days (No additional controls), est | 0.101 | 0.10049 | environment |
+| Table A7 | Second-order Polynomial, 90 Days (Controls for lagged vote totals), est | -0.006 | -0.0066084 | environment |
+| Table A7 | Third-order Polynomial, 90 Days (Controls for lagged vote totals), est | 0.002 | 0.0011334 | environment |
+| Table 4 | Positive midterm-on-presidential estimates | 50 | 51 | paper_internal |
+| Table 4 | Midterm-on-presidential state estimates | 54 | 55 | paper_internal |
+| Table 5 | Four of the five strongest 2008-12 estimates in nonbattleground states | – | FALSE | paper_internal |
+| Table 7 | Battleground coefficient falls by a factor of three between columns 2 and 3 | 3 | FALSE | paper_internal |
+| Table A2 | States in Table A2 | 16 | 15 | paper_internal |
+| Table A2 | Table A2’s CACE column holds the 2008 on 2012 estimate of Tables 5 and 6 | – | FALSE | archive |
+| SI section 3 | Those pairs are the ones Table 6 of the main text reports | – | FALSE | paper_internal |
+| Figure A2 | Its robust standard error | 0.0010 | 0.0099495 | paper_internal |
+
+Every row where the deposit or the rewrite disagrees with the published
+page, or where a claim does not hold.
+
+**Eleven standard errors, locus `environment`.** The deposit estimates
+each discontinuity with `AER::ivreg` and takes its standard error from
+`sandwich::vcovHC`; the rewrite uses
+`estimatr::iv_robust(se_type = "HC3")`. The point estimates agree to ten
+decimal places everywhere. The standard errors differ by about a part in
+a thousand, because the two packages define the HC3 leverage adjustment
+for two-stage least squares differently, and that is enough to move a
+third decimal on the eleven cells that already sat within a whisker of a
+rounding boundary. Every one of the eleven is a cell the deposit
+reproduces exactly, so the difference is between two toolchains rather
+than in either analysis.
+
+**Two cells of Table 7, locus `environment`.** The published table
+records state fixed effects in columns 4 and 5, which is what those
+models fit. The deposit’s `stargazer` call prints “No” in all five
+columns under a current `stargazer`, so the deposit no longer reproduces
+its own table’s fixed-effects row. The rewrite’s `modelsummary` table
+gets it right.
+
+**Three cells of Table A2, locus `archive`.** See errata entry 2.
+
+**Four sentences, locus `paper_internal`, and one further one.** See
+errata entries 1 and 3 through 7.
+
+------------------------------------------------------------------------
+
+# Errata
+
+Eight corrections, in `coppock_green_2016_errata.pdf` at the root of
+this repository, generated from the pipeline with every corrected value
+computed at render time. **None of them changes a conclusion of the
+paper.** In order: the standard error of the primary-on-primary estimate
+in the supporting information; one row of appendix Table A2; the count
+of midterm-on-presidential estimates on page 1053; the battleground
+status of the strongest presidential-on-presidential estimates on page
+1059; the ratio between two coefficients of Table 7; the number of
+states in Table A2; a cross-reference to Table 6 that should be to Table
+7; and the heading of appendix Table A4’s first panel, which reads
+Arizona where its figures are Arkansas’s.
+
+## Corrections the rewrite made to the deposited code
+
+The rewrite corrects two clear coding errors in the deposit. Neither is
+an analytical decision.
+
+`CG Habit ME Table A2 and Figure A1.R` types its fifteen CACE estimates
+in as constants. The rewrite reads them from the regression
+discontinuity output instead, which is where fourteen of them came from;
+the fifteenth is errata entry 2.
+
+`CG Habit RD Figure A2.R` stops at a subscript error before producing
+anything. The rewrite’s grid is built by `crossing` rather than by an
+index loop, so the error has no analogue, and the 60-day
+primary-election analysis the deposited script never reaches runs and is
+written to `maintained/output/text_like_elections.csv`.
+
+One defect in an earlier version of this rewrite is worth recording
+because it is the kind a value comparison cannot see. Its migration
+matrix was built with `pivot_wider`, which orders new columns by first
+appearance, and the code then renamed those columns to the sorted row
+order. The column sums and the diagonal were consequently taken from the
+wrong states, and every figure in Table A2 was wrong by two orders of
+magnitude. Sorting the columns and asserting that the two margins carry
+the same states in the same order fixes it, and the assertion is what
+would catch a recurrence.
 
 ------------------------------------------------------------------------
 
 # Maintained rewrite
 
-The maintained rewrite (`maintained/`) translates the 10 original
-scripts into 11 scripts following the project style guide. The rewrite
-is a translation only: all analytical decisions, estimators, and sample
-restrictions are preserved. All key numbers reproduce to the values
-shown in the ground truth table above.
+The maintained rewrite translates the deposit’s ten scripts into eleven,
+following the project style guide, plus the second instrument. The
+rewrite is a translation: all analytical decisions, estimators and
+sample restrictions are preserved.
 
 ## Architecture
 
-The core structural change is the replacement of manual nested loops
-with a tidy `pivot_longer` + `nest_by` pattern.
+**Downstream experiments.** The deposit repeats an `ivreg` plus `cl()`
+call for each treatment arm by downstream election cell, roughly thirty
+to forty calls per script. The rewrite pivots each dataset long on the
+downstream election columns, then maps `iv_robust(se_type = "stata")`
+within each cell via `nest_by(election)`, with `pmap_dfr` over the
+treatment arms.
 
-**Downstream experiments (DE)**: The original scripts repeat an
-`ivreg` + `cl()` call for each (treatment arm, downstream election)
-cell—roughly 30–40 calls per script. The rewrite pivots each dataset to
-long format on the downstream election columns, then maps
-`iv_robust(se_type = "stata")` within each cell via `nest_by(election)`,
-with `pmap_dfr` handling the outer loop over treatment arms.
+**Regression discontinuity.** The deposit uses nested `for` loops with
+`try()` wrappers. The rewrite builds a crossing of state by year-pair
+and calls `pmap` with a `run_rd_iv()` helper wrapping
+`iv_robust(se_type = "HC3")`.
 
-**Regression discontinuity (RD)**: The original scripts use nested `for`
-loops with `try()` wrappers. The rewrite builds a crossing of state ×
-year-pair combinations and calls `pmap` with a `run_rd_iv()` helper that
-wraps `iv_robust(se_type = "HC3")`, matching the original’s use of
-`vcovHC` (HC3 by default) for heteroskedasticity-robust standard errors.
-
-**Meta-analysis**: The original uses
-`rmeta::meta.summaries(method = "fixed")` for inverse-variance pooling.
-The rewrite uses `metafor::rma(method = "FE")` for the fixed-effects
-estimates (numerically equivalent) and additionally computes
-`rma(method = "REML")` random-effects estimates. See Section 5 for
-comparison.
-
-## Deprecated patterns replaced
+**Meta-analysis.** The deposit uses `rmeta::meta.summaries`, which
+defaults to fixed effects. The rewrite uses
+`metafor::rma(method = "FE")` for the published estimates and
+additionally computes `rma(method = "REML")`, reported alongside rather
+than instead.
 
 | Original pattern | Replacement |
 |:---|:---|
@@ -280,26 +465,42 @@ Deprecated patterns and their replacements in the maintained rewrite.
 
 ------------------------------------------------------------------------
 
-# Fixed-effects vs. random-effects meta-analysis
+# Figure verification
 
-## Background
+The article prints no figures; the supporting information prints two,
+and each figure script writes a CSV of what it draws.
 
-The original analysis pools state-level CACE estimates using
-fixed-effects inverse-variance weighting (`rmeta::meta.summaries`),
-which treats the true effect as identical across states and attributes
-all between-state heterogeneity to sampling error. This assumption is
-implausible: voter registration systems, ballot laws, partisan
-composition, and election competitiveness vary substantially across
-states, and there is no strong prior reason to expect a single
-structural habit-formation parameter.
+<img src="maintained/output/figure_a2_sawtooth.png" style="width:88.0%"
+data-fig-align="center" />
 
-The maintained rewrite adds random-effects estimates via
-`metafor::rma(method = "REML")`, which treats the state-level CACEs as
-draws from a distribution with mean $\mu$ and between-study variance
-$\tau^2$. The RE estimate of $\mu$ and its standard error account for
-this additional source of uncertainty.
+Figure A2 plots one point per upstream-downstream-state combination for
+the ten upstream general elections from 1992 to 2010, coloured by
+whether the downstream election is a primary or a general. The rewrite’s
+version was laid beside the published page: same ten panels, same axis
+breaks, same legend placement, same sawtooth.
+`maintained/output/figure_a2_data.csv` holds every plotted estimate and
+its standard error.
 
-## Results for Tables 4–5 (key meta-analytic pairs)
+<img src="maintained/output/figure_a1_bias.png" style="width:70.0%"
+data-fig-align="center" />
+
+Figure A1 is a continuous surface rather than a set of points: the bias
+in the CACE as a function of net migration, one line per complier count,
+over five thousand counts. `maintained/output/figure_a1_bias.csv` holds
+that surface at the ten complier counts the legend labels, which is what
+a reader can read off the page.
+
+------------------------------------------------------------------------
+
+# Fixed-effects and random-effects meta-analysis
+
+The published analysis pools state-level CACE estimates by fixed-effects
+inverse-variance weighting, which treats the true effect as identical
+across states and attributes all between-state variation to sampling
+error. The rewrite reports random-effects estimates alongside. This is
+an addition rather than a correction: every published fixed-effects
+number reproduces, and the random-effects figures sit beside them so a
+reader can see what the pooling assumption costs.
 
 | Pair type    | Window | FE est. | FE SE | RE est. | RE SE |
 |:-------------|:-------|:--------|:------|:--------|:------|
@@ -323,108 +524,46 @@ this additional source of uncertainty.
 | Pres-on-Pres | 92-96  | 0.210   | 0.023 | 0.212   | 0.043 |
 | Pres-on-Pres | 96-00  | 0.189   | 0.022 | 0.189   | 0.022 |
 
-Fixed-effects and random-effects meta-analytic CACE estimates, Tables
-4–5 windows. FE = inverse-variance pooling; RE = REML.
-
-## Results for Tables A6–A7 (boxed robustness estimates)
-
-| Analysis     | FE est. | FE SE | RE est. | RE SE |
-|:-------------|:--------|:------|:--------|:------|
-| 2008 on 2012 | 0.117   | 0.005 | 0.122   | 0.010 |
-| 2006 on 2010 | 0.119   | 0.009 | 0.141   | 0.021 |
-
-Boxed robustness estimates (1st-order polynomial, 365-day bandwidth,
-lagged controls). These are the highlighted cells in the published
-Tables A6 and A7.
-
-## Interpretation
+Fixed-effects and random-effects meta-analytic CACE estimates for the
+Table 4 and Table 5 windows.
 
 | Window | N states | $\hat{\tau}^2$ | $I^2$ |
 |:-------|---------:|:---------------|:------|
 
-Between-state heterogeneity in RD CACEs. $\hat{\tau}^2$ is the REML
-estimate of between-study variance; $I^2$ is the proportion of total
-variance attributable to heterogeneity.
+Between-state heterogeneity in the discontinuity CACEs.
 
-Estimated between-state variance ($\hat{\tau}^2$) is non-zero in most
-windows, and $I^2$ is non-trivial in several (exceeding 50% in some
-midterm windows). This means the fixed-effects assumption—that all
-states share a single true CACE—is empirically questionable. The RE
-estimates are uniformly larger than the FE estimates, with SEs roughly
-two to three times as wide for some windows, reflecting that the
-between-state variance contributes meaningfully to total uncertainty.
-For the key 2008-on-2012 window (FE: 0.117, SE 0.005; RE: 0.122, SE
-0.010), the substantive conclusion is unchanged but confidence in the
-precision of the pooled estimate should be moderated.
-
-The SMG 2009 meta-analysis (across household sizes) shows a
-qualitatively similar pattern: the RE pooled first-stage (0.043) matches
-the FE estimate closely because there are only three strata and the
-first-stage effects are similar in magnitude. The RE and FE downstream
-estimates also converge for SMG given the small number of strata.
+Estimated between-state variance is non-zero in most windows and $I^2$
+exceeds fifty per cent in several. The random-effects estimates are
+close to the fixed-effects ones, but their standard errors are wider,
+sometimes by a factor of two. For the 2008-on-2012 window the
+substantive conclusion is unchanged and the precision of the pooled
+estimate should be read more cautiously than the published standard
+error alone suggests.
 
 ------------------------------------------------------------------------
 
-# Maintained rewrite verification
+# Rewrite verification
 
-| Location | Quantity | Paper | Rewrite | Match |
-|:---|:---|---:|---:|---:|
-| p1049_tbl1 | Table 1: Self first-stage (Aug 2006 primary) | 0.050 | 0.050 | 1 |
-| p1049_tbl1 | Table 1: Self first-stage SE | 0.003 | 0.003 | 1 |
-| p1049_tbl1 | Table 1: Neighbors first-stage (Aug 2006 primary) | 0.083 | 0.083 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Nov 2006 CACE | 0.108 | 0.108 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Nov 2006 SE | 0.021 | 0.021 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Jan 2008 CACE | 0.142 | 0.142 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Aug 2008 CACE | 0.135 | 0.135 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Nov 2008 CACE | 0.009 | 0.009 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Aug 2010 CACE | 0.126 | 0.126 | 1 |
-| p1049_tbl1 | Table 1: All Instruments downstream Nov 2012 CACE | 0.011 | 0.011 | 1 |
-| p1049_tbl1 | Table 1: Control first-stage | 0.311 | 0.311 | 1 |
-| p1050_tbl2 | Table 2: All Together downstream Jan 2008 CACE | 0.336 | 0.336 | 1 |
-| p1050_tbl2 | Table 2: All Together downstream Jan 2008 SE | 0.067 | 0.067 | 1 |
-| p1050_tbl2 | Table 2: All Together downstream Aug 2008 CACE | 0.183 | 0.183 | 1 |
-| p1050_tbl2 | Table 2: All Together downstream Nov 2008 CACE | 0.092 | 0.092 | 1 |
-| p1050_tbl2 | Table 2: Control turnout | 0.282 | 0.282 | 1 |
-| p1052_tbl3 | Table 3: Pooled first-stage (Apr 2009 Special) | 0.043 | 0.043 | 1 |
-| p1052_tbl3 | Table 3: Pooled first-stage SE | 0.005 | 0.005 | 1 |
-| p1052_tbl3 | Table 3: Pooled Feb 2010 downstream CACE | 0.303 | 0.303 | 1 |
-| p1052_tbl3 | Table 3: Pooled Nov 2010 downstream CACE | 0.303 | 0.303 | 1 |
-| p1052_tbl3 | Table 3: Pooled Apr 2011 downstream CACE | 0.403 | 0.403 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Pres-on-Mid 1992-94 | 0.147 | 0.147 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Pres-on-Mid 1992-94 SE | 0.013 | 0.013 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Pres-on-Mid 2008-10 | 0.090 | 0.090 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Pres-on-Mid 2008-10 SE | 0.002 | 0.002 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Mid-on-Pres 1994-96 | 0.068 | 0.068 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Mid-on-Pres 2010-12 | 0.111 | 0.111 | 1 |
-| p1054_tbl4 | Table 4: Meta-analysis Mid-on-Pres 2010-12 SE | 0.019 | 0.019 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Pres-on-Pres 1992-96 | 0.210 | 0.210 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Pres-on-Pres 1992-96 SE | 0.023 | 0.023 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Pres-on-Pres 2008-12 | 0.117 | 0.117 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Pres-on-Pres 2008-12 SE | 0.005 | 0.005 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Mid-on-Mid 2006-10 | 0.119 | 0.119 | 1 |
-| p1055_tbl5 | Table 5: Meta-analysis Mid-on-Mid 2006-10 SE | 0.009 | 0.009 | 1 |
-| p1056_tbl6 | Table 6: Binomial test successes | 83.000 | 83.000 | 1 |
-| p1056_tbl6 | Table 6: Binomial test trials | 86.000 | 86.000 | 1 |
-| p1057_tbl6 | Table 6: Meta-analysis 2010-12 CACE | 0.111 | 0.111 | 1 |
-| p1057_tbl6 | Table 6: Meta-analysis 2008-12 CACE | 0.117 | 0.117 | 1 |
-| p1058_tbl7 | Table 7: Years between upstream-downstream coef col1 | 0.000 | 0.000 | 1 |
-| p1058_tbl7 | Table 7: Years between upstream-downstream coef col5 | -0.001 | -0.001 | 1 |
-| p1058_tbl7 | Table 7: Youth turnout coef col1 | -0.252 | -0.252 | 1 |
-| p1058_tbl7 | Table 7: Youth turnout coef col5 | -0.165 | -0.165 | 1 |
-| p1058_tbl7 | Table 7: R-squared col5 | 0.309 | 0.309 | 1 |
-| appx_tblA6 | Table A6: Boxed estimate 2008-on-2012 (1st-order poly, 365d, lagged controls) | 0.117 | 0.117 | 1 |
-| appx_tblA6 | Table A6: Boxed estimate SE | 0.005 | 0.005 | 1 |
-| appx_tblA7 | Table A7: Boxed estimate 2006-on-2010 (1st-order poly, 365d, lagged controls) | 0.119 | 0.119 | 1 |
-| appx_tblA7 | Table A7: Boxed estimate SE | 0.009 | 0.009 | 1 |
-| appx_tblA9 | Table A9: Shown Vote downstream Nov 2008 | 0.088 | 0.088 | 1 |
-| appx_tblA9 | Table A9: Shown Vote downstream Nov 2008 SE | 0.052 | 0.052 | 1 |
-| appx_tblA9 | Table A9: Shown Vote + Recontact downstream Nov 2008 | 0.119 | 0.119 | 1 |
+`run_all.R` was run twice from clean sessions and the whole of
+`maintained/output/` came back byte-identical, figure PDFs included:
+`blank_pdf_timestamps()` overwrites the wall-clock `/CreationDate` and
+`/ModDate` that R’s `pdf()` device stamps into every figure, which are
+otherwise the only bytes that change between runs. Nothing in the
+pipeline draws at random, so there is no seed to pin and no dispersion
+to report.
 
-Maintained rewrite verification: paper value vs. rewrite output
-
-All **50** verifiable values produced by the maintained rewrite match
-the published paper to reported precision (`match_rewrite = 1`); 0 rows
-are unverifiable.
+`original/` is verified twice per run: once at the top of `run_all.R`,
+before anything executes, and once at the end. The first pass is a
+precondition; the second is what demonstrates that no script wrote into
+the deposit. Both passes check every file against its served MD5 and its
+byte size, and both refuse a directory holding anything the manifest
+does not list. Three of the deposit’s 24 published
+checksums—`SMG2009.RData`, `turnoutrates.RData` and `votemargins.RData`,
+all ingested by Dataverse as tabular data—match neither the original
+bytes the archive serves nor the derived `.tab` it generates. The local
+copies are verbatim in both cases, so the discrepancy is in the
+published metadata rather than in the deposit; `download_original.R`
+gates on the served checksum and prints the disagreement.
 
 ------------------------------------------------------------------------
 
@@ -434,4 +573,4 @@ are unverifiable.
 |:----------|:-----------------------|
 | R version | 4.6.0                  |
 | Platform  | aarch64-apple-darwin23 |
-| Date run  | 2026-08-01             |
+| Date run  | 2026-08-09             |

@@ -1,0 +1,211 @@
+claim_id,location,claim_type,value_paper,digits,units,comparison,needs_block,claim
+float_table_1,Table 1 (p. 1049),structural,123,0,cells,==,FALSE,"Table 1 prints 123 numbers: four treatment rows of ten estimates and ten standard errors; four subject counts; nine All Instruments estimates and standard errors; the Control row's estimate,  standard error and count; and nine bracketed untreated-complier ranges."
+float_table_2,Table 2 (p. 1050),structural,92,0,cells,==,FALSE,Table 2 prints 92 numbers on the same plan as Table 1 with three treatment arms and nine election columns.
+float_table_3,Table 3 (p. 1052),structural,78,0,cells,==,FALSE,Table 3 prints 78 numbers: three household-size rows of seven estimates and standard errors with their counts and six untreated-complier means each; the pooled row's seven estimates and standard errors; and the pooled count.
+float_table_4,Table 4 (p. 1054),structural,238,0,cells,==,FALSE,"Table 4 prints 238 numbers: 54 presidential-on-midterm state estimates and 55 midterm-on-presidential state estimates, each with a standard error, plus five meta-analytic estimates and standard errors per panel."
+float_table_5,Table 5 (p. 1055),structural,198,0,cells,==,FALSE,"Table 5 prints 198 numbers: 53 presidential-on-presidential and 37 midterm-on-midterm state estimates, each with a standard error, plus the meta-analytic row of each panel."
+float_table_6,Table 6 (p. 1057),structural,192,0,cells,==,FALSE,"Table 6 prints 192 numbers: 86 state estimates with their standard errors, plus ten meta-analytic estimates and standard errors."
+float_table_7,Table 7 (p. 1058),structural,53,0,cells,==,FALSE,"Table 7 prints 53 cells: 38 coefficients and robust standard errors, five state fixed-effects indicators, five sample sizes and five R-squareds."
+float_figure_a1,Figure A1 (SI p. 10),structural,0,0,cells,==,FALSE,Figure A1 draws a continuous bias surface and prints no estimate on its face; it states no countable plotted quantity.
+float_table_a1,Table A1 (SI p. 8),structural,72,0,cells,==,FALSE,Table A1 prints 72 numbers enumerating twelve types of residentially mobile voter. It is a typology written by hand rather than an analysis output; nothing in the deposit produces it.
+float_table_a2,Table A2 (SI p. 11),structural,75,0,cells,==,FALSE,Table A2 prints 75 numbers: fifteen states by five columns.
+float_table_a3,Table A3 (SI p. 12),structural,72,0,cells,==,FALSE,Table A3 prints 72 numbers enumerating twelve types of voter who move after both elections. Like Table A1 it is a typology rather than an analysis output.
+float_table_a4,Table A4 (SI p. 15),structural,264,0,cells,==,FALSE,"Table A4 prints 264 numbers: ten state panels of official turnout, votes on the voter file and the percentage on file. Official turnout comes from an external website and the counts are statewide, where the deposited file holds only birthdate cohorts near the eligibility cutoffs, so neither the deposit nor the rewrite can produce them."
+float_table_a5,Table A5 (SI p. 16),structural,171,0,cells,==,FALSE,Table A5 prints 171 numbers continuing Table A4 over nine more state panels. Same reason for zero coverage.
+float_table_a6,Table A6 (SI p. 18),structural,128,0,cells,==,FALSE,Table A6 prints 128 numbers: two panels of four functional forms by eight bandwidths with an estimate and a standard error in each cell.
+float_table_a7,Table A7 (SI p. 19),structural,128,0,cells,==,FALSE,Table A7 prints 128 numbers on the same plan as Table A6.
+float_figure_a2,Figure A2 (SI p. 20),structural,0,0,cells,==,FALSE,Figure A2 prints no numbers on its face. What it states is a count of plotted estimates rather than any printed value.
+float_table_a8,Table A8 (SI p. 23),structural,40,0,cells,==,FALSE,"Table A8 prints 40 numbers. The deposit ships no code and no data for it: the ANES file it uses is confidential, which the deposit's README states."
+float_table_a9,Table A9 (SI p. 25),structural,24,0,cells,==,FALSE,Table A9 prints 24 numbers: two follow-up conditions by six downstream elections with an estimate and a standard error in each cell.
+intro_franklin_countries,Introduction (p. 1044),transcribed,27,0,countries,==,FALSE,survey respondents in 27 European countries vote at significantly different rates
+intro_gerber_shachar_half,Introduction (p. 1045),transcribed,,0,,approx,FALSE,report that approximately half of the turnout effect observed in 1998 persisted through 1999
+intro_bedolla_experiments,Introduction (p. 1045),transcribed,15,0,experiments,==,FALSE,"Much better powered are the 15 experiments presented by Bedolla and Michelson (2012, 178)"
+intro_bedolla_points,Introduction (p. 1045),transcribed,23,0,percentage points,==,FALSE,increases the probability of voting in a subsequent downstream election by 23 percentage points
+intro_cutts_half,Introduction (p. 1045),transcribed,,0,,approx,FALSE,"Cutts, Fieldhouse, and John (2009) find that approximately half of the initial mobilization effect persisted a year later"
+intro_davenport_experiments,Introduction (p. 1045),transcribed,6,0,experiments,==,FALSE,Davenport et al. (2010) trace the effects of six experiments over time
+intro_davenport_years,Introduction (p. 1045),transcribed,8,0,years,==,FALSE,find in some cases that treatment effects persist eight years after the initial intervention
+intro_meredith_seven_points,Introduction (p. 1046),transcribed,7,0,percentage points,approx,FALSE,"The size of this four-year habit effect, however, is on the order of 7 percentage points"
+intro_meredith_age,Introduction (p. 1046),transcribed,18,0,years,==,FALSE,compared those who were just over or under 18 at the time of the 2000 election
+intro_dinas_panel_span,Introduction (p. 1046),transcribed,,0,,==,FALSE,Dinas (2012) applies a similar regression discontinuity design to a panel survey stretching from 1965 to 1997
+design_2006_households,The 2006 Social Pressure Experiment (p. 1047),transcribed,180002,0,households,==,FALSE,"The subject pool for their experiment comprised 180,002 households"
+design_2006_turnout_share,The 2006 Social Pressure Experiment (p. 1047),transcribed,18,0,per cent,==,FALSE,its August 2006 primary election which featured few competitive contests and attracted only 18% of the registered electorate
+design_2006_groups,The 2006 Social Pressure Experiment (p. 1047),definitional,5,0,groups,==,TRUE,Households were blocked according to their street address and assigned to one of five experimental groups.
+design_2007_cities,The 2007 Social Pressure Experiment (p. 1048),transcribed,224,0,cities,==,FALSE,"In November 2007, 224 cities in the state of Michigan held elections"
+design_2007_precinct_floor,The 2007 Social Pressure Experiment (p. 1048),transcribed,100,0,registered voters,==,FALSE,as were households that received mailings in the 2006 experiment or resided in precincts with fewer than 100 registered voters
+design_2007_household_cap,The 2007 Social Pressure Experiment (p. 1048),transcribed,3,0,registered voters,==,FALSE,Households with three or more registered voters were eliminated
+design_2007_groups,The 2007 Social Pressure Experiment (p. 1048),definitional,4,0,groups,==,TRUE,Each household was randomly assigned to one of four groups.
+design_2009_household_cap,The 2009 Multilevel Experiment (p. 1048),transcribed,3,0,registered voters,==,FALSE,All subjects had registered to vote prior to 2006 and resided in households containing no more than three registered voters.
+design_2009_zip_min,The 2009 Multilevel Experiment (p. 1048),transcribed,3,0,households,==,FALSE,Voters were included in the study only if their nine-digit zip code comprised 3-15 total households
+design_2009_zip_max,The 2009 Multilevel Experiment (p. 1048),transcribed,15,0,households,==,FALSE,Voters were included in the study only if their nine-digit zip code comprised 3-15 total households
+design_2009_two_voter_households,The 2009 Multilevel Experiment (p. 1048),transcribed,2,0,households,==,FALSE,at least two of which contained two voters
+design_2009_spring_elections,The 2009 Multilevel Experiment (p. 1048),transcribed,2,0,elections,==,FALSE,except that it listed the subject's participation in the previous two spring elections
+design_cluster_household,Treatments (p. 1048),definitional,,0,,==,FALSE,"Because both studies randomly assigned treatments to households rather than individuals, Tables 1 and 2 present robust standard errors clustered at the household."
+results_civic_duty_2006,Upstream and Downstream Results (p. 1048),pipeline,1.8,1,percentage points,==,TRUE,"In 2006, the Civic Duty mailing increased turnout by 1.8 percentage points, as compared to 1.4 percentage points in 2007."
+results_civic_duty_2007,Upstream and Downstream Results (p. 1048),pipeline,1.4,1,percentage points,==,TRUE,"In 2006, the Civic Duty mailing increased turnout by 1.8 percentage points, as compared to 1.4 percentage points in 2007."
+results_self_2006,Upstream and Downstream Results (p. 1048),pipeline,5.0,1,percentage points,==,TRUE,The Self mailing increased turnout by 5.0 percentage points in 2006 and by 4.5 and 5.0 percentage points in 2007
+results_shown_2005_vote,Upstream and Downstream Results (p. 1048),pipeline,5.0,1,percentage points,==,TRUE,and by 4.5 and 5.0 percentage points in 2007 depending on which past election's turnout was reported in the mailing
+results_shown_2006_vote,Upstream and Downstream Results (p. 1048),pipeline,4.5,1,percentage points,==,TRUE,and by 4.5 and 5.0 percentage points in 2007 depending on which past election's turnout was reported in the mailing
+results_neighbors_2006,Results (p. 1051),pipeline,8.3,1,percentage points,==,TRUE,"The Neighbors mailing, used only in 2006, generates even stronger effects, raising turnout by 8.3 percentage points."
+results_first_stages_significant,Results (p. 1051),descriptive,,0,,==,TRUE,Each of these treatment effects is statistically significant at the .05 level or better.
+results_nov2006_cace,Results (p. 1051),pipeline,0.108,3,,==,TRUE,"the two-stage least squares (2SLS) estimate of the effect of voting in August 2006 on voting in November 2006 is 0.108, with a standard error of 0.021"
+results_nov2006_se,Results (p. 1051),pipeline,0.021,3,,==,TRUE,"the 2SLS estimate of the effect of voting in August 2006 on voting in November 2006 is 0.108, with a standard error of 0.021"
+results_nov2006_significant,Results (p. 1051),descriptive,,0,,==,TRUE,This estimate is highly significant (p < .001)
+results_untreated_complier_min,Results (p. 1051),pipeline,84,0,per cent,==,TRUE,The last row of Table 1 indicates that the lowest estimate of the voting rate among untreated compliers is 84%.
+results_complier_turnout_after,Results (p. 1051),pipeline,95,0,per cent,==,TRUE,"voting in August raised turnout among compliers from 84% to 95%, which is about as high as turnout can plausibly go"
+results_jan2008_cace,Results (p. 1051),pipeline,14.2,1,percentage points,==,TRUE,"Voting in the August 2006 primary raised turnout among compliers by 14.2 percentage points (SE = 0.036, p < .001)."
+results_jan2008_se,Results (p. 1051),pipeline,0.036,3,,==,TRUE,"Voting in the August 2006 primary raised turnout among compliers by 14.2 percentage points (SE = 0.036, p < .001)."
+results_jan2008_significant,Results (p. 1051),descriptive,,0,,==,TRUE,"Voting in the August 2006 primary raised turnout among compliers by 14.2 percentage points (SE = 0.036, p < .001)."
+results_aug2008_cace,Results (p. 1051),pipeline,13.5,1,percentage points,==,TRUE,"Similarly, the estimated CACE is a statistically significant 13.5 percentage points in the August 2008 primary, fully two years after the first election following the GOTV campaign."
+results_aug2008_significant,Results (p. 1051),descriptive,,0,,==,TRUE,the estimated CACE is a statistically significant 13.5 percentage points in the August 2008 primary
+results_aug2010_cace,Results (p. 1051),pipeline,12.6,1,percentage points,==,TRUE,"Tracking the estimated CACE across the full set of August elections shows a gradual pattern of decline, with an estimated CACE of 12.6 percentage points in 2010 and 8.9 percentage points in 2012, both of which remain statistically significant at the .05 level."
+results_aug2012_cace,Results (p. 1051),pipeline,8.9,1,percentage points,==,TRUE,"with an estimated CACE of 12.6 percentage points in 2010 and 8.9 percentage points in 2012, both of which remain statistically significant at the .05 level"
+results_august_both_significant,Results (p. 1051),descriptive,,0,,==,TRUE,"an estimated CACE of 12.6 percentage points in 2010 and 8.9 percentage points in 2012, both of which remain statistically significant at the .05 level"
+results_november_not_significant,Results (p. 1051),descriptive,,0,,==,TRUE,"By contrast, no significant effects are obtained for subsequent November elections."
+results_t2_jan2008_cace,Results (p. 1051),pipeline,33.6,1,percentage points,==,TRUE,The estimated CACE on voting in the presidential primary held two months later is sizable at 33.6 percentage points (SE = 6.7).
+results_t2_jan2008_se,Results (p. 1051),pipeline,6.7,1,percentage points,==,TRUE,The estimated CACE on voting in the presidential primary held two months later is sizable at 33.6 percentage points (SE = 6.7).
+results_t2_aug2008_cace,Results (p. 1051),pipeline,18.3,1,percentage points,==,TRUE,"The estimated CACE remains substantial for the August 2008 primary (18.3 percentage points, SE = 6.4)"
+results_t2_aug2008_se,Results (p. 1051),pipeline,6.4,1,percentage points,==,TRUE,"The estimated CACE remains substantial for the August 2008 primary (18.3 percentage points, SE = 6.4)"
+results_t2_nov2008_cace,Results (p. 1051),pipeline,0.092,3,,==,TRUE,"exerts a marginally significant effect on turnout in the presidential election in November 2008 (CACE = 0.092, SE = 0.046)"
+results_t2_nov2008_se,Results (p. 1051),pipeline,0.046,3,,==,TRUE,"exerts a marginally significant effect on turnout in the presidential election in November 2008 (CACE = 0.092, SE = 0.046)"
+results_t2_complier_turnout,Results (p. 1051),pipeline,84,0,per cent,==,TRUE,"where turnout among compliers was 84% or higher, but after that, the estimated CACEs become equivocal"
+fn5_reminder_effect,Footnote 5 (p. 1051),pipeline,0.2,1,percentage points,==,TRUE,"The direct treatment effect of the reminder was 0.2 percentage points, with a standard error of 0.5 percentage points."
+fn5_reminder_se,Footnote 5 (p. 1051),pipeline,0.5,1,percentage points,==,TRUE,"The direct treatment effect of the reminder was 0.2 percentage points, with a standard error of 0.5 percentage points."
+fn5_recontact_stronger,Footnote 5 (p. 1051),pipeline,3,0,elections,==,TRUE,Downstream effects are estimated to be stronger among recontacted subjects in three of the six subsequent elections
+fn5_recontact_elections,Footnote 5 (p. 1051),pipeline,6,0,elections,==,TRUE,Downstream effects are estimated to be stronger among recontacted subjects in three of the six subsequent elections
+fn5_difference_never_significant,Footnote 5 (p. 1051),descriptive,,0,,==,TRUE,and the difference in downstream effects is never significant
+results_t3_apr2011_cace,Results (p. 1052),pipeline,40.3,1,percentage points,==,TRUE,"For example, compliers were 40.3 percentage points more likely to vote in April 2011 as a result of voting in April 2009 (p < .01)."
+results_t3_apr2011_significant,Results (p. 1052),descriptive,,0,,==,TRUE,compliers were 40.3 percentage points more likely to vote in April 2011 as a result of voting in April 2009 (p < .01)
+results_t3_spring_significant,Results (p. 1052),descriptive,,0,,==,TRUE,"Regarding spring and winter elections, the pooled results reveal significant increases in turnout among compliers in February 2010, April 2011, and March 2012."
+results_t3_nov2010_cace,Results (p. 1052),pipeline,0.303,3,,==,TRUE,"As for November elections, the effects are strong but gradually diminishing, with estimated CACEs of 0.303 in 2010 and 0.226 in 2012."
+results_t3_nov2012_cace,Results (p. 1052),pipeline,0.226,3,,==,TRUE,with estimated CACEs of 0.303 in 2010 and 0.226 in 2012
+rd_states,Eligibility Discontinuities in 17 U.S. States (p. 1052),pipeline,17,0,states,==,TRUE,"We obtained voter files from 17 states: Arkansas, Colorado, Connecticut, Iowa, Illinois, Florida, Kentucky, Michigan, Missouri, Montana, Nevada, New Jersey, New York, Oklahoma, Oregon, Pennsylvania, and Rhode Island."
+rd_two_vintages,Eligibility Discontinuities in 17 U.S. States (p. 1052),pipeline,2,0,states,==,TRUE,"we leverage the fact that for two states, Florida and Missouri, we have voter files from both 2005 and 2013"
+rd_window,Results (p. 1053),definitional,365,0,days,==,FALSE,"We employ a 365-day window on either side of the eligibility cutoff, which is the maximum window that allows for the inclusion of the Lagged Downstream covariate."
+rd_polynomial,Results (p. 1053),definitional,1,0,,==,FALSE,"As noted above, we employ a first-order polynomial (linear) functional form."
+rd_midterm_share,Results (p. 1053),descriptive,10,0,per cent,<,TRUE,"Across all years and states, midterm elections attract a small percentage of registered just-eligible voters, typically less than 10%."
+rd_presidential_share,Results (p. 1053),descriptive,,0,,approx,TRUE,Even presidential elections attract roughly one-third of the just-eligible electorate.
+fn7_meredith_2000,Footnote 7 (p. 1053),transcribed,30.6,1,per cent,==,FALSE,"Meredith (2009) estimates the turnout rate of all 18- and 19-year-olds in the 2000 and 2004 elections at 30.6 and 43.9, respectively."
+fn7_meredith_2004,Footnote 7 (p. 1053),transcribed,43.9,1,per cent,==,FALSE,"Meredith (2009) estimates the turnout rate of all 18- and 19-year-olds in the 2000 and 2004 elections at 30.6 and 43.9, respectively."
+fn7_cps_2010,Footnote 7 (p. 1053),transcribed,19.6,1,per cent,==,FALSE,"19.6% of eligible 18-24-year-olds reported voting in the 2010 midterm election, and 37.9% in the 2012 presidential election"
+fn7_cps_2012,Footnote 7 (p. 1053),transcribed,37.9,1,per cent,==,FALSE,"19.6% of eligible 18-24-year-olds reported voting in the 2010 midterm election, and 37.9% in the 2012 presidential election"
+rd_pom_estimates,Results (p. 1053),pipeline,54,0,estimates,==,TRUE,"Looking first at presidential-on-midterm effects, we see that all 54 estimates are positive."
+rd_pom_all_positive,Results (p. 1053),descriptive,,0,,==,TRUE,"Looking first at presidential-on-midterm effects, we see that all 54 estimates are positive."
+rd_pom_meta_0810,Results (p. 1053),pipeline,0.09,2,,==,TRUE,"Using fixed-effects meta-analysis, we find the precision-weighted average estimate for the period 2008-10 to be 0.09, with a standard error of just 0.002."
+rd_pom_meta_0810_se,Results (p. 1053),pipeline,0.002,3,,==,TRUE,"we find the precision-weighted average estimate for the period 2008-10 to be 0.09, with a standard error of just 0.002"
+rd_missouri_0810,Results (p. 1053),pipeline,0.09,2,,==,TRUE,"A CACE of 0.09 in Missouri, for example, implies that casting a vote in 2008 increases the probability that a complier will cast a vote in the 2010 midterm election from 15.4% to 24.4%."
+rd_missouri_baseline,Results (p. 1053),pipeline,15.4,1,per cent,==,TRUE,casting a vote in 2008 increases the probability that a complier will cast a vote in the 2010 midterm election from 15.4% to 24.4%
+rd_missouri_treated,Results (p. 1053),pipeline,24.4,1,per cent,==,TRUE,casting a vote in 2008 increases the probability that a complier will cast a vote in the 2010 midterm election from 15.4% to 24.4%
+rd_mop_positive,Results (p. 1053),pipeline,50,0,estimates,==,TRUE,"The pattern of midterm-on-presidential estimates argues strongly for habit formation as well. Here, 50 out of 54 estimates are positive."
+rd_mop_estimates,Results (p. 1053),pipeline,54,0,estimates,==,TRUE,"The pattern of midterm-on-presidential estimates argues strongly for habit formation as well. Here, 50 out of 54 estimates are positive."
+rd_mop_meta_1012,Results (p. 1056),pipeline,0.11,2,,==,TRUE,"The average effect of turnout in 2010 on turnout in 2012 is 0.11, with a standard error of 0.019."
+rd_mop_meta_1012_se,Results (p. 1056),pipeline,0.019,3,,==,TRUE,"The average effect of turnout in 2010 on turnout in 2012 is 0.11, with a standard error of 0.019."
+rd_mop_meta_0608,Results (p. 1056),pipeline,0.17,2,,==,TRUE,"Looking four years earlier, the average effect of turnout in 2006 on turnout in 2008 is 0.17, with a standard error of 0.018."
+rd_mop_meta_0608_se,Results (p. 1056),pipeline,0.018,3,,==,TRUE,"the average effect of turnout in 2006 on turnout in 2008 is 0.17, with a standard error of 0.018"
+rd_oregon_cace,Results (p. 1056),pipeline,0.118,3,,==,TRUE,"Taking Oregon as our example, a CACE of 0.118 implies that casting a vote in 2010 increases the probability that a complier will cast a vote in the 2012 presidential election from 57.6% to 69.4%."
+rd_oregon_baseline,Results (p. 1056),pipeline,57.6,1,per cent,==,TRUE,a CACE of 0.118 implies that casting a vote in 2010 increases the probability that a complier will cast a vote in the 2012 presidential election from 57.6% to 69.4%
+rd_oregon_treated,Results (p. 1056),pipeline,69.4,1,per cent,==,TRUE,a CACE of 0.118 implies that casting a vote in 2010 increases the probability that a complier will cast a vote in the 2012 presidential election from 57.6% to 69.4%
+rd_pop_meta_0812,Results (p. 1056),pipeline,0.12,2,,==,TRUE,The estimated effect of voting in 2008 on voting in 2012 is 0.12 (SE = 0.005).
+rd_pop_meta_0812_se,Results (p. 1056),pipeline,0.005,3,,==,TRUE,The estimated effect of voting in 2008 on voting in 2012 is 0.12 (SE = 0.005).
+rd_pop_states,Results (p. 1056),pipeline,15,0,states,==,TRUE,"First, this weighted average across 15 states is roughly 10 standard errors larger than the four-year persistence effect reported by Meredith (2009) based on a single pair of California elections (7 percentage points)."
+rd_pop_ses_larger,Results (p. 1056),descriptive,,0,,approx,TRUE,this weighted average across 15 states is roughly 10 standard errors larger than the four-year persistence effect reported by Meredith (2009)
+rd_persistence_coefficients,Persistence in Turnout (p. 1056),pipeline,86,0,coefficients,==,TRUE,"Of the 86 coefficients reported, only three are estimated to be negative (none of which reaches statistical significance)."
+rd_persistence_negative,Persistence in Turnout (p. 1056),pipeline,3,0,coefficients,==,TRUE,"Of the 86 coefficients reported, only three are estimated to be negative (none of which reaches statistical significance)."
+rd_persistence_none_significant,Persistence in Turnout (p. 1056),descriptive,,0,,==,TRUE,only three are estimated to be negative (none of which reaches statistical significance)
+rd_binomial_successes,Persistence in Turnout (p. 1056),pipeline,83,0,successes,==,TRUE,We can conduct a nonparametric test of the probability of seeing such an extreme distribution of coefficients if in fact habit effects did not persist at all with a binomial test of 83 successes in 86 trials (p < .001).
+rd_binomial_trials,Persistence in Turnout (p. 1056),pipeline,86,0,trials,==,TRUE,with a binomial test of 83 successes in 86 trials (p < .001)
+rd_binomial_significant,Persistence in Turnout (p. 1056),descriptive,,0,,==,TRUE,with a binomial test of 83 successes in 86 trials (p < .001)
+rd_table7_estimates,Persistence in Turnout (p. 1056),pipeline,384,0,estimates,==,TRUE,"We present a statistical summary of the persistence of habit effects in Table 7, which pools all 384 estimates of every upstream election on every downstream election."
+rd_table7_weights,Persistence in Turnout (p. 1056),descriptive,,0,,==,TRUE,"observations are weighted by the inverse of their squared standard errors (Borenstein et al. 2009, 65)"
+rd_timedistance_col5,Persistence in Turnout (p. 1056),pipeline,-0.0008,4,,==,TRUE,"The last model is the most predictive of outcomes, as judged by the R2, and generates an estimated Years between upstream and downstream effect of -0.0008, with a standard error of 0.0028."
+rd_timedistance_col5_se,Persistence in Turnout (p. 1056),pipeline,0.0028,4,,==,TRUE,"generates an estimated Years between upstream and downstream effect of -0.0008, with a standard error of 0.0028"
+rd_decade_decay,Persistence in Turnout (p. 1057),pipeline,0.008,3,,==,TRUE,"This estimate implies that net of state fixed effects and election type, CACEs associated with voting habits grow weaker by only 0.008 over the course of a decade."
+rd_youth_definition,Persistence in Turnout (p. 1056),definitional,,0,,==,FALSE,"In the first column of Table 7, we control only for the turnout rate among young voters (ages 18-29) in each state's upstream election."
+rd_battleground_definition,Persistence in Turnout (p. 1056),definitional,10,0,points,<,FALSE,"Column 2 adds an indicator for observations in which a downstream election took place in a presidential battleground, defined as a state in which the downstream election was decided by fewer than 10 points."
+rd_youth_coefficient,Persistence in Turnout (p. 1057),pipeline,0.16,2,percentage points,==,TRUE,"Focusing on column 5, we see that an increase in Youth Turnout of 1 percentage point is associated with an average decrease of 0.16 percentage points in the CACE."
+env_table5_estimates,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),pipeline,15,0,estimates,==,TRUE,"The top panel of Table 5, for example, reports 15 estimates of the presidential-on-presidential downstream effect for 2008-12."
+env_top_four_nonbattleground,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),descriptive,,0,,==,TRUE,"The top four of the five strongest estimates (Arkansas, Nevada, Connecticut, Missouri, and New Jersey) are found in nonbattleground states."
+env_battleground_margin,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),definitional,10,0,percentage points,<=,FALSE,"In presidential years, a state is coded as a battleground if the difference in the two-party vote share in the presidential election is 10 percentage points or fewer."
+env_no_race_observations,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),pipeline,13,0,observations,==,TRUE,We code the 13 observations that did not feature races for governor or senator as nonbattlegrounds.
+env_battleground_factor,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),descriptive,3,0,,==,TRUE,"When we include the close midterm elections in the definition of battleground, this pattern does not persist - the coefficient drops by a factor of three and is no longer significant."
+env_rogers_mail,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,8.1,1,percentage points,==,FALSE,They estimate that the treatment caused an 8.1 percentage point increase in the probability of receiving mail (SE = 0.2)
+env_rogers_mail_se,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,0.2,1,percentage points,==,FALSE,an 8.1 percentage point increase in the probability of receiving mail (SE = 0.2)
+env_rogers_phone,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,0.3,1,percentage points,==,FALSE,a 0.3 percentage point increase in the probability of receiving a phone call (SE = 0.2)
+env_rogers_phone_se,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,0.2,1,percentage points,==,FALSE,a 0.3 percentage point increase in the probability of receiving a phone call (SE = 0.2)
+env_rogers_canvass,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,0.4,1,percentage points,==,FALSE,and a 0.4 percentage point decrease in the probability of being canvassed (SE = 0.2)
+env_rogers_canvass_se,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,0.2,1,percentage points,==,FALSE,a 0.4 percentage point decrease in the probability of being canvassed (SE = 0.2)
+env_dinas_1973,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,12,0,percentage points,==,FALSE,Just-eligibles in 1968 were 12 percentage points (SE = 8.6) less likely to report contact in 1973
+env_dinas_1973_se,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,8.6,1,percentage points,==,FALSE,Just-eligibles in 1968 were 12 percentage points (SE = 8.6) less likely to report contact in 1973
+env_dinas_1982,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,0.5,1,percentage points,==,FALSE,0.5 percentage points (SE = 10.7) less likely in 1982
+env_dinas_1982_se,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,10.7,1,percentage points,==,FALSE,0.5 percentage points (SE = 10.7) less likely in 1982
+env_dinas_1997,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,3.7,1,percentage points,==,FALSE,and 3.7 percentage points (SE = 9.2) more likely in 1997
+env_dinas_1997_se,Is Persistence in Turnout Due to Environmental Influences? (p. 1059),transcribed,9.2,1,percentage points,==,FALSE,3.7 percentage points (SE = 9.2) more likely in 1997
+disc_women_1920,Discussion (p. 1060),transcribed,,0,,==,FALSE,women who reached the age of 21 in the United States prior to 1920 voted at lower rates long after they became eligible to vote
+disc_average_cace,Discussion (p. 1060),pipeline,0.10,2,,approx,TRUE,"In our data, we find the average CACE across all general election types to be approximately 0.10, which suggests that, ceteris paribus, mobilizing 100 compliers today generates 50 more votes over the five federal elections in the decade to come."
+disc_hundred_compliers,Discussion (p. 1060),definitional,100,0,compliers,==,FALSE,mobilizing 100 compliers today generates 50 more votes over the five federal elections in the decade to come
+disc_five_elections,Discussion (p. 1060),definitional,5,0,elections,==,FALSE,mobilizing 100 compliers today generates 50 more votes over the five federal elections in the decade to come
+disc_fifty_votes,Discussion (p. 1060),pipeline,50,0,votes,==,TRUE,mobilizing 100 compliers today generates 50 more votes over the five federal elections in the decade to come
+note_table1_bracket_arms,Table 1 note (p. 1049),descriptive,4,0,treatments,==,TRUE,Numbers in brackets represent the minimum and maximum estimated untreated turnout rates among the four treatments' compliers.
+note_table2_bracket_arms,Table 2 note (p. 1050),descriptive,3,0,treatments,==,TRUE,Numbers in brackets represent the minimum and maximum estimated untreated turnout rates among the three treatments' compliers.
+note_table1_overidentified,Table 1 note (p. 1049),descriptive,,0,,==,TRUE,The estimates in the All Instruments row are overidentified and are obtained using 2SLS.
+note_table45_exclusions,Table 4 note (p. 1054),descriptive,,0,,==,TRUE,"Meta-analysis estimates exclude results from the historical voter files, Florida 2005 and Missouri 2005."
+note_table7_weights,Table 7 note (p. 1058),descriptive,,0,,==,TRUE,All models weighted by inverse of squared standard error of CACE estimate.
+note_table7_youth,Table 7 note (p. 1058),definitional,,0,,==,FALSE,Youth are defined as 18-29-year-olds.
+note_table7_battleground,Table 7 note (p. 1058),definitional,10,0,points,<,FALSE,Battleground status: Two-party vote share difference is fewer than 10 points in downstream election.
+appx_four_types,SI section 1 (p. 3),definitional,4,0,types,==,FALSE,"subjects may be classified into four types, compliers, never-takers, always-takers, and defiers"
+appx_a1_types,SI section 1.1.1 (p. 8),structural,12,0,types,==,FALSE,Table A1 shows the 12 possible types of voters according to their migration status and voting behavior.
+appx_example_compliers,SI section 1.1.1 (p. 9),definitional,500,0,subjects,==,FALSE,The number of treated subjects who vote in the upstream election is 500. This is the number of compliers.
+appx_example_treated_downstream,SI section 1.1.1 (p. 9),definitional,1000,0,subjects,==,FALSE,The number of treated subjects who vote in the downstream election is 1000.
+appx_example_untreated_downstream,SI section 1.1.1 (p. 9),definitional,900,0,subjects,==,FALSE,The number of untreated subjects who vote in the downstream election is 900.
+appx_example_true_cace,SI section 1.1.1 (p. 9),definitional,0.20,2,,==,FALSE,The true CACE is therefore 1000-900 over 500 = 0.20
+appx_example_in_migrants,SI section 1.1.1 (p. 9),definitional,5,0,compliers,==,FALSE,Suppose that 5 treated compliers move in state between the upstream and downstream elections.
+appx_example_in_nc,SI section 1.1.1 (p. 9),definitional,495,0,compliers,==,FALSE,We incorrectly estimate Nc to be 495.
+appx_example_in_cace,SI section 1.1.1 (p. 9),definitional,0.202,3,,==,FALSE,We therefore overestimate the CACE to be 1000-900 over 495 = 0.202
+appx_example_out_nc,SI section 1.1.1 (p. 9),definitional,505,0,compliers,==,FALSE,We incorrectly estimate Nc to be 505.
+appx_example_out_cace,SI section 1.1.1 (p. 9),definitional,0.198,3,,==,FALSE,We therefore estimate the CACE to be 1000-900 over 505 = 0.198
+appx_figure_a1_true_cace,Figure A1 title and SI section 1.1.1 (p. 10),pipeline,0.117,3,,==,TRUE,"The true CACE in all cases is set equal to 0.117, the meta-analytic estimate of the CACE of 2008 voting on 2012 voting."
+appx_figure_a1_migration_range,Figure A1 (SI p. 10),definitional,1000,0,net migrants,==,TRUE,"Figure A1's horizontal axis runs from -1000 to 1000 net migrants, labelled at -1000, -500, 0, 500 and 1000."
+appx_figure_a1_complier_labels,Figure A1 legend (SI p. 10),definitional,10,0,labels,==,TRUE,"Figure A1's legend labels ten complier counts, 10,000 through 100,000."
+appx_a2_states,SI section 1.1.1 (p. 11),pipeline,16,0,states,==,TRUE,"Table A2 presents the estimated number of net migrants, the estimated number of compliers in 2008 (computed using a 365-day window), and the associated bias according to Equation A10 for sixteen states."
+appx_a2_window,SI section 1.1.1 (p. 11),definitional,365,0,days,==,FALSE,the estimated number of compliers in 2008 (computed using a 365-day window)
+appx_a2_cace_column,Table A2 column heading (SI p. 11),descriptive,,0,,==,TRUE,"Table A2's CACE 08-12 column holds each state's estimated effect of voting in 2008 on voting in 2012, the quantity Tables 5 and 6 report for the same states."
+appx_a2_bias_small,SI section 1.1.1 (p. 11),descriptive,,0,,==,TRUE,"The table shows that the probable size of the bias due to measurement error is small, at least in the elections for which we have migration data."
+appx_a3_types,SI section 1.1.2 (p. 11),structural,12,0,types,==,FALSE,These types are shown in the top panel of Table A3.
+appx_a4_source,SI section 1.3 (p. 14),definitional,,0,,==,FALSE,Official turnout statistics were obtained from http://www.electproject.org/.
+appx_a6a7_specification,SI section 2 (p. 17),definitional,,0,,==,FALSE,"The results presented in Tables 4 and 5 of the main analysis are generated by a model that includes first-order polynomial (linear) trends, controls for lagged voted totals, and a 365-day window on either side of the cutoff."
+appx_a6a7_boxed,Tables A6 and A7 notes (SI pp. 18-19),descriptive,,0,,==,TRUE,Boxed estimate is used in the main analysis.
+appx_a6_range_low,SI section 2 (p. 19),descriptive,0.10,2,,approx,TRUE,most estimates of the effect of 2008 on 2012 fall in the 0.10 to 0.12 range
+appx_a6_range_high,SI section 2 (p. 19),descriptive,0.12,2,,approx,TRUE,most estimates of the effect of 2008 on 2012 fall in the 0.10 to 0.12 range
+appx_a7_range_low,SI section 2 (p. 19),descriptive,0.07,2,,approx,TRUE,"The estimates of 2006 on 2010 are somewhat more variable, with most falling between 0.07 to 0.15."
+appx_a7_range_high,SI section 2 (p. 19),descriptive,0.15,2,,approx,TRUE,"The estimates of 2006 on 2010 are somewhat more variable, with most falling between 0.07 to 0.15."
+appx_a6a7_precision,SI section 2 (p. 19),descriptive,,0,,==,TRUE,"The estimates tend to be more precise the larger the window, the less flexible the functional form, and when controls are included."
+appx_like_aug2008,SI section 3 (p. 19),pipeline,0.135,3,,==,TRUE,"following encouragement to vote in the August 2006 primary election, the effect among compliers was much larger in subsequent August elections (0.135, 0.126, 0.089) than in subsequent November elections (0.108, 0.009, 0.043, 0.011)"
+appx_like_aug2010,SI section 3 (p. 19),pipeline,0.126,3,,==,TRUE,"the effect among compliers was much larger in subsequent August elections (0.135, 0.126, 0.089)"
+appx_like_aug2012,SI section 3 (p. 19),pipeline,0.089,3,,==,TRUE,"the effect among compliers was much larger in subsequent August elections (0.135, 0.126, 0.089)"
+appx_like_nov2006,SI section 3 (p. 19),pipeline,0.108,3,,==,TRUE,"than in subsequent November elections (0.108, 0.009, 0.043, 0.011)"
+appx_like_nov2008,SI section 3 (p. 19),pipeline,0.009,3,,==,TRUE,"than in subsequent November elections (0.108, 0.009, 0.043, 0.011)"
+appx_like_nov2010,SI section 3 (p. 19),pipeline,0.043,3,,==,TRUE,"than in subsequent November elections (0.108, 0.009, 0.043, 0.011)"
+appx_like_nov2012,SI section 3 (p. 19),pipeline,0.011,3,,==,TRUE,"than in subsequent November elections (0.108, 0.009, 0.043, 0.011)"
+appx_gg_pairs,SI section 3 (p. 19),pipeline,384,0,pairs,==,TRUE,"Across the 384 general-on-general election pairs (the pairs reported in Table 6 of the main text), the average estimated CACE is 0.101 with a standard error of 0.007."
+appx_gg_crossref,SI section 3 (p. 19),descriptive,,0,,==,TRUE,Across the 384 general-on-general election pairs (the pairs reported in Table 6 of the main text)
+appx_gg_mean,SI section 3 (p. 19),pipeline,0.101,3,,==,TRUE,the average estimated CACE is 0.101 with a standard error of 0.007
+appx_gg_se,SI section 3 (p. 19),pipeline,0.007,3,,==,TRUE,the average estimated CACE is 0.101 with a standard error of 0.007
+appx_gp_pairs,SI section 3 (p. 19),pipeline,335,0,pairs,==,TRUE,"Among the 335 general-on-primary pairs, the average estimate is 0.020, with a standard error of 0.004."
+appx_gp_mean,SI section 3 (p. 19),pipeline,0.020,3,,==,TRUE,"Among the 335 general-on-primary pairs, the average estimate is 0.020, with a standard error of 0.004."
+appx_gp_se,SI section 3 (p. 19),pipeline,0.004,3,,==,TRUE,"Among the 335 general-on-primary pairs, the average estimate is 0.020, with a standard error of 0.004."
+appx_a2fig_upstream_years,SI section 3 (p. 19),pipeline,10,0,upstream years,==,TRUE,the tendency for primaries to be associated with weaker habit effects is apparent across all 10 upstream years
+appx_a2fig_primaries_weaker,SI section 3 (p. 19),descriptive,,0,,==,TRUE,the tendency for primaries to be associated with weaker habit effects is apparent across all 10 upstream years
+appx_primary_window,SI section 3 (p. 21),definitional,60,0,days,==,TRUE,"As a result, we restrict ourselves to a 60-day window, which is free from this contamination."
+appx_pg_mean,SI section 3 (p. 21),pipeline,0.0086,4,,==,TRUE,"The average estimated primary-on-general CACE is 0.0086 (SE = 0.0236), while the average estimated primary-on-primary CACE is 0.0068 (SE=0.0010)."
+appx_pg_se,SI section 3 (p. 21),pipeline,0.0236,4,,==,TRUE,The average estimated primary-on-general CACE is 0.0086 (SE = 0.0236)
+appx_pp_mean,SI section 3 (p. 21),pipeline,0.0068,4,,==,TRUE,while the average estimated primary-on-primary CACE is 0.0068 (SE=0.0010)
+appx_pp_se,SI section 3 (p. 21),pipeline,0.0010,4,,==,TRUE,while the average estimated primary-on-primary CACE is 0.0068 (SE=0.0010)
+appx_a8_windows,SI section 4 (p. 22),definitional,,0,,==,FALSE,We present results according to both 365-day and 180-day windows.
+appx_a8_elections,SI section 4 (p. 23),structural,,0,,==,FALSE,Table A8 shows the effects of eligibility for each general election between 1996 and 2010 on campaign contact.
+appx_a8_meta_effect,SI section 4 (p. 23),pipeline,5.3,1,percentage points,==,TRUE,The just-eligibles are 5.3 percentage points less likely to be exposed to mobilization activity.
+appx_a8_ci_bound,SI section 4 (p. 23),pipeline,11.6,1,percentage points,==,TRUE,"According to the 180-day window, the average effect is exactly zero, with a confidence interval extending from negative 11.6 percentage points to percentage 11.6 percentage points."
+appx_a8_zero,SI section 4 (p. 23),descriptive,,0,,==,TRUE,"According to the 180-day window, the average effect is exactly zero"
+appx_followup_subjects,SI section 5 (p. 24),pipeline,27138,0,subjects,==,TRUE,"a follow-up to the 2007 social pressure experiment was conducted among the 27,138 subjects in either Self condition of the original experiment"
+appx_followup_recontacted,SI section 5 (p. 24),pipeline,5900,0,subjects,==,TRUE,"Of these, a random 5,900 subjects were sent an additional Self mailer just prior to the November 2008 election"
+appx_followup_effect,SI section 5 (p. 24),pipeline,0.002,3,,==,TRUE,The refresher mailer had a no impact on voting behavior in November 2008: the estimated treatment effect was 0.002 with a cluster-robust standard error of 0.005.
+appx_followup_se,SI section 5 (p. 24),pipeline,0.005,3,,==,TRUE,the estimated treatment effect was 0.002 with a cluster-robust standard error of 0.005
+appx_a9_never_significant,SI section 5 (p. 24),descriptive,,0,,==,TRUE,"The estimated coefficients are never significantly different from one another, suggesting that the follow-up mailer does not rekindle memories of the original intervention."

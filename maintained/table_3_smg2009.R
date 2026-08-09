@@ -106,12 +106,34 @@ tibble(
   print()
 
 # Output ----
+# Subject counts per household-size stratum, printed under each row label ----
+# hhsize 0 is the pooled row, whose n is the whole analysis sample.
+hh_n <- bind_rows(
+  smg_clean |> count(hhsize, name = "n"),
+  tibble(hhsize = 0L, n = nrow(smg_clean))
+) |>
+  mutate(hhsize = as.integer(hhsize))
+
+# Pooled (meta-analytic) first stage across hhsize, which Table 3's Pooled row prints
+pooled_fs_row <- tibble(
+  hhsize   = 0L,
+  election = factor("APR2009", levels = c("APR2009", elections)),
+  cace     = pooled_fs$fe_est,
+  se       = pooled_fs$fe_se,
+  re_cace  = pooled_fs$re_est,
+  re_se    = pooled_fs$re_se,
+  type     = "first_stage_meta"
+)
+
 results <- bind_rows(
   firststage   |> mutate(type = "first_stage"),
   hh_results   |> mutate(type = "iv"),
   meta_results |> mutate(cace = fe_cace, se = fe_se, type = "meta_fe") |>
-    bind_rows(meta_results |> mutate(cace = re_cace, se = re_se, type = "meta_re"))
-)
+    bind_rows(meta_results |> mutate(cace = re_cace, se = re_se, type = "meta_re")),
+  pooled_fs_row
+) |>
+  mutate(hhsize = as.integer(hhsize)) |>
+  left_join(hh_n, by = "hhsize")
 
 write_csv(results,     here::here("maintained", "output", "table_3_smg2009.csv"))
 write_csv(complier_ctl, here::here("maintained", "output", "table_3_smg2009_complier_ctl.csv"))

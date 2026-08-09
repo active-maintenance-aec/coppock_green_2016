@@ -69,6 +69,28 @@ overid_results <- etov2006_long |>
   ) |>
   select(arm, label, election, cace, se)
 
+# Control arm: turnout in the upstream election, and the subject counts ----
+# Table 1 prints an n under every row label and a Control row in the First Stage
+# column. Neither is in the deposit's own table script, so both are written here.
+control_fit <- lm_robust(
+  AUG2006 ~ 1,
+  data = ETOV2006 |> filter(treat0 == 1), clusters = household, se_type = "stata"
+)
+
+control_row <- tibble(
+  arm      = "treat0",
+  label    = "Control",
+  election = factor("AUG2006", levels = c("AUG2006", elections)),
+  cace     = coef(control_fit)[["(Intercept)"]],
+  se       = control_fit$std.error[["(Intercept)"]],
+  type     = "control"
+)
+
+arm_n <- bind_rows(
+  arm_specs |> mutate(n = map_int(arm, \(a) sum(ETOV2006[[a]] == 1))),
+  tibble(arm = "treat0", label = "Control", n = sum(ETOV2006$treat0 == 1))
+)
+
 # Complier control means (min/max across arms per election) ----
 complier_ctl <- pmap_dfr(arm_specs, function(arm, label) {
   map_dfr(elections, function(e) {
@@ -87,15 +109,17 @@ complier_ctl <- pmap_dfr(arm_specs, function(arm, label) {
 results <- bind_rows(
   firststage     |> mutate(type = "first_stage"),
   arm_results    |> mutate(type = "iv"),
-  overid_results |> mutate(type = "overid")
-)
+  overid_results |> mutate(type = "overid"),
+  control_row
+) |>
+  left_join(arm_n |> select(arm, n), by = "arm")
 
 write_csv(results,      here::here("maintained", "output", "table_1_etov2006.csv"))
 write_csv(complier_ctl, here::here("maintained", "output", "table_1_etov2006_complier_ctl.csv"))
 
 # Key verification: Self first-stage and All Instruments downstream ----
 firststage |>
-  filter(arm == "treat2") |>
+  filter(arm == "treat4") |>
   mutate(check = "first stage, Self arm", across(c(cace, se), \(x) round(x, 3))) |>
   print()
 
