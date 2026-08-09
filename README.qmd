@@ -106,7 +106,7 @@ Two further facts about the deposit are worth recording. Running it writes nine 
 
 Almost exactly. The ground truth carries `r format(n_rows, big.mark = ",")` rows: `r format(n_cells, big.mark = ",")` published table cells compared one at a time, and `r n_blocks` claims the article states in prose. `r format(n_match_rewrite, big.mark = ",")` reproduce at the precision the page prints, `r n_miss_rewrite` do not, and `r n_holds` of the `r n_holds + n_fails` claims with a computed truth value hold.
 
-The `r n_miss_rewrite` that do not divide into three groups, set out in the errata and in the sections below: eleven standard errors that differ from the published ones in the fifth decimal, where two packages define the same nominal estimator differently; three cells of one appendix table row that the deposit fills from a typed constant its own analysis does not produce; and four sentences that miscount or misdescribe a table the article prints correctly.
+The `r n_miss_rewrite` that do not divide into three groups: eleven standard errors that differ from the published ones in the fifth decimal, where two packages define the same nominal estimator differently; three cells of one appendix table row that the deposit fills from a typed constant its own analysis does not produce; and four prose quantities that miscount or misstate something the article prints correctly. The `r spell_out <- c("one","two","three","four","five"); spell_out[n_fails]` claims that do not hold are as many more sentences of the same kind. All eight of the article's own errors are set out in the errata; the eleven standard errors are not errors in the article and belong to the software rather than to either analysis.
 
 ---
 

@@ -143,13 +143,16 @@ table cells compared one at a time, and 128 claims the article states in
 prose. 1,397 reproduce at the precision the page prints, 18 do not, and
 23 of the 27 claims with a computed truth value hold.
 
-The 18 that do not divide into three groups, set out in the errata and
-in the sections below: eleven standard errors that differ from the
-published ones in the fifth decimal, where two packages define the same
-nominal estimator differently; three cells of one appendix table row
-that the deposit fills from a typed constant its own analysis does not
-produce; and four sentences that miscount or misdescribe a table the
-article prints correctly.
+The 18 that do not divide into three groups: eleven standard errors that
+differ from the published ones in the fifth decimal, where two packages
+define the same nominal estimator differently; three cells of one
+appendix table row that the deposit fills from a typed constant its own
+analysis does not produce; and four prose quantities that miscount or
+misstate something the article prints correctly. The four claims that do
+not hold are as many more sentences of the same kind. All eight of the
+article’s own errors are set out in the errata; the eleven standard
+errors are not errors in the article and belong to the software rather
+than to either analysis.
 
 ------------------------------------------------------------------------
 
