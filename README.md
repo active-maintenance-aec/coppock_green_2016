@@ -385,14 +385,20 @@ errata entries 1 and 3 through 7.
 Eight corrections, in `coppock_green_2016_errata.pdf` at the root of
 this repository, generated from the pipeline with every corrected value
 computed at render time. **None of them changes a conclusion of the
-paper.** In order: the standard error of the primary-on-primary estimate
-in the supporting information; one row of appendix Table A2; the count
-of midterm-on-presidential estimates on page 1053; the battleground
-status of the strongest presidential-on-presidential estimates on page
-1059; the ratio between two coefficients of Table 7; the number of
-states in Table A2; a cross-reference to Table 6 that should be to Table
-7; and the heading of appendix Table A4’s first panel, which reads
-Arizona where its figures are Arkansas’s.
+paper.** In the note’s order and with its numbering:
+
+1.  The standard error of the primary-on-primary estimate (published,
+    supporting information)
+2.  Appendix Table A2’s Iowa row (published, appendix Table A2)
+3.  The count of midterm-on-presidential estimates (published p. 1053)
+4.  Battleground status among the strongest presidential-on-presidential
+    estimates (published p. 1059)
+5.  The change in the battleground coefficient between columns 2 and 3
+    of Table 7 (published, main text)
+6.  The number of states in Table A2 (published, appendix)
+7.  The cross-reference for the general-on-general election pairs
+    (published, appendix)
+8.  The first panel of appendix Table A4 (published, appendix Table A4)
 
 ## Corrections the rewrite made to the deposited code
 
@@ -576,4 +582,4 @@ gates on the served checksum and prints the disagreement.
 |:----------|:-----------------------|
 | R version | 4.6.0                  |
 | Platform  | aarch64-apple-darwin23 |
-| Date run  | 2026-08-09             |
+| Date run  | 2026-08-10             |

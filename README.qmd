@@ -24,6 +24,14 @@ library(kableExtra)
 
 here::i_am("README.qmd")
 
+# The errata are defined once, in errata.qmd, which writes errata_entries.csv when it
+# renders. This report reads that file rather than keeping a second copy of the count, the
+# numbering or the titles, because a second copy is how the two would come to disagree.
+spine <- read_csv(here::here("errata_entries.csv"), show_col_types = FALSE)
+n_errata <- nrow(spine)
+spell_errata <- function(n) c("one", "two", "three", "four", "five", "six", "seven",
+                              "eight", "nine", "ten")[n]
+
 # kableExtra styling is LaTeX-only; the GitHub README build takes plain pipe tables.
 latex_out <- knitr::is_latex_output()
 
@@ -106,7 +114,7 @@ Two further facts about the deposit are worth recording. Running it writes nine 
 
 Almost exactly. The ground truth carries `r format(n_rows, big.mark = ",")` rows: `r format(n_cells, big.mark = ",")` published table cells compared one at a time, and `r n_blocks` claims the article states in prose. `r format(n_match_rewrite, big.mark = ",")` reproduce at the precision the page prints, `r n_miss_rewrite` do not, and `r n_holds` of the `r n_holds + n_fails` claims with a computed truth value hold.
 
-The `r n_miss_rewrite` that do not divide into three groups: eleven standard errors that differ from the published ones in the fifth decimal, where two packages define the same nominal estimator differently; three cells of one appendix table row that the deposit fills from a typed constant its own analysis does not produce; and four prose quantities that miscount or misstate something the article prints correctly. The `r spell_out <- c("one","two","three","four","five"); spell_out[n_fails]` claims that do not hold are as many more sentences of the same kind. All eight of the article's own errors are set out in the errata; the eleven standard errors are not errors in the article and belong to the software rather than to either analysis.
+The `r n_miss_rewrite` that do not divide into three groups: eleven standard errors that differ from the published ones in the fifth decimal, where two packages define the same nominal estimator differently; three cells of one appendix table row that the deposit fills from a typed constant its own analysis does not produce; and four prose quantities that miscount or misstate something the article prints correctly. The `r spell_out <- c("one","two","three","four","five"); spell_out[n_fails]` claims that do not hold are as many more sentences of the same kind. All `r spell_errata(n_errata)` of the article's own errors are set out in the errata; the eleven standard errors are not errors in the article and belong to the software rather than to either analysis.
 
 ---
 
@@ -229,7 +237,12 @@ gt |>
 
 # Errata
 
-Eight corrections, in `coppock_green_2016_errata.pdf` at the root of this repository, generated from the pipeline with every corrected value computed at render time. **None of them changes a conclusion of the paper.** In order: the standard error of the primary-on-primary estimate in the supporting information; one row of appendix Table A2; the count of midterm-on-presidential estimates on page 1053; the battleground status of the strongest presidential-on-presidential estimates on page 1059; the ratio between two coefficients of Table 7; the number of states in Table A2; a cross-reference to Table 6 that should be to Table 7; and the heading of appendix Table A4's first panel, which reads Arizona where its figures are Arkansas's.
+`r str_to_sentence(spell_errata(n_errata))` corrections, in `coppock_green_2016_errata.pdf` at the root of this repository, generated from the pipeline with every corrected value computed at render time. **None of them changes a conclusion of the paper.** In the note's order and with its numbering:
+
+```{r errata_list, results="asis"}
+walk2(spine$entry, str_c(spine$title, " (", spine$location, ")"),
+      \(n, what) cat(n, ". ", what, "\n", sep = ""))
+```
 
 ## Corrections the rewrite made to the deposited code
 
