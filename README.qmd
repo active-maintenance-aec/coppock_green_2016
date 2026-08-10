@@ -29,6 +29,10 @@ here::i_am("README.qmd")
 # numbering or the titles, because a second copy is how the two would come to disagree.
 spine <- read_csv(here::here("errata_entries.csv"), show_col_types = FALSE)
 n_errata <- nrow(spine)
+# The note's entries divide by where they came from: the pipeline found the ones a ground
+# truth row reaches, an audit of the reference list found the rest.
+n_prose_errata <- sum(spine$source == "pipeline")
+n_reference_errata <- sum(spine$source == "reference_audit")
 spell_errata <- function(n) c("one", "two", "three", "four", "five", "six", "seven",
                               "eight", "nine", "ten")[n]
 
@@ -114,7 +118,7 @@ Two further facts about the deposit are worth recording. Running it writes nine 
 
 Almost exactly. The ground truth carries `r format(n_rows, big.mark = ",")` rows: `r format(n_cells, big.mark = ",")` published table cells compared one at a time, and `r n_blocks` claims the article states in prose. `r format(n_match_rewrite, big.mark = ",")` reproduce at the precision the page prints, `r n_miss_rewrite` do not, and `r n_holds` of the `r n_holds + n_fails` claims with a computed truth value hold.
 
-The `r n_miss_rewrite` that do not divide into three groups: eleven standard errors that differ from the published ones in the fifth decimal, where two packages define the same nominal estimator differently; three cells of one appendix table row that the deposit fills from a typed constant its own analysis does not produce; and four prose quantities that miscount or misstate something the article prints correctly. The `r spell_out <- c("one","two","three","four","five"); spell_out[n_fails]` claims that do not hold are as many more sentences of the same kind. All `r spell_errata(n_errata)` of the article's own errors are set out in the errata; the eleven standard errors are not errors in the article and belong to the software rather than to either analysis.
+The `r n_miss_rewrite` that do not divide into three groups: eleven standard errors that differ from the published ones in the fifth decimal, where two packages define the same nominal estimator differently; three cells of one appendix table row that the deposit fills from a typed constant its own analysis does not produce; and four prose quantities that miscount or misstate something the article prints correctly. The `r spell_out <- c("one","two","three","four","five"); spell_out[n_fails]` claims that do not hold are as many more sentences of the same kind. All `r spell_errata(n_prose_errata)` of the article's own errors are set out in the errata, along with `r spell_errata(n_reference_errata)` more that no ground truth row reaches; the eleven standard errors are not errors in the article and belong to the software rather than to either analysis.
 
 ---
 
@@ -243,6 +247,8 @@ gt |>
 walk2(spine$entry, str_c(spine$title, " (", spine$location, ")"),
       \(n, what) cat(n, ". ", what, "\n", sep = ""))
 ```
+
+The last `r spell_errata(n_reference_errata)` is in the reference list and no ground truth row reaches it: every printed entry was sent whole to Crossref and the authoritative record checked back into it. The audit flagged two entries for a page range, and only this one is real. Angrist, Imbens and Rubin (1996) prints "91(434): 444--55", which is the abbreviation the reference style uses throughout; Atkinson and Fowler (2014) prints "44(1): 59", where the range is 41 to 59 and the first number is missing.
 
 ## Corrections the rewrite made to the deposited code
 

@@ -253,7 +253,16 @@ entries <- tribble(
     "one of the seventeen, appears in Tables 4, 5, 6 and A2, and has no panel of its own; ",
     "Arizona appears in no table in the article and is nowhere in the deposited data, whose ",
     "states are {knitr::combine_words(sort(analysis_states))}. The changed artifact is the ",
-    "panel heading alone; every figure beneath it is as published.")
+    "panel heading alone; every figure beneath it is as published."),
+
+  9, "bibliographic", "reference_audit", "brief",
+  "Atkinson and Fowler (2014) prints the last page of its range without the first",
+  "published p. 1061",
+  "Atkinson, Matthew D., and Anthony Fowler. 2014. \"Social Capital and Voter Turnout: Evidence from Saint's Day Fiestas in Mexico.\" British Journal of Political Science [[44(1): 59]].",
+  "Atkinson, Matthew D., and Anthony Fowler. 2014. \"Social Capital and Voter Turnout: Evidence from Saint's Day Fiestas in Mexico.\" British Journal of Political Science 44(1): 41--59.",
+  paste("Crossref, doi 10.1017/s0007123412000713: pages 41--59. The reference list",
+        "abbreviates the second number of a range elsewhere, so a reader has no way to",
+        "read \"59\" as anything but a single page.")
 ) |>
   mutate(across(c(title, published, corrected, note), as.character))
 
@@ -271,7 +280,7 @@ emit <- function(n) {
 }
 ```
 
-This note lists `r spell(nrow(entries))` corrections to "Is Voting Habit Forming? New Evidence from Experiments and Regression Discontinuities," published in the *American Journal of Political Science* 60(4):1044--1062, doi [10.1111/ajps.12210](https://doi.org/10.1111/ajps.12210). **None of them changes any conclusion of the paper.** One is a standard error, one is a row of an appendix table, and the other six are sentences or a heading that miscount or misdescribe something the article prints correctly. Everything else in the `r format(n_published_cells, big.mark = ",")` published table cells this note's supporting analysis reads off the page reproduces from the deposited replication archive ([10.7910/DVN/ALZVAW](https://doi.org/10.7910/DVN/ALZVAW)).
+This note lists `r spell(nrow(entries))` corrections to "Is Voting Habit Forming? New Evidence from Experiments and Regression Discontinuities," published in the *American Journal of Political Science* 60(4):1044--1062, doi [10.1111/ajps.12210](https://doi.org/10.1111/ajps.12210). **None of them changes any conclusion of the paper.** One is a standard error, one is a row of an appendix table, six are sentences or a heading that miscount or misdescribe something the article prints correctly, and the last is an entry of the reference list. Everything else in the `r format(n_published_cells, big.mark = ",")` published table cells this note's supporting analysis reads off the page reproduces from the deposited replication archive ([10.7910/DVN/ALZVAW](https://doi.org/10.7910/DVN/ALZVAW)).
 
 Every number in the corrected sentences and in the notes beneath them is computed from the deposited archive at the time this document is rendered. The code and output supporting the corrections are at [github.com/active-maintenance-aec/coppock_green_2016](https://github.com/active-maintenance-aec/coppock_green_2016).
 
@@ -304,8 +313,21 @@ kable(a2_corrected, booktabs = TRUE, linesep = "", align = "lrrrrr",
 cat(entries$note[entries$entry == 2], "\n", sep = "")
 ```
 
-```{r entries-3-8, results="asis"}
-walk(3:max(entries$entry), emit)
+```{r entries-3-onward, results="asis"}
+walk(entries$entry[entries$entry >= 3 & entries$source == "pipeline"], emit)
+```
+
+# The reference list
+
+The entry below corrects the article's reference list. It was found by an audit that sends every printed entry whole to Crossref and checks the authoritative record back into it, and it is verified against the record named in the note. No cited work is missing and no citation in the text points at the wrong work.
+
+```{r reference-entries, results="asis"}
+walk(entries$entry[entries$source == "reference_audit"], function(n) {
+  e <- entries |> filter(entry == n)
+  cat("\n\n## ", e$entry, ". ", e$title, "\n\nPublished, ",
+      str_remove(e$location, "^published "), ":\n\n> ", bold(e$published),
+      "\n\nCorrected:\n\n> ", e$corrected, "\n\n", e$note, "\n", sep = "")
+})
 ```
 
 ```{r emit-spine}

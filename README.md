@@ -150,9 +150,10 @@ appendix table row that the deposit fills from a typed constant its own
 analysis does not produce; and four prose quantities that miscount or
 misstate something the article prints correctly. The four claims that do
 not hold are as many more sentences of the same kind. All eight of the
-article’s own errors are set out in the errata; the eleven standard
-errors are not errors in the article and belong to the software rather
-than to either analysis.
+article’s own errors are set out in the errata, along with one more that
+no ground truth row reaches; the eleven standard errors are not errors
+in the article and belong to the software rather than to either
+analysis.
 
 ------------------------------------------------------------------------
 
@@ -382,8 +383,8 @@ errata entries 1 and 3 through 7.
 
 # Errata
 
-Eight corrections, in `coppock_green_2016_errata.pdf` at the root of
-this repository, generated from the pipeline with every corrected value
+Nine corrections, in `coppock_green_2016_errata.pdf` at the root of this
+repository, generated from the pipeline with every corrected value
 computed at render time. **None of them changes a conclusion of the
 paper.** In the note’s order and with its numbering:
 
@@ -399,6 +400,16 @@ paper.** In the note’s order and with its numbering:
 7.  The cross-reference for the general-on-general election pairs
     (published, appendix)
 8.  The first panel of appendix Table A4 (published, appendix Table A4)
+9.  Atkinson and Fowler (2014) prints the last page of its range without
+    the first (published p. 1061)
+
+The last one is in the reference list and no ground truth row reaches
+it: every printed entry was sent whole to Crossref and the authoritative
+record checked back into it. The audit flagged two entries for a page
+range, and only this one is real. Angrist, Imbens and Rubin (1996)
+prints “91(434): 444–55”, which is the abbreviation the reference style
+uses throughout; Atkinson and Fowler (2014) prints “44(1): 59”, where
+the range is 41 to 59 and the first number is missing.
 
 ## Corrections the rewrite made to the deposited code
 
