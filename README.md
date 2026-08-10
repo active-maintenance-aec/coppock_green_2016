@@ -89,7 +89,7 @@ Forming? New Evidence from Experiments and Regression Discontinuities.”
 
 **Summary**: This paper tests whether voting is habit forming using two
 research designs. The experimental design exploits three randomized GOTV
-field experiments—ETOV 2006, ETOV 2007, and SMG 2009—in which randomly
+field experiments (ETOV 2006, ETOV 2007, and SMG 2009) in which randomly
 assigned treatment arms induced upstream voting; the downstream effect
 on voting in subsequent elections identifies the Complier Average Causal
 Effect (CACE) of upstream voting. The regression discontinuity design
@@ -130,11 +130,11 @@ One script also cannot find its data.
 so.
 
 Two further facts about the deposit are worth recording. Running it
-writes nine files into its working directory—four `.tex` tables, four
-household tables and an `Rplots.pdf`—which is why it is never run inside
-`original/`. And four of its tables are built as `xtable` objects whose
-print calls are commented out, so those scripts compute Table 6 and
-Tables A6 and A7 and display nothing at all.
+writes nine files into its working directory: four `.tex` tables, four
+household tables and an `Rplots.pdf`, which is why it is never run
+inside `original/`. Four of its tables are built as `xtable` objects
+whose print calls are commented out, so those scripts compute Table 6
+and Tables A6 and A7 and display nothing at all.
 
 ## Does the maintained rewrite reproduce the paper?
 
@@ -316,9 +316,9 @@ than assumed:
 - **Figure A1** draws a continuous bias surface and prints no estimate
   on its face, so there is nothing discrete to count. The rewrite
   commits the surface at the ten complier counts the figure’s own legend
-  labels, and the three quantities the page does state—the assumed true
+  labels, and the three quantities the page does state (the assumed true
   CACE, the range of the horizontal axis and the number of legend
-  labels—are claims in the extraction with blocks of their own.
+  labels) are claims in the extraction with blocks of their own.
 - **Figure A2** prints no numbers either. What it states is a count of
   plotted estimates, which is a claim with a block.
 
@@ -566,13 +566,13 @@ before anything executes, and once at the end. The first pass is a
 precondition; the second is what demonstrates that no script wrote into
 the deposit. Both passes check every file against its served MD5 and its
 byte size, and both refuse a directory holding anything the manifest
-does not list. Three of the deposit’s 24 published
-checksums—`SMG2009.RData`, `turnoutrates.RData` and `votemargins.RData`,
-all ingested by Dataverse as tabular data—match neither the original
-bytes the archive serves nor the derived `.tab` it generates. The local
-copies are verbatim in both cases, so the discrepancy is in the
-published metadata rather than in the deposit; `download_original.R`
-gates on the served checksum and prints the disagreement.
+does not list. Three of the deposit’s 24 published checksums
+(`SMG2009.RData`, `turnoutrates.RData` and `votemargins.RData`, all
+ingested by Dataverse as tabular data) match neither the original bytes
+the archive serves nor the derived `.tab` it generates. The local copies
+are verbatim in both cases, so the discrepancy is in the published
+metadata rather than in the deposit; `download_original.R` gates on the
+served checksum and prints the disagreement.
 
 ------------------------------------------------------------------------
 
