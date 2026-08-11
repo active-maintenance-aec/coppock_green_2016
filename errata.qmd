@@ -154,8 +154,15 @@ analysis_states <- setdiff(unique(str_remove(rd$state, "05$")), "meta")
 #
 # Numbering is the published note's and is APPEND-ONLY: an entry can already have been
 # cited, so a later finding is added at the end and never interleaved.
+#
+# claim_ids names the ground-truth rows an entry corrects, semicolon-separated, so that
+# "is this finding published?" is a query rather than a judgment. It is empty where the
+# entry has no ground-truth row: entry 8 is a panel heading in Table A4, whose descriptive
+# statistics the extraction does not reach, and entry 9 is a reference list entry, which is
+# not an extraction claim. Every id listed here is checked against the ground truth by
+# build_ground_truth.R.
 entries <- tribble(
-  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note,
+  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note, ~claim_ids,
 
   1, "quantity", "pipeline", "full",
   "The standard error of the primary-on-primary estimate",
@@ -169,6 +176,7 @@ entries <- tribble(
     "contradicts the sentence's own point that inducement to vote in a primary has ",
     "negligible downstream effects. Recomputed, the estimate is {sprintf('%.2f', pp_z)} ",
     "standard errors from zero, and is indistinguishable from zero as the passage says."),
+  "appx_pp_se",
 
   2, "quantity", "pipeline", "brief",
   "Appendix Table A2's Iowa row",
@@ -181,6 +189,7 @@ entries <- tribble(
     "rather than reading them from the regression discontinuity output the rest of the ",
     "paper uses, and the constant for {wrong_state$name} is not the estimate that analysis ",
     "produces."),
+  "appx_a2_cace_column;table_a2_main_ia_cace_08_12_est;table_a2_main_ia_bias_estimate_est;table_a2_main_ia_corrected_cace_est",
 
   3, "quantity", "pipeline", "full",
   "The count of midterm-on-presidential estimates",
@@ -195,6 +204,7 @@ entries <- tribble(
     "2006--08 and has no 2004--06 counterpart in the presidential-on-midterm series. Of the ",
     "{nrow(mop)} estimates, {spell(sum(mop$cace < 0))} are negative, so {sum(mop$cace > 0)} ",
     "are positive. Table 4 itself is correct."),
+  "rd_mop_positive;rd_mop_estimates",
 
   4, "quantity", "pipeline", "full",
   "Battleground status among the strongest presidential-on-presidential estimates",
@@ -208,6 +218,7 @@ entries <- tribble(
     "{spell(nrow(nonbattlegrounds_among_five))} of the five strongest estimates are in ",
     "nonbattleground states rather than four. The point the sentence makes is unaffected: ",
     "the strongest estimates are not concentrated in battlegrounds."),
+  "env_top_four_nonbattleground",
 
   5, "quantity", "pipeline", "full",
   "The change in the battleground coefficient between columns 2 and 3 of Table 7",
@@ -219,6 +230,7 @@ entries <- tribble(
     "{f4(coefficient('battleground_PM', 3, 'estimate'))} in column 3, a ratio of ",
     "{sprintf('%.1f', bg_ratio)}. Both cells reproduce exactly; only the description of the ",
     "ratio is wrong, and the coefficient is indeed no longer significant."),
+  "env_battleground_factor",
 
   6, "quantity", "pipeline", "full",
   "The number of states in Table A2",
@@ -229,6 +241,7 @@ entries <- tribble(
     "The table has {spell(n_a2_states)} rows, one for every state with a 2008-on-2012 ",
     "estimate. Colorado and Michigan have no such estimate, so the analysis covers ",
     "{spell(n_a2_states)} of the seventeen states."),
+  "appx_a2_states",
 
   7, "cross_reference", "pipeline", "full",
   "The cross-reference for the general-on-general election pairs",
@@ -240,6 +253,7 @@ entries <- tribble(
     "in 2012. The {gg_pairs} general-on-general pairs are the set Table 7 pools, and Table ",
     "7's own N row prints that figure in all five columns. Both averages in the sentence ",
     "reproduce exactly."),
+  "appx_gg_crossref",
 
   8, "label", "pipeline", "brief",
   "The first panel of appendix Table A4",
@@ -254,6 +268,7 @@ entries <- tribble(
     "Arizona appears in no table in the article and is nowhere in the deposited data, whose ",
     "states are {knitr::combine_words(sort(analysis_states))}. The changed artifact is the ",
     "panel heading alone; every figure beneath it is as published."),
+  "",
 
   9, "bibliographic", "reference_audit", "brief",
   "Atkinson and Fowler (2014) prints the last page of its range without the first",
@@ -262,9 +277,10 @@ entries <- tribble(
   "Atkinson, Matthew D., and Anthony Fowler. 2014. \"Social Capital and Voter Turnout: Evidence from Saint's Day Fiestas in Mexico.\" British Journal of Political Science 44(1): 41--59.",
   paste("Crossref, doi 10.1017/s0007123412000713: pages 41--59. The reference list",
         "abbreviates the second number of a range elsewhere, so a reader has no way to",
-        "read \"59\" as anything but a single page.")
+        "read \"59\" as anything but a single page."),
+  ""
 ) |>
-  mutate(across(c(title, published, corrected, note), as.character))
+  mutate(across(c(title, published, corrected, note, claim_ids), as.character))
 
 stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
 

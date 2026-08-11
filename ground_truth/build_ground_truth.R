@@ -1110,6 +1110,24 @@ ground_truth <- ground_truth |>
   select(paper_id, claim_id, table_figure, claim, value_script, value_paper, digits,
          match, value_rewrite, match_rewrite, holds, defect_locus, notes)
 
+# Errata spine gate ----
+# Every claim id an errata entry names has to exist here. A missing one is a typo or a
+# claim that has since been renamed, and a published correction pointing at a row that is
+# not in the table is a dangling reference the build should refuse to carry.
+errata_path <- here::here("errata_entries.csv")
+if (file.exists(errata_path)) {
+  errata_spine <- read_csv(errata_path, show_col_types = FALSE)
+  cited_claim_ids <- errata_spine$claim_ids |>
+    str_split(";") |>
+    unlist() |>
+    str_trim()
+  cited_claim_ids <- cited_claim_ids[!is.na(cited_claim_ids) & cited_claim_ids != ""]
+  if (length(setdiff(cited_claim_ids, ground_truth$claim_id)) > 0) {
+    print(setdiff(cited_claim_ids, ground_truth$claim_id))
+  }
+  stopifnot(length(setdiff(cited_claim_ids, ground_truth$claim_id)) == 0)
+}
+
 write_csv(float_coverage, here::here("ground_truth", "float_coverage.csv"))
 write_csv(ground_truth, here::here("ground_truth", paste0(paper_id, "_ground_truth.csv")))
 
