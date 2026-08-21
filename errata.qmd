@@ -162,7 +162,7 @@ analysis_states <- setdiff(unique(str_remove(rd$state, "05$")), "meta")
 # not an extraction claim. Every id listed here is checked against the ground truth by
 # build_ground_truth.R.
 entries <- tribble(
-  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note, ~claim_ids,
+  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note, ~claim_ids, ~corrected_values,
 
   1, "quantity", "pipeline", "full",
   "The standard error of the primary-on-primary estimate",
@@ -177,8 +177,9 @@ entries <- tribble(
     "negligible downstream effects. Recomputed, the estimate is {sprintf('%.2f', pp_z)} ",
     "standard errors from zero, and is indistinguishable from zero as the passage says."),
   "appx_pp_se",
+  f4(pp$std_error),
 
-  2, "quantity", "pipeline", "brief",
+  2, "float", "pipeline", "brief",
   "Appendix Table A2's Iowa row",
   "published, appendix Table A2",
   str_glue("Table A2, {wrong_state$name}, CACE 08-12: [[{iowa_published[['CACE 08-12']]}]]"),
@@ -190,6 +191,7 @@ entries <- tribble(
     "paper uses, and the constant for {wrong_state$name} is not the estimate that analysis ",
     "produces."),
   "appx_a2_cace_column;table_a2_main_ia_cace_08_12_est;table_a2_main_ia_bias_estimate_est;table_a2_main_ia_corrected_cace_est",
+  NA_character_,
 
   3, "quantity", "pipeline", "full",
   "The count of midterm-on-presidential estimates",
@@ -205,6 +207,7 @@ entries <- tribble(
     "{nrow(mop)} estimates, {spell(sum(mop$cace < 0))} are negative, so {sum(mop$cace > 0)} ",
     "are positive. Table 4 itself is correct."),
   "rd_mop_positive;rd_mop_estimates",
+  str_c(sum(mop$cace > 0), ";", nrow(mop)),
 
   4, "quantity", "pipeline", "full",
   "Battleground status among the strongest presidential-on-presidential estimates",
@@ -219,6 +222,7 @@ entries <- tribble(
     "nonbattleground states rather than four. The point the sentence makes is unaffected: ",
     "the strongest estimates are not concentrated in battlegrounds."),
   "env_top_four_nonbattleground",
+  as.character(nrow(nonbattlegrounds_among_five)),
 
   5, "quantity", "pipeline", "full",
   "The change in the battleground coefficient between columns 2 and 3 of Table 7",
@@ -231,6 +235,7 @@ entries <- tribble(
     "{sprintf('%.1f', bg_ratio)}. Both cells reproduce exactly; only the description of the ",
     "ratio is wrong, and the coefficient is indeed no longer significant."),
   "env_battleground_factor",
+  as.character(round(bg_ratio)),
 
   6, "quantity", "pipeline", "full",
   "The number of states in Table A2",
@@ -242,6 +247,7 @@ entries <- tribble(
     "estimate. Colorado and Michigan have no such estimate, so the analysis covers ",
     "{spell(n_a2_states)} of the seventeen states."),
   "appx_a2_states",
+  as.character(n_a2_states),
 
   7, "cross_reference", "pipeline", "full",
   "The cross-reference for the general-on-general election pairs",
@@ -254,6 +260,7 @@ entries <- tribble(
     "7's own N row prints that figure in all five columns. Both averages in the sentence ",
     "reproduce exactly."),
   "appx_gg_crossref",
+  NA_character_,
 
   8, "label", "pipeline", "brief",
   "The first panel of appendix Table A4",
@@ -269,6 +276,7 @@ entries <- tribble(
     "states are {knitr::combine_words(sort(analysis_states))}. The changed artifact is the ",
     "panel heading alone; every figure beneath it is as published."),
   "",
+  NA_character_,
 
   9, "bibliographic", "reference_audit", "brief",
   "Atkinson and Fowler (2014) prints the last page of its range without the first",
@@ -278,11 +286,70 @@ entries <- tribble(
   paste("Crossref, doi 10.1017/s0007123412000713: pages 41--59. The reference list",
         "abbreviates the second number of a range elsewhere, so a reader has no way to",
         "read \"59\" as anything but a single page."),
-  ""
+  "",
+  NA_character_
 ) |>
-  mutate(across(c(title, published, corrected, note, claim_ids), as.character))
+  mutate(across(c(title, published, corrected, note, claim_ids, corrected_values),
+                as.character))
 
 stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
+
+# Gate: corrected_values agrees with the sentence it was glued into ----
+# The column and the sentence are written from one expression, so they begin in agreement and
+# this gate exists for the edit that separates them: a value moved from one marked span to
+# another, a span reworded to carry a second number, a claim id appended without its value.
+#
+# A sentence sets a number the way the page sets it, and this article SPELLS its small
+# integers ("the top four", "a factor of three", "sixteen states"). The column sets them as
+# the numerals the extraction records, because maintained/in_text_claims.R compares that
+# column as a number. The spelling is typography rather than part of the value, so it is
+# normalised away before the containment test, along with the en dash and the thousands
+# comma; everything else, precision above all, still has to match.
+as_compared <- function(x) {
+  words <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+             "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
+             "eighteen", "nineteen", "twenty")
+  x <- x |>
+    str_replace_all("\u2013", "-") |>
+    str_replace_all("(?<=\\d),(?=\\d{3})", "")
+  reduce(seq_along(words), .init = x,
+         \(acc, i) str_replace_all(acc, regex(str_c("\\b", words[i], "\\b"),
+                                              ignore_case = TRUE), as.character(i)))
+}
+
+marked_spans <- function(x) str_match_all(x, "\\[\\[(.*?)\\]\\]")[[1]][, 2]
+
+quantified <- entries |>
+  filter(!is.na(corrected_values)) |>
+  mutate(ids = str_split(claim_ids, ";"), values = str_split(corrected_values, ";"),
+         spans = map(corrected, marked_spans))
+
+stopifnot(all(lengths(quantified$ids) == lengths(quantified$values)))
+
+value_placed <- pmap_lgl(quantified, function(...) {
+  e <- list(...)
+  if (length(e$values) == length(e$spans)) {
+    all(map2_lgl(e$values, e$spans, \(v, s) str_detect(as_compared(s), fixed(v))))
+  } else {
+    all(map_lgl(e$values, \(v) any(map_lgl(e$spans, \(s) str_detect(as_compared(s), fixed(v))))))
+  }
+})
+
+if (!all(value_placed)) {
+  print(quantified |> filter(!value_placed) |> select(entry, title, corrected_values, corrected))
+  stop("An entry's corrected_values are not in the spans of its corrected sentence.")
+}
+
+# An entry that moves a value maintained/in_text_claims.R PRINTS has to say what the value
+# becomes, and every other entry carries NA. Only "quantity" does so here. Entry 2 is classed
+# "float": it corrects cells of appendix Table A2 and names three float rows the extraction
+# does not carry, so no block prints them. Entry 7 corrects a cross-reference whose claim is
+# a descriptive one, and entries 8 and 9 correct a panel heading and a reference.
+stopifnot(
+  all(!is.na(entries$corrected_values[entries$class == "quantity"])),
+  all(is.na(entries$corrected_values[entries$class != "quantity"])),
+  all(is.na(entries$corrected_values) | !is.na(entries$claim_ids))
+)
 
 # The spine's markup, resolved for this document. Another renderer resolves it differently.
 bold <- function(x) str_replace_all(x, "\\[\\[(.*?)\\]\\]", "**\\1**")

@@ -1405,9 +1405,9 @@ coppock_green_2016,rd_timedistance_col5_se,Table 7,Its robust standard error,NA,
 coppock_green_2016,rd_decade_decay,Table 7,Decay over a decade implied by that coefficient,NA,0.008,3,NA,0.00786952076,1,NA,NA,
 coppock_green_2016,rd_youth_coefficient,Table 7,"Change in the CACE per point of youth turnout, in points",NA,0.16,2,NA,0.16474706729,1,NA,NA,
 coppock_green_2016,env_table5_estimates,Table 5,Presidential-on-presidential estimates for 2008-12,NA,15,0,NA,15.00000000000,1,NA,NA,
-coppock_green_2016,env_top_four_nonbattleground,Table 5,Four of the five strongest 2008-12 estimates in nonbattleground states,NA,NA,0,NA,NA,NA,FALSE,paper_internal,"Three of the five are nonbattlegrounds under the article's own coding: Missouri's 2012 presidential margin is inside ten points, as Nevada's is."
+coppock_green_2016,env_top_four_nonbattleground,Table 5,Strongest 2008-12 estimates of the five that are in nonbattleground states,NA,4,0,NA,3.00000000000,0,NA,paper_internal,"Three of the five are nonbattlegrounds under the article's own coding: Missouri's 2012 presidential margin is inside ten points, as Nevada's is."
 coppock_green_2016,env_no_race_observations,Table 7,Downstream observations with neither a gubernatorial nor a senate race,NA,13,0,NA,13.00000000000,1,NA,NA,
-coppock_green_2016,env_battleground_factor,Table 7,Battleground coefficient falls by a factor of three between columns 2 and 3,NA,3,0,NA,NA,NA,FALSE,paper_internal,"The coefficient falls from 0.0322 to 0.0155, a factor of 2.1 rather than three."
+coppock_green_2016,env_battleground_factor,Table 7,Factor by which the battleground coefficient falls between columns 2 and 3,NA,3,0,NA,2.07417330376,0,NA,paper_internal,"The coefficient falls from 0.0322 to 0.0155, a factor of 2.1 rather than three."
 coppock_green_2016,disc_average_cace,Table 7,Precision-weighted average CACE across all pairs,NA,0.10,2,NA,0.10081230099,NA,NA,NA,
 coppock_green_2016,disc_fifty_votes,Discussion,Extra votes from a hundred compliers over five federal elections,NA,50,0,NA,50.40615049416,1,NA,NA,
 coppock_green_2016,note_table1_bracket_arms,Table 1 note,Treatment arms behind the bracketed ranges,NA,4,0,NA,NA,NA,TRUE,NA,

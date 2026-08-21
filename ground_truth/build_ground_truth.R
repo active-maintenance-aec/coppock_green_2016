@@ -711,17 +711,22 @@ prose <- tribble(
 
   "env_table5_estimates", "Table 5", "Presidential-on-presidential estimates for 2008-12",
     nrow(pop_0812 |> filter(!state %in% c("FL05", "MO05"))), NA, NA_character_, "",
+  # A value row rather than a holds row. The erratum corrects the article's COUNT, from four
+  # to three, so the count is what has to be carried and compared; recording only whether
+  # "four" held threw away the number the correction is about.
   "env_top_four_nonbattleground", "Table 5",
-    "Four of the five strongest 2008-12 estimates in nonbattleground states",
-    NA, sum(strongest_five$battleground_P == 0) == 4, "paper_internal",
+    "Strongest 2008-12 estimates of the five that are in nonbattleground states",
+    sum(strongest_five$battleground_P == 0), NA, "paper_internal",
     "Three of the five are nonbattlegrounds under the article's own coding: Missouri's 2012 presidential margin is inside ten points, as Nevada's is.",
   "env_no_race_observations", "Table 7",
     "Downstream observations with neither a gubernatorial nor a senate race",
     average_cace$n_no_gubernatorial_or_senate, NA, NA_character_, "",
+  # A value row rather than a holds row, for the same reason: the erratum corrects the factor
+  # itself, from three to two.
   "env_battleground_factor", "Table 7",
-    "Battleground coefficient falls by a factor of three between columns 2 and 3",
-    NA, round(t7("battleground_P", 2, "estimate") /
-                t7("battleground_PM", 3, "estimate")) == 3, "paper_internal",
+    "Factor by which the battleground coefficient falls between columns 2 and 3",
+    t7("battleground_P", 2, "estimate") / t7("battleground_PM", 3, "estimate"),
+    NA, "paper_internal",
     "The coefficient falls from 0.0322 to 0.0155, a factor of 2.1 rather than three.",
 
   "disc_average_cace", "Table 7", "Precision-weighted average CACE across all pairs",
@@ -1059,7 +1064,9 @@ claims_output <- capture.output(
 )
 
 printed <- claims_output |>
-  str_subset("^CLAIM ") |>
+  # The filter matches a claim line's whole shape rather than its prefix. in_text_claims.R
+  # now closes with excheckr's two CLAIM SUMMARY lines, which a prefix match also takes.
+  str_subset("^CLAIM [^ ]+ = .* \\|\\| ") |>
   str_match("^CLAIM ([^ ]+) = (.*?) \\|\\| (.*)$")
 printed_claims <- tibble(claim_id = printed[, 2], printed_value = printed[, 3],
                          label = printed[, 4])
@@ -1085,11 +1092,21 @@ cross <- printed_claims |>
   left_join(published_claims |> select(claim_id, digits, comparison, claim_type),
             by = "claim_id") |>
   mutate(
+    # This has to move whenever the printed form on the other side moves, or the two
+    # instruments disagree about a convention and it reads exactly like a finding.
+    #
+    # Two conventions changed when in_text_claims.R went onto excheckr::claim(). A
+    # descriptive claim prints its truth value as 1 or 0 rather than TRUE or FALSE, which is
+    # what the rest of the corpus prints. And a hedged claim now prints the number it
+    # computes instead of NA, so the "approx" arm that skipped the comparison is gone: the
+    # two instruments must still agree on the value even where neither compares it against
+    # the article's hedge.
     expected = pmap_chr(
-      list(claim_type, holds, value_rewrite, digits, comparison),
-      function(type, holds_value, value, digits, comparison) {
-        if (!is.na(comparison) && comparison == "approx") return(NA_character_)
-        if (type == "descriptive") return(as.character(holds_value))
+      list(claim_type, holds, value_rewrite, digits),
+      function(type, holds_value, value, digits) {
+        if (type == "descriptive" && !is.na(holds_value)) {
+          return(as.character(as.numeric(holds_value)))
+        }
         if (is.na(value) || is.na(digits)) return(NA_character_)
         render_at(value, digits)
       }
