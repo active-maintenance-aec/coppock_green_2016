@@ -26,6 +26,10 @@ migration <- out("table_a2_migration.csv")
 coefficients <- out("table_7_coefficients.csv")
 pair_metadata <- out("table_7_metadata.csv")
 like_elections <- out("text_like_elections.csv")
+# Entries 4 and 10 both read the ground truth: entry 10 for the cells on which the deposit
+# and the pipeline disagree, entry 4 for the count the page prints.
+ground_truth <- read_csv(here("ground_truth", "coppock_green_2016_ground_truth.csv"),
+                         show_col_types = FALSE)
 
 published_appendix <- read_csv(here("ground_truth", "published_appendix_values.csv"),
                                col_types = cols(.default = col_character()))
@@ -117,6 +121,31 @@ battleground_phrases <- str_glue_data(
   "{name} at {sprintf('%.1f', 100 * downstream_margin)} points"
 )
 
+# WHAT CHANCE GIVES, which is what this entry has to say instead of an assurance that the
+# point stands. R11's rule, after schwarz_coppock_2022's entry 5: an entry that says only
+# "the point is unaffected" has not finished the question. Drawing five of the fifteen
+# states without replacement, the number of nonbattlegrounds among them is hypergeometric,
+# so the expectation, the modal count and the chance of the count the page prints are all
+# available and none of them is typed here.
+all_0812 <- rd |>
+  filter(years_window == "08-12", state != "meta", !is.na(cace),
+         !str_detect(state, "05$")) |>
+  left_join(battleground, by = c("state" = "state_clean"))
+n_nonbg <- sum(all_0812$battleground_P == 0)
+top_n <- nrow(five_strongest)
+bg_expected <- top_n * n_nonbg / nrow(all_0812)
+bg_density <- dhyper(0:top_n, m = n_nonbg, n = nrow(all_0812) - n_nonbg, k = top_n)
+bg_modal <- which.max(bg_density) - 1
+bg_published <- ground_truth |>
+  filter(claim_id == "env_top_four_nonbattleground") |>
+  pull(value_paper) |>
+  as.numeric()
+bg_at_least_published <- sum(bg_density[(bg_published + 1):(top_n + 1)])
+# The modal count IS the corrected count, which is the whole of what the note says; if a
+# later pipeline moved one of them apart from the other the sentence would be wrong.
+stopifnot(nrow(all_0812) == 15, bg_modal == nrow(nonbattlegrounds_among_five),
+          bg_published == nrow(nonbattlegrounds_among_five) + 1)
+
 # Entry 5: the battleground coefficient across columns 2 and 3 of Table 7.
 coefficient <- function(name, model_no, column) {
   row <- coefficients |> filter(term == name, model == model_no)
@@ -154,8 +183,6 @@ analysis_states <- setdiff(unique(str_remove(rd$state, "05$")), "meta")
 # of a state's own estimate and false of a pooled one: Tables A6 and A7 print fixed-effects
 # meta-analytic CACEs, and a fixed-effects meta-analysis is inverse-variance weighted, so
 # its weights ARE the state standard errors the convention moves.
-ground_truth <- read_csv(here("ground_truth", "coppock_green_2016_ground_truth.csv"),
-                         show_col_types = FALSE)
 leverage_tables <- c("Table 4", "Table 5", "Table 6", "Table 7", "Table A6", "Table A7")
 leverage_cells <- ground_truth |>
   filter(table_figure %in% leverage_tables, match == 1, match_rewrite == 0) |>
@@ -269,8 +296,15 @@ entries <- tribble(
     "two-party vote share difference in the downstream election is ten points or fewer. ",
     "{knitr::combine_words(battleground_phrases)} clear that threshold in 2012, so ",
     "{spell(nrow(nonbattlegrounds_among_five))} of the five strongest estimates are in ",
-    "nonbattleground states rather than four. The point the sentence makes is unaffected: ",
-    "the strongest estimates are not concentrated in battlegrounds."),
+    "nonbattleground states rather than {spell(bg_published)}. ",
+    "{str_to_sentence(spell(n_nonbg))} of the {spell(nrow(all_0812))} states with a ",
+    "2008-12 estimate are nonbattleground, so {sprintf('%.2f', bg_expected)} of the five ",
+    "strongest are expected to be nonbattleground by chance alone; ",
+    "{spell(bg_modal)} is the modal outcome, at p = {sprintf('%.2f', max(bg_density))}, ",
+    "and the published {spell(bg_published)} or more occurs ",
+    "{sprintf('%.0f', 100 * bg_at_least_published)} percent of the time. The corrected ",
+    "count is what chance gives, which is what the passage asserts two sentences earlier: ",
+    "\"In fact, we see little difference.\""),
   "env_top_four_nonbattleground",
   as.character(nrow(nonbattlegrounds_among_five)),
 
