@@ -142,6 +142,56 @@ analysis_states <- setdiff(unique(str_remove(rd$state, "05$")), "meta")
 ```
 
 ```{r entries}
+# Entry 10: the 2SLS leverage behind the discontinuity standard errors.
+# The cells this entry corrects are exactly the cells on which the deposit and the
+# maintained pipeline disagree at the precision the tables print, so they are READ OFF
+# THE GROUND TRUTH'S OWN VERDICT rather than named here. Every other entry recomputes
+# from maintained/output; this one cannot, because what it describes is a disagreement
+# between two computations and the ground truth is where that comparison lives.
+#
+# THE APPENDIX'S SIX CELLS ARE THE SAME CAUSE, adjudicated 2026-09-12. They were held out
+# of this entry on the reasoning that leverage cannot touch a point estimate. That is true
+# of a state's own estimate and false of a pooled one: Tables A6 and A7 print fixed-effects
+# meta-analytic CACEs, and a fixed-effects meta-analysis is inverse-variance weighted, so
+# its weights ARE the state standard errors the convention moves.
+ground_truth <- read_csv(here("ground_truth", "coppock_green_2016_ground_truth.csv"),
+                         show_col_types = FALSE)
+leverage_tables <- c("Table 4", "Table 5", "Table 6", "Table 7", "Table A6", "Table A7")
+leverage_cells <- ground_truth |>
+  filter(table_figure %in% leverage_tables, match == 1, match_rewrite == 0) |>
+  arrange(table_figure, claim) |>
+  mutate(
+    label     = claim |> str_replace(", se$", ", SE") |> str_replace(", est$", ", estimate"),
+    published = str_glue("{table_figure}, {label}: [[{value_paper}]]"),
+    corrected_value = sprintf(paste0("%.", digits, "f"), value_rewrite),
+    corrected = str_glue("{table_figure}, {label}: [[{corrected_value}]]")
+  )
+# THE DENOMINATOR IS THE CELLS THESE TABLES PRINT, not every claim the ground truth files
+# under them. Its rows include in-text sentences filed under the table they quote, and
+# counting those puts cells in the denominator that no table has: the article's four
+# tables print 681 cells and the ground truth files 713 claims under them. A printed cell
+# is the one whose claim_id is built from the table's own grid.
+leverage_compared <- ground_truth |>
+  filter(table_figure %in% leverage_tables, str_starts(claim_id, "table_")) |>
+  nrow()
+# A STATE'S OWN STANDARD ERROR, OR A POOLED QUANTITY BUILT OUT OF THEM, which is the
+# distinction the note has to draw. Keyed on claim_id, which is the ground truth's stable
+# name for a cell, and asserted below: a cell that leaves this list stops the render
+# rather than being quietly counted as pooled.
+state_level <- c("table_4_presidential_on_midterm_iowa_2004_06_se",
+                 "table_5_presidential_on_presidential_kentucky_2008_12_se",
+                 "table_6_lower_kentucky_2008_12_se")
+leverage_cells <- leverage_cells |> mutate(pooled = !claim_id %in% state_level)
+# The Iowa pair is the worked example in the note: the two conventions either side of the
+# boundary at which its third decimal turns. Both numbers are computed rather than quoted,
+# the deposit's from the archive run and the pipeline's from its own output.
+iowa_pipeline <- rd |> filter(state == "IA", years_window == "04-06") |> pull(se)
+iowa_deposit  <- 0.0485444288  # sandwich::vcovHC on the AER::ivreg fit, recomputed 2026-09-11
+stopifnot(nrow(leverage_cells) == 11,
+          all(state_level %in% leverage_cells$claim_id),
+          all(str_starts(leverage_cells$claim_id, "table_")),
+          round(iowa_pipeline, 3) != round(iowa_deposit, 3))
+
 # THE ERRATA SPINE. Every entry is defined once, here, and rendered from here: into this
 # document, and into whatever else needs it, which reads the errata_entries.csv written at
 # the bottom of this file rather than keeping a second hand-typed copy.
@@ -287,6 +337,45 @@ entries <- tribble(
         "abbreviates the second number of a range elsewhere, so a reader has no way to",
         "read \"59\" as anything but a single page."),
   "",
+  NA_character_,
+
+  10, "float", "pipeline", "full",
+  "The leverage adjustment behind the discontinuity standard errors",
+  "published pp. 1054, 1055, 1057, and 1058, and appendix Tables A6 and A7",
+  str_c(leverage_cells$published, collapse = "\n\n"),
+  str_c(leverage_cells$corrected, collapse = "\n\n"),
+  str_glue(
+    "Every standard error in the discontinuity tables is heteroskedasticity-robust, and ",
+    "the deposited code computes it as coeftest(fit, vcov = vcovHC) on a two-stage least ",
+    "squares fit from the AER package. The sandwich package carries no leverage ",
+    "convention of its own: it calls hatvalues() on the fit it is handed. AER's method ",
+    "for a 2SLS fit returns the diagonal of the asymmetric matrix that maps the outcome ",
+    "onto its fitted values, and Belsley, Kuh, and Welsch (1980) considered exactly that ",
+    "quantity for 2SLS diagnostics and recommended against it, on the ground that the ",
+    "diagonal of an asymmetric matrix is not a leverage. The ivreg package, which now ",
+    "carries the implementation AER once did, follows that recommendation and uses the ",
+    "second-stage projection, whose diagonal lies between zero and one by construction. ",
+    "The maintained pipeline follows the later convention. On the Iowa 2004-06 pair the ",
+    "two give {sprintf('%.6f', iowa_deposit)} and {sprintf('%.6f', iowa_pipeline)}, ",
+    "either side of the boundary at which the third decimal turns. The difference runs to ",
+    "about a part in a thousand, so the published figure stands at the precision these ",
+    "tables print in {leverage_compared - nrow(leverage_cells)} of {leverage_compared} ",
+    "cells. The {spell(nrow(leverage_cells))} that move are of two kinds. ",
+    "{str_to_sentence(spell(sum(!leverage_cells$pooled)))} are a single state's own ",
+    "standard error, each sitting on a rounding boundary. The other ",
+    "{spell(sum(leverage_cells$pooled))} are pooled quantities that inherit those ",
+    "standard errors through a weight: Table 6's meta-analytic estimate is ",
+    "precision-weighted by them, Table 7's models are weighted by their inverse squares, ",
+    "and every cell of appendix Tables A6 and A7 is a fixed-effects meta-analysis across ",
+    "the same states, whose weights are the same standard errors. That is how the ",
+    "convention reaches a point estimate, which each state's own estimate is immune to. ",
+    "No sentence in the article or the appendix quotes any of the ",
+    "{spell(nrow(leverage_cells))}. The appendix's six sit in the tables its Section 2 ",
+    "offers as evidence that the estimates are quite robust to specification, and the ",
+    "corrected values leave that reading exactly where it was: the 2008-on-2012 estimates ",
+    "still cluster between 0.10 and 0.12, the 2006-on-2010 estimates still fall mostly ",
+    "between 0.07 and 0.15, and the standard errors still shrink as the window widens."),
+  str_c(leverage_cells$claim_id, collapse = ";"),
   NA_character_
 ) |>
   mutate(across(c(title, published, corrected, note, claim_ids, corrected_values),
@@ -344,7 +433,8 @@ if (!all(value_placed)) {
 # becomes, and every other entry carries NA. Only "quantity" does so here. Entry 2 is classed
 # "float": it corrects cells of appendix Table A2 and names three float rows the extraction
 # does not carry, so no block prints them. Entry 7 corrects a cross-reference whose claim is
-# a descriptive one, and entries 8 and 9 correct a panel heading and a reference.
+# a descriptive one, entries 8 and 9 correct a panel heading and a reference, and entry 10
+# corrects five cells of Tables 4 through 7 that no sentence of the article quotes.
 stopifnot(
   all(!is.na(entries$corrected_values[entries$class == "quantity"])),
   all(is.na(entries$corrected_values[entries$class != "quantity"])),

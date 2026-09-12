@@ -34,7 +34,9 @@ n_errata <- nrow(spine)
 n_prose_errata <- sum(spine$source == "pipeline")
 n_reference_errata <- sum(spine$source == "reference_audit")
 spell_errata <- function(n) c("one", "two", "three", "four", "five", "six", "seven",
-                              "eight", "nine", "ten")[n]
+                              "eight", "nine", "ten", "eleven", "twelve", "thirteen",
+                              "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
+                              "nineteen", "twenty")[n]
 
 # kableExtra styling is LaTeX-only; the GitHub README build takes plain pipe tables.
 latex_out <- knitr::is_latex_output()
@@ -64,6 +66,16 @@ n_miss_script <- sum(gt$match == 0, na.rm = TRUE)
 n_holds <- sum(gt$holds, na.rm = TRUE)
 n_fails <- sum(!gt$holds, na.rm = TRUE)
 n_blocks <- sum(claims$needs_block)
+
+# The three groups the rows that do not reproduce fall into, COUNTED rather than typed.
+# They were typed once and went stale twice over: the group sizes were written down as
+# eleven, three and four when the paper_internal group was four, and the first group was
+# called "standard errors" when six of its eleven cells are point estimates.
+n_environment <- sum(gt$match_rewrite == 0 & gt$defect_locus == "environment", na.rm = TRUE)
+n_archive <- sum(gt$match_rewrite == 0 & gt$defect_locus == "archive", na.rm = TRUE)
+n_paper_internal <- sum(gt$match_rewrite == 0 & gt$defect_locus == "paper_internal",
+                        na.rm = TRUE)
+stopifnot(n_environment + n_archive + n_paper_internal == n_miss_rewrite)
 ```
 
 *Drafted by Claude Opus 5 under the supervision of Alex Coppock.*
@@ -118,7 +130,7 @@ Two further facts about the deposit are worth recording. Running it writes nine 
 
 Almost exactly. The ground truth carries `r format(n_rows, big.mark = ",")` rows: `r format(n_cells, big.mark = ",")` published table cells compared one at a time, and `r n_blocks` claims the article states in prose. `r format(n_match_rewrite, big.mark = ",")` reproduce at the precision the page prints, `r n_miss_rewrite` do not, and `r n_holds` of the `r n_holds + n_fails` claims with a computed truth value hold.
 
-The `r n_miss_rewrite` that do not divide into three groups: eleven standard errors that differ from the published ones in the fifth decimal, where two packages define the same nominal estimator differently; three cells of one appendix table row that the deposit fills from a typed constant its own analysis does not produce; and four prose quantities that miscount or misstate something the article prints correctly. The `r spell_out <- c("one","two","three","four","five"); spell_out[n_fails]` claims that do not hold are as many more sentences of the same kind. All `r spell_errata(n_prose_errata)` of the article's own errors are set out in the errata, along with `r spell_errata(n_reference_errata)` more that no ground truth row reaches; the eleven standard errors are not errors in the article and belong to the software rather than to either analysis.
+The `r n_miss_rewrite` that do not divide into three groups. `r str_to_sentence(spell_errata(n_environment))` are cells where the deposit and the rewrite disagree in the fifth decimal because two packages define the same nominal estimator differently; they are errors in neither analysis, and errata entry 10 corrects every one of them. `r str_to_sentence(spell_errata(n_archive))` are cells of one appendix table row that the deposit fills from a typed constant its own analysis does not produce. The other `r spell_errata(n_paper_internal)` are prose quantities that miscount or misstate something the article prints correctly. The `r spell_errata(n_fails)` claims that do not hold are as many more sentences of the same kind. All `r spell_errata(n_prose_errata)` of the article's own errors are set out in the errata, along with `r spell_errata(n_reference_errata)` more that no ground truth row reaches.
 
 ---
 
@@ -229,7 +241,7 @@ gt |>
     column_spec(2, width = "6cm"))
 ```
 
-**Eleven standard errors, locus `environment`.** The deposit estimates each discontinuity with `AER::ivreg` and takes its standard error from `sandwich::vcovHC`; the rewrite uses `estimatr::iv_robust(se_type = "HC3")`. The point estimates agree to ten decimal places everywhere. The standard errors differ by about a part in a thousand, because the two packages define the HC3 leverage adjustment for two-stage least squares differently, and that is enough to move a third decimal on the eleven cells that already sat within a whisker of a rounding boundary. Every one of the eleven is a cell the deposit reproduces exactly, so the difference is between two toolchains rather than in either analysis.
+**Eleven cells, locus `environment`.** The deposit estimates each discontinuity with `AER::ivreg` and takes its standard error from `sandwich::vcovHC`; the rewrite uses `estimatr::iv_robust(se_type = "HC3")`. Each state's own point estimate agrees to ten decimal places. The standard errors differ by about a part in a thousand, because the two packages define the HC3 leverage adjustment for two-stage least squares differently, and that is enough to move a third decimal on the eleven cells that already sat within a whisker of a rounding boundary. Three of the eleven are a state's own standard error. The other eight are pooled quantities that inherit those standard errors as weights: a fixed-effects meta-analysis is inverse-variance weighted, so a convention that moves a standard error moves the pooled point estimate with it, which is why appendix Tables A6 and A7 have six moving cells of their own. Every one of the eleven is a cell the deposit reproduces exactly, so the locus is the toolchain rather than either analysis, and errata entry 10 corrects all eleven.
 
 **Two cells of Table 7, locus `environment`.** The published table records state fixed effects in columns 4 and 5, which is what those models fit. The deposit's `stargazer` call prints "No" in all five columns under a current `stargazer`, so the deposit no longer reproduces its own table's fixed-effects row. The rewrite's `modelsummary` table gets it right.
 

@@ -949,12 +949,32 @@ ground_truth <- ground_truth |>
       str_starts(claim_id, "table_a2_main_ia_") &
         !is.na(match_rewrite) & match_rewrite == 0 ~ "archive",
       # A cell the deposit reproduces and the rewrite does not is a difference between
-      # the two toolchains rather than an error in either analysis. Every instance here
-      # is a standard error a hair from a rounding boundary: sandwich::vcovHC applied to
-      # an AER::ivreg fit and estimatr::iv_robust(se_type = "HC3") define the leverage
-      # adjustment for two-stage least squares differently, by about a part in a
-      # thousand, which moves a third decimal only where the value already sits on the
-      # boundary.
+      # the two toolchains: sandwich::vcovHC applied to an AER::ivreg fit and
+      # estimatr::iv_robust(se_type = "HC3") define the leverage adjustment for
+      # two-stage least squares differently, by about a part in a thousand, which moves
+      # a third decimal only where the value already sits on the boundary.
+      #
+      # THE LOCUS IS THE PACKAGE, BUT THE PUBLISHED VALUE IS STILL WRONG, and this rule
+      # used to say the opposite: "rather than an error in either analysis". AER's
+      # hatvalues() for a 2SLS fit returns the diagonal of the asymmetric matrix taking
+      # the outcome to its fitted values, which Belsley, Kuh, and Welsch (1980)
+      # considered for 2SLS diagnostics and recommended against, and which the ivreg
+      # package that supersedes AER's implementation declines to treat as leverage. The
+      # rewrite follows the later convention and the deposit could not have. Errata
+      # entry 10 carries all eleven cells this moves, the article's five and the
+      # appendix's six.
+      #
+      # A POOLED POINT ESTIMATE IS NOT IMMUNE TO A LEVERAGE CONVENTION, and this rule
+      # used to say it was: "the appendix's A6 and A7 cells are labelled here too and
+      # are NOT that cause, since they are point estimates, which leverage cannot
+      # touch. They are unexplained and open." Leverage cannot touch a STATE's point
+      # estimate, which is what that reasoning was about. Tables A6 and A7 print
+      # fixed-effects meta-analytic CACEs, and a fixed-effects meta-analysis is
+      # inverse-variance weighted, so the standard errors the convention moves ARE the
+      # weights and the pooled estimate moves with them. Adjudicated 2026-09-12 by
+      # decomposing all six through AER::ivreg point estimates with sandwich HC3
+      # standard errors, which reaches the same six values by a route that never calls
+      # estimatr.
       !is.na(match) & match == 1 & !is.na(match_rewrite) & match_rewrite == 0 ~
         "environment",
       # A quantity the deposit never reaches, which the article states and the rewrite

@@ -140,20 +140,19 @@ and Tables A6 and A7 and display nothing at all.
 
 Almost exactly. The ground truth carries 1,457 rows: 1,329 published
 table cells compared one at a time, and 128 claims the article states in
-prose. 1,397 reproduce at the precision the page prints, 18 do not, and
-23 of the 27 claims with a computed truth value hold.
+prose. 1,397 reproduce at the precision the page prints, 20 do not, and
+23 of the 25 claims with a computed truth value hold.
 
-The 18 that do not divide into three groups: eleven standard errors that
-differ from the published ones in the fifth decimal, where two packages
-define the same nominal estimator differently; three cells of one
-appendix table row that the deposit fills from a typed constant its own
-analysis does not produce; and four prose quantities that miscount or
-misstate something the article prints correctly. The four claims that do
-not hold are as many more sentences of the same kind. All eight of the
-article’s own errors are set out in the errata, along with one more that
-no ground truth row reaches; the eleven standard errors are not errors
-in the article and belong to the software rather than to either
-analysis.
+The 20 that do not divide into three groups. Eleven are cells where the
+deposit and the rewrite disagree in the fifth decimal because two
+packages define the same nominal estimator differently; they are errors
+in neither analysis, and errata entry 10 corrects every one of them.
+Three are cells of one appendix table row that the deposit fills from a
+typed constant its own analysis does not produce. The other six are
+prose quantities that miscount or misstate something the article prints
+correctly. The two claims that do not hold are as many more sentences of
+the same kind. All nine of the article’s own errors are set out in the
+errata, along with one more that no ground truth row reaches.
 
 ------------------------------------------------------------------------
 
@@ -202,8 +201,8 @@ each one. It has 210 rows.
 | Claim type   | No block | Block required |
 |:-------------|---------:|---------------:|
 | definitional |       24 |              5 |
-| descriptive  |        0 |             35 |
-| pipeline     |        0 |             88 |
+| descriptive  |        0 |             33 |
+| pipeline     |        0 |             90 |
 | structural   |       21 |              0 |
 | transcribed  |       37 |              0 |
 
@@ -263,7 +262,7 @@ in `maintained/`.
 | Comparison                              | Agree | Disagree | No verdict |
 |:----------------------------------------|------:|---------:|-----------:|
 | The deposit against the published pages |  1314 |        2 |        141 |
-| The rewrite against the published pages |  1397 |       18 |         42 |
+| The rewrite against the published pages |  1397 |       20 |         40 |
 
 Ground truth verdicts. A row has no verdict where the quantity is not
 one the deposit prints, where the claim is a hedge, or where its verdict
@@ -345,8 +344,8 @@ than assumed:
 | Table A7 | Third-order Polynomial, 90 Days (Controls for lagged vote totals), est | 0.002 | 0.0011334 | environment |
 | Table 4 | Positive midterm-on-presidential estimates | 50 | 51 | paper_internal |
 | Table 4 | Midterm-on-presidential state estimates | 54 | 55 | paper_internal |
-| Table 5 | Four of the five strongest 2008-12 estimates in nonbattleground states | – | FALSE | paper_internal |
-| Table 7 | Battleground coefficient falls by a factor of three between columns 2 and 3 | 3 | FALSE | paper_internal |
+| Table 5 | Strongest 2008-12 estimates of the five that are in nonbattleground states | 4 | 3 | paper_internal |
+| Table 7 | Factor by which the battleground coefficient falls between columns 2 and 3 | 3 | 2.0742 | paper_internal |
 | Table A2 | States in Table A2 | 16 | 15 | paper_internal |
 | Table A2 | Table A2’s CACE column holds the 2008 on 2012 estimate of Tables 5 and 6 | – | FALSE | archive |
 | SI section 3 | Those pairs are the ones Table 6 of the main text reports | – | FALSE | paper_internal |
@@ -355,17 +354,22 @@ than assumed:
 Every row where the deposit or the rewrite disagrees with the published
 page, or where a claim does not hold.
 
-**Eleven standard errors, locus `environment`.** The deposit estimates
-each discontinuity with `AER::ivreg` and takes its standard error from
+**Eleven cells, locus `environment`.** The deposit estimates each
+discontinuity with `AER::ivreg` and takes its standard error from
 `sandwich::vcovHC`; the rewrite uses
-`estimatr::iv_robust(se_type = "HC3")`. The point estimates agree to ten
-decimal places everywhere. The standard errors differ by about a part in
-a thousand, because the two packages define the HC3 leverage adjustment
-for two-stage least squares differently, and that is enough to move a
-third decimal on the eleven cells that already sat within a whisker of a
-rounding boundary. Every one of the eleven is a cell the deposit
-reproduces exactly, so the difference is between two toolchains rather
-than in either analysis.
+`estimatr::iv_robust(se_type = "HC3")`. Each state’s own point estimate
+agrees to ten decimal places. The standard errors differ by about a part
+in a thousand, because the two packages define the HC3 leverage
+adjustment for two-stage least squares differently, and that is enough
+to move a third decimal on the eleven cells that already sat within a
+whisker of a rounding boundary. Three of the eleven are a state’s own
+standard error. The other eight are pooled quantities that inherit those
+standard errors as weights: a fixed-effects meta-analysis is
+inverse-variance weighted, so a convention that moves a standard error
+moves the pooled point estimate with it, which is why appendix Tables A6
+and A7 have six moving cells of their own. Every one of the eleven is a
+cell the deposit reproduces exactly, so the locus is the toolchain
+rather than either analysis, and errata entry 10 corrects all eleven.
 
 **Two cells of Table 7, locus `environment`.** The published table
 records state fixed effects in columns 4 and 5, which is what those
@@ -383,7 +387,7 @@ errata entries 1 and 3 through 7.
 
 # Errata
 
-Nine corrections, in `coppock_green_2016_errata.pdf` at the root of this
+Ten corrections, in `coppock_green_2016_errata.pdf` at the root of this
 repository, generated from the pipeline with every corrected value
 computed at render time. **None of them changes a conclusion of the
 paper.** In the note’s order and with its numbering:
@@ -402,6 +406,9 @@ paper.** In the note’s order and with its numbering:
 8.  The first panel of appendix Table A4 (published, appendix Table A4)
 9.  Atkinson and Fowler (2014) prints the last page of its range without
     the first (published p. 1061)
+10. The leverage adjustment behind the discontinuity standard errors
+    (published pp. 1054, 1055, 1057, and 1058, and appendix Tables A6
+    and A7)
 
 The last one is in the reference list and no ground truth row reaches
 it: every printed entry was sent whole to Crossref and the authoritative
@@ -593,4 +600,4 @@ served checksum and prints the disagreement.
 |:----------|:-----------------------|
 | R version | 4.6.0                  |
 | Platform  | aarch64-apple-darwin23 |
-| Date run  | 2026-08-10             |
+| Date run  | 2026-09-12             |
