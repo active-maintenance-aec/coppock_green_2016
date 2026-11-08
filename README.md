@@ -146,7 +146,7 @@ prose. 1,397 reproduce at the precision the page prints, 20 do not, and
 The 20 that do not divide into three groups. Eleven are cells where the
 deposit and the rewrite disagree in the fifth decimal because two
 packages define the same nominal estimator differently; they are errors
-in neither analysis, and errata entry 10 corrects every one of them.
+in neither analysis, and errata entry 9 corrects every one of them.
 Three are cells of one appendix table row that the deposit fills from a
 typed constant its own analysis does not produce. The other six are
 prose quantities that miscount or misstate something the article prints
@@ -369,7 +369,7 @@ inverse-variance weighted, so a convention that moves a standard error
 moves the pooled point estimate with it, which is why appendix Tables A6
 and A7 have six moving cells of their own. Every one of the eleven is a
 cell the deposit reproduces exactly, so the locus is the toolchain
-rather than either analysis, and errata entry 10 corrects all eleven.
+rather than either analysis, and errata entry 9 corrects all eleven.
 
 **Two cells of Table 7, locus `environment`.** The published table
 records state fixed effects in columns 4 and 5, which is what those
@@ -378,10 +378,10 @@ columns under a current `stargazer`, so the deposit no longer reproduces
 its own table’s fixed-effects row. The rewrite’s `modelsummary` table
 gets it right.
 
-**Three cells of Table A2, locus `archive`.** See errata entry 2.
+**Three cells of Table A2, locus `archive`.** See errata entry 6.
 
 **Four sentences, locus `paper_internal`, and one further one.** See
-errata entries 1 and 3 through 7.
+errata entries 1 and 2 through 7.
 
 ------------------------------------------------------------------------
 
@@ -392,23 +392,20 @@ repository, generated from the pipeline with every corrected value
 computed at render time. **None of them changes a conclusion of the
 paper.** In the note’s order and with its numbering:
 
-1.  The standard error of the primary-on-primary estimate (published,
-    supporting information)
-2.  Appendix Table A2’s Iowa row (published, appendix Table A2)
-3.  The count of midterm-on-presidential estimates (published p. 1053)
-4.  Battleground status among the strongest presidential-on-presidential
-    estimates (published p. 1059)
-5.  The change in the battleground coefficient between columns 2 and 3
-    of Table 7 (published, main text)
-6.  The number of states in Table A2 (published, appendix)
-7.  The cross-reference for the general-on-general election pairs
-    (published, appendix)
-8.  The first panel of appendix Table A4 (published, appendix Table A4)
-9.  Atkinson and Fowler (2014) prints the last page of its range without
-    the first (published p. 1061)
-10. The leverage adjustment behind the discontinuity standard errors
-    (published pp. 1054, 1055, 1057, and 1058, and appendix Tables A6
-    and A7)
+1.  The standard error of the primary-on-primary estimate (app.)
+2.  The count of midterm-on-presidential estimates (p. 1053)
+3.  Battleground status among the strongest presidential-on-presidential
+    estimates (p. 1059)
+4.  The change in the battleground coefficient between columns 2 and 3
+    of Table 7 (main text)
+5.  The number of states in Table A2 (app.)
+6.  Appendix Table A2’s Iowa row (app. Table A2)
+7.  The cross-reference for the general-on-general election pairs (app.)
+8.  The first panel of appendix Table A4 (app. Table A4)
+9.  The leverage adjustment behind the discontinuity standard errors
+    (pp. 1054, 1055, 1057, and 1058, and app. Tables A6 and A7)
+10. Atkinson and Fowler (2014) prints the last page of its range without
+    the first (p. 1061)
 
 The last one is in the reference list and no ground truth row reaches
 it: every printed entry was sent whole to Crossref and the authoritative
@@ -426,7 +423,7 @@ an analytical decision.
 `CG Habit ME Table A2 and Figure A1.R` types its fifteen CACE estimates
 in as constants. The rewrite reads them from the regression
 discontinuity output instead, which is where fourteen of them came from;
-the fifteenth is errata entry 2.
+the fifteenth is errata entry 6.
 
 `CG Habit RD Figure A2.R` stops at a subscript error before producing
 anything. The rewrite’s grid is built by `crossing` rather than by an
@@ -598,6 +595,6 @@ served checksum and prints the disagreement.
 
 | Item      | Value                  |
 |:----------|:-----------------------|
-| R version | 4.6.0                  |
+| R version | 4.6.1                  |
 | Platform  | aarch64-apple-darwin23 |
-| Date run  | 2026-09-27             |
+| Date run  | 2026-11-07             |

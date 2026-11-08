@@ -961,7 +961,7 @@ ground_truth <- ground_truth |>
       # considered for 2SLS diagnostics and recommended against, and which the ivreg
       # package that supersedes AER's implementation declines to treat as leverage. The
       # rewrite follows the later convention and the deposit could not have. Errata
-      # entry 10 carries all eleven cells this moves, the article's five and the
+      # entry 9 carries all eleven cells this moves, the article's five and the
       # appendix's six.
       #
       # A POOLED POINT ESTIMATE IS NOT IMMUNE TO A LEVERAGE CONVENTION, and this rule

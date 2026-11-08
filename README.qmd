@@ -130,7 +130,7 @@ Two further facts about the deposit are worth recording. Running it writes nine 
 
 Almost exactly. The ground truth carries `r format(n_rows, big.mark = ",")` rows: `r format(n_cells, big.mark = ",")` published table cells compared one at a time, and `r n_blocks` claims the article states in prose. `r format(n_match_rewrite, big.mark = ",")` reproduce at the precision the page prints, `r n_miss_rewrite` do not, and `r n_holds` of the `r n_holds + n_fails` claims with a computed truth value hold.
 
-The `r n_miss_rewrite` that do not divide into three groups. `r str_to_sentence(spell_errata(n_environment))` are cells where the deposit and the rewrite disagree in the fifth decimal because two packages define the same nominal estimator differently; they are errors in neither analysis, and errata entry 10 corrects every one of them. `r str_to_sentence(spell_errata(n_archive))` are cells of one appendix table row that the deposit fills from a typed constant its own analysis does not produce. The other `r spell_errata(n_paper_internal)` are prose quantities that miscount or misstate something the article prints correctly. The `r spell_errata(n_fails)` claims that do not hold are as many more sentences of the same kind. All `r spell_errata(n_prose_errata)` of the article's own errors are set out in the errata, along with `r spell_errata(n_reference_errata)` more that no ground truth row reaches.
+The `r n_miss_rewrite` that do not divide into three groups. `r str_to_sentence(spell_errata(n_environment))` are cells where the deposit and the rewrite disagree in the fifth decimal because two packages define the same nominal estimator differently; they are errors in neither analysis, and errata entry 9 corrects every one of them. `r str_to_sentence(spell_errata(n_archive))` are cells of one appendix table row that the deposit fills from a typed constant its own analysis does not produce. The other `r spell_errata(n_paper_internal)` are prose quantities that miscount or misstate something the article prints correctly. The `r spell_errata(n_fails)` claims that do not hold are as many more sentences of the same kind. All `r spell_errata(n_prose_errata)` of the article's own errors are set out in the errata, along with `r spell_errata(n_reference_errata)` more that no ground truth row reaches.
 
 ---
 
@@ -241,13 +241,13 @@ gt |>
     column_spec(2, width = "6cm"))
 ```
 
-**Eleven cells, locus `environment`.** The deposit estimates each discontinuity with `AER::ivreg` and takes its standard error from `sandwich::vcovHC`; the rewrite uses `estimatr::iv_robust(se_type = "HC3")`. Each state's own point estimate agrees to ten decimal places. The standard errors differ by about a part in a thousand, because the two packages define the HC3 leverage adjustment for two-stage least squares differently, and that is enough to move a third decimal on the eleven cells that already sat within a whisker of a rounding boundary. Three of the eleven are a state's own standard error. The other eight are pooled quantities that inherit those standard errors as weights: a fixed-effects meta-analysis is inverse-variance weighted, so a convention that moves a standard error moves the pooled point estimate with it, which is why appendix Tables A6 and A7 have six moving cells of their own. Every one of the eleven is a cell the deposit reproduces exactly, so the locus is the toolchain rather than either analysis, and errata entry 10 corrects all eleven.
+**Eleven cells, locus `environment`.** The deposit estimates each discontinuity with `AER::ivreg` and takes its standard error from `sandwich::vcovHC`; the rewrite uses `estimatr::iv_robust(se_type = "HC3")`. Each state's own point estimate agrees to ten decimal places. The standard errors differ by about a part in a thousand, because the two packages define the HC3 leverage adjustment for two-stage least squares differently, and that is enough to move a third decimal on the eleven cells that already sat within a whisker of a rounding boundary. Three of the eleven are a state's own standard error. The other eight are pooled quantities that inherit those standard errors as weights: a fixed-effects meta-analysis is inverse-variance weighted, so a convention that moves a standard error moves the pooled point estimate with it, which is why appendix Tables A6 and A7 have six moving cells of their own. Every one of the eleven is a cell the deposit reproduces exactly, so the locus is the toolchain rather than either analysis, and errata entry 9 corrects all eleven.
 
 **Two cells of Table 7, locus `environment`.** The published table records state fixed effects in columns 4 and 5, which is what those models fit. The deposit's `stargazer` call prints "No" in all five columns under a current `stargazer`, so the deposit no longer reproduces its own table's fixed-effects row. The rewrite's `modelsummary` table gets it right.
 
-**Three cells of Table A2, locus `archive`.** See errata entry 2.
+**Three cells of Table A2, locus `archive`.** See errata entry 6.
 
-**Four sentences, locus `paper_internal`, and one further one.** See errata entries 1 and 3 through 7.
+**Four sentences, locus `paper_internal`, and one further one.** See errata entries 1 and 2 through 7.
 
 ---
 
@@ -266,7 +266,7 @@ The last `r spell_errata(n_reference_errata)` is in the reference list and no gr
 
 The rewrite corrects two clear coding errors in the deposit. Neither is an analytical decision.
 
-`CG Habit ME Table A2 and Figure A1.R` types its fifteen CACE estimates in as constants. The rewrite reads them from the regression discontinuity output instead, which is where fourteen of them came from; the fifteenth is errata entry 2.
+`CG Habit ME Table A2 and Figure A1.R` types its fifteen CACE estimates in as constants. The rewrite reads them from the regression discontinuity output instead, which is where fourteen of them came from; the fifteenth is errata entry 6.
 
 `CG Habit RD Figure A2.R` stops at a subscript error before producing anything. The rewrite's grid is built by `crossing` rather than by an index loop, so the error has no analogue, and the 60-day primary-election analysis the deposited script never reaches runs and is written to `maintained/output/text_like_elections.csv`.
 

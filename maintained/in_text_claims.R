@@ -42,8 +42,8 @@ claim_row <- function(id) {
 # the published value stops the run instead of quietly reading as a match.
 #
 # quantity_classes stays at its default. Four of this note's nine entries correct something
-# no block prints: entry 2 names three float rows of appendix Table A2 that the extraction
-# does not carry, entry 7 a cross-reference whose claim is descriptive, and entries 8 and 9 a
+# no block prints: entry 6 names three float rows of appendix Table A2 that the extraction
+# does not carry, entry 7 a cross-reference whose claim is descriptive, and entries 8 and 10 a
 # panel heading and a reference.
 errata_entries <- read_csv(here::here("errata_entries.csv"),
                            col_types = cols(.default = col_character()))

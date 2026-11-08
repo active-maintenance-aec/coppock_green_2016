@@ -26,8 +26,8 @@ migration <- out("table_a2_migration.csv")
 coefficients <- out("table_7_coefficients.csv")
 pair_metadata <- out("table_7_metadata.csv")
 like_elections <- out("text_like_elections.csv")
-# Entries 4 and 10 both read the ground truth: entry 10 for the cells on which the deposit
-# and the pipeline disagree, entry 4 for the count the page prints.
+# Entries 3 and 9 both read the ground truth: entry 9 for the cells on which the deposit
+# and the pipeline disagree, entry 3 for the count the page prints.
 ground_truth <- read_csv(here("ground_truth", "coppock_green_2016_ground_truth.csv"),
                          show_col_types = FALSE)
 
@@ -55,7 +55,7 @@ pp_z <- pp$estimate / pp$std_error
 pp_published_se <- 0.0010
 pp_z_published <- pp$estimate / pp_published_se
 
-# Entry 2: Table A2's Iowa row.
+# Entry 6: Table A2's Iowa row.
 a2_rd <- rd |>
   filter(years_window == "08-12", !state %in% c("meta", "FL05", "MO05"), !is.na(cace)) |>
   select(state, rd_cace = cace)
@@ -87,7 +87,7 @@ a2_corrected <- migration |>
     `Corrected CACE` = f3(corrected_estimate)
   )
 
-# Entry 3: the counts in the lower panel of Table 4.
+# Entry 2: the counts in the lower panel of Table 4.
 mop <- rd |>
   filter(state != "meta", !is.na(cace),
          years_window %in% c("94-96", "98-00", "02-04", "06-08", "10-12"))
@@ -98,7 +98,7 @@ oregon_only <- setdiff(
   mop$state[mop$years_window == "06-08"], pom$state[pom$years_window == "04-06"]
 )
 
-# Entry 4: battleground status of the five strongest 2008-12 estimates.
+# Entry 3: battleground status of the five strongest 2008-12 estimates.
 battleground <- pair_metadata |>
   filter(downYear == 2012) |>
   distinct(state_clean, battleground_P, downstream_margin)
@@ -146,7 +146,7 @@ bg_at_least_published <- sum(bg_density[(bg_published + 1):(top_n + 1)])
 stopifnot(nrow(all_0812) == 15, bg_modal == nrow(nonbattlegrounds_among_five),
           bg_published == nrow(nonbattlegrounds_among_five) + 1)
 
-# Entry 5: the battleground coefficient across columns 2 and 3 of Table 7.
+# Entry 4: the battleground coefficient across columns 2 and 3 of Table 7.
 coefficient <- function(name, model_no, column) {
   row <- coefficients |> filter(term == name, model == model_no)
   stopifnot(nrow(row) == 1)
@@ -155,7 +155,7 @@ coefficient <- function(name, model_no, column) {
 bg_ratio <- coefficient("battleground_P", 2, "estimate") /
   coefficient("battleground_PM", 3, "estimate")
 
-# Entry 6: the number of states in Table A2.
+# Entry 5: the number of states in Table A2.
 n_a2_states <- nrow(migration)
 
 # Entry 7: the general-on-general pairs and where they are reported.
@@ -171,7 +171,7 @@ analysis_states <- setdiff(unique(str_remove(rd$state, "05$")), "meta")
 ```
 
 ```{r entries}
-# Entry 10: the 2SLS leverage behind the discontinuity standard errors.
+# Entry 9: the 2SLS leverage behind the discontinuity standard errors.
 # The cells this entry corrects are exactly the cells on which the deposit and the
 # maintained pipeline disagree at the precision the tables print, so they are READ OFF
 # THE GROUND TRUTH'S OWN VERDICT rather than named here. Every other entry recomputes
@@ -225,17 +225,20 @@ stopifnot(nrow(leverage_cells) == 11,
 #
 # [[...]] marks the span that changes. Each renderer supplies its own markup for it: bold
 # here, \was{} in an edition. Nothing else in a field is markup, so the same string can be
-# set by either. Entry 2's correction is a table row rather than a sentence, so its
+# set by either. Entry 6's correction is a table row rather than a sentence, so its
 # published and corrected fields name the cell that moves and the corrected table is
 # reprinted beneath it as a float.
 #
-# Numbering is the published note's and is APPEND-ONLY: an entry can already have been
-# cited, so a later finding is added at the end and never interleaved.
+# Numbering follows PROCEDURES.md Stage 4b: entries are ordered by severity block (quantity;
+# description, interpretation, definition; label, float, cross_reference; wording, spelling,
+# typography; bibliographic), discovery order inside a block, and a finding that lands in an
+# earlier block renumbers the entries after it. Renumbered 2026-11-07; the old-to-new map is
+# in that day's commit message.
 #
 # claim_ids names the ground-truth rows an entry corrects, semicolon-separated, so that
 # "is this finding published?" is a query rather than a judgment. It is empty where the
 # entry has no ground-truth row: entry 8 is a panel heading in Table A4, whose descriptive
-# statistics the extraction does not reach, and entry 9 is a reference list entry, which is
+# statistics the extraction does not reach, and entry 10 is a reference list entry, which is
 # not an extraction claim. Every id listed here is checked against the ground truth by
 # build_ground_truth.R.
 entries <- tribble(
@@ -243,7 +246,7 @@ entries <- tribble(
 
   1, "quantity", "pipeline", "full",
   "The standard error of the primary-on-primary estimate",
-  "published, supporting information",
+  "app.",
   "The average estimated primary-on-general CACE is 0.0086 (SE = 0.0236), while the average estimated primary-on-primary CACE is 0.0068 (SE=[[0.0010]]).",
   str_glue("The average estimated primary-on-general CACE is 0.0086 (SE = 0.0236), while the average estimated primary-on-primary CACE is 0.0068 (SE=[[{f4(pp$std_error)}]])."),
   str_glue(
@@ -256,23 +259,9 @@ entries <- tribble(
   "appx_pp_se",
   f4(pp$std_error),
 
-  2, "float", "pipeline", "brief",
-  "Appendix Table A2's Iowa row",
-  "published, appendix Table A2",
-  str_glue("Table A2, {wrong_state$name}, CACE 08-12: [[{iowa_published[['CACE 08-12']]}]]"),
-  str_glue("Table A2, {wrong_state$name}, CACE 08-12: [[{f3(round(wrong_state$rd_cace, 3))}]]"),
-  str_glue(
-    "The changed artifact is the {wrong_state$name} row alone; every other cell is as ",
-    "published. The deposited code for this table types its fifteen CACEs in as constants ",
-    "rather than reading them from the regression discontinuity output the rest of the ",
-    "paper uses, and the constant for {wrong_state$name} is not the estimate that analysis ",
-    "produces."),
-  "appx_a2_cace_column;table_a2_main_ia_cace_08_12_est;table_a2_main_ia_bias_estimate_est;table_a2_main_ia_corrected_cace_est",
-  NA_character_,
-
-  3, "quantity", "pipeline", "full",
+  2, "quantity", "pipeline", "full",
   "The count of midterm-on-presidential estimates",
-  "published p. 1053",
+  "p. 1053",
   "The pattern of midterm-on-presidential estimates argues strongly for habit formation as well. Here, [[50]] out of [[54]] estimates are positive.",
   str_glue("The pattern of midterm-on-presidential estimates argues strongly for habit formation as well. Here, [[{sum(mop$cace > 0)}]] out of [[{nrow(mop)}]] estimates are positive."),
   str_glue(
@@ -286,9 +275,9 @@ entries <- tribble(
   "rd_mop_positive;rd_mop_estimates",
   str_c(sum(mop$cace > 0), ";", nrow(mop)),
 
-  4, "quantity", "pipeline", "full",
+  3, "quantity", "pipeline", "full",
   "Battleground status among the strongest presidential-on-presidential estimates",
-  "published p. 1059",
+  "p. 1059",
   "The top panel of Table 5, for example, reports 15 estimates of the presidential-on-presidential downstream effect for 2008--12. The top [[four]] of the five strongest estimates (Arkansas, Nevada, Connecticut, Missouri, and New Jersey) are found in nonbattleground states.",
   str_glue("The top panel of Table 5, for example, reports 15 estimates of the presidential-on-presidential downstream effect for 2008--12. The top [[{spell(nrow(nonbattlegrounds_among_five))}]] of the five strongest estimates (Arkansas, Nevada, Connecticut, Missouri, and New Jersey) are found in nonbattleground states."),
   str_glue(
@@ -308,9 +297,9 @@ entries <- tribble(
   "env_top_four_nonbattleground",
   as.character(nrow(nonbattlegrounds_among_five)),
 
-  5, "quantity", "pipeline", "full",
+  4, "quantity", "pipeline", "full",
   "The change in the battleground coefficient between columns 2 and 3 of Table 7",
-  "published, main text",
+  "main text",
   "When we include the close midterm elections in the definition of battleground, this pattern does not persist---the coefficient drops by a factor of [[three]] and is no longer significant.",
   str_glue("When we include the close midterm elections in the definition of battleground, this pattern does not persist---the coefficient drops by a factor of [[{spell(round(bg_ratio))}]] and is no longer significant."),
   str_glue(
@@ -321,9 +310,9 @@ entries <- tribble(
   "env_battleground_factor",
   as.character(round(bg_ratio)),
 
-  6, "quantity", "pipeline", "full",
+  5, "quantity", "pipeline", "full",
   "The number of states in Table A2",
-  "published, appendix",
+  "app.",
   "Table A2 presents the estimated number of net migrants, the estimated number of compliers in 2008 (computed using a 365-day window), and the associated bias according to Equation A10 for [[sixteen]] states.",
   str_glue("Table A2 presents the estimated number of net migrants, the estimated number of compliers in 2008 (computed using a 365-day window), and the associated bias according to Equation A10 for [[{spell(n_a2_states)}]] states."),
   str_glue(
@@ -333,9 +322,23 @@ entries <- tribble(
   "appx_a2_states",
   as.character(n_a2_states),
 
+  6, "float", "pipeline", "brief",
+  "Appendix Table A2's Iowa row",
+  "app. Table A2",
+  str_glue("Table A2, {wrong_state$name}, CACE 08-12: [[{iowa_published[['CACE 08-12']]}]]"),
+  str_glue("Table A2, {wrong_state$name}, CACE 08-12: [[{f3(round(wrong_state$rd_cace, 3))}]]"),
+  str_glue(
+    "The changed artifact is the {wrong_state$name} row alone; every other cell is as ",
+    "published. The deposited code for this table types its fifteen CACEs in as constants ",
+    "rather than reading them from the regression discontinuity output the rest of the ",
+    "paper uses, and the constant for {wrong_state$name} is not the estimate that analysis ",
+    "produces."),
+  "appx_a2_cace_column;table_a2_main_ia_cace_08_12_est;table_a2_main_ia_bias_estimate_est;table_a2_main_ia_corrected_cace_est",
+  NA_character_,
+
   7, "cross_reference", "pipeline", "full",
   "The cross-reference for the general-on-general election pairs",
-  "published, appendix",
+  "app.",
   "Across the 384 general-on-general election pairs (the pairs reported in [[Table 6]] of the main text), the average estimated CACE is 0.101 with a standard error of 0.007.",
   "Across the 384 general-on-general election pairs (the pairs reported in [[Table 7]] of the main text), the average estimated CACE is 0.101 with a standard error of 0.007.",
   str_glue(
@@ -348,7 +351,7 @@ entries <- tribble(
 
   8, "label", "pipeline", "brief",
   "The first panel of appendix Table A4",
-  "published, appendix Table A4",
+  "app. Table A4",
   "[[Arizona 2013]]",
   "[[Arkansas 2013]]",
   str_glue(
@@ -362,20 +365,9 @@ entries <- tribble(
   "",
   NA_character_,
 
-  9, "bibliographic", "reference_audit", "brief",
-  "Atkinson and Fowler (2014) prints the last page of its range without the first",
-  "published p. 1061",
-  "Atkinson, Matthew D., and Anthony Fowler. 2014. \"Social Capital and Voter Turnout: Evidence from Saint's Day Fiestas in Mexico.\" British Journal of Political Science [[44(1): 59]].",
-  "Atkinson, Matthew D., and Anthony Fowler. 2014. \"Social Capital and Voter Turnout: Evidence from Saint's Day Fiestas in Mexico.\" British Journal of Political Science 44(1): 41--59.",
-  paste("Crossref, doi 10.1017/s0007123412000713: pages 41--59. The reference list",
-        "abbreviates the second number of a range elsewhere, so a reader has no way to",
-        "read \"59\" as anything but a single page."),
-  "",
-  NA_character_,
-
-  10, "float", "pipeline", "full",
+  9, "float", "pipeline", "full",
   "The leverage adjustment behind the discontinuity standard errors",
-  "published pp. 1054, 1055, 1057, and 1058, and appendix Tables A6 and A7",
+  "pp. 1054, 1055, 1057, and 1058, and app. Tables A6 and A7",
   str_c(leverage_cells$published, collapse = "\n\n"),
   str_c(leverage_cells$corrected, collapse = "\n\n"),
   str_glue(
@@ -410,6 +402,17 @@ entries <- tribble(
     "still cluster between 0.10 and 0.12, the 2006-on-2010 estimates still fall mostly ",
     "between 0.07 and 0.15, and the standard errors still shrink as the window widens."),
   str_c(leverage_cells$claim_id, collapse = ";"),
+  NA_character_,
+
+  10, "bibliographic", "reference_audit", "brief",
+  "Atkinson and Fowler (2014) prints the last page of its range without the first",
+  "p. 1061",
+  "Atkinson, Matthew D., and Anthony Fowler. 2014. \"Social Capital and Voter Turnout: Evidence from Saint's Day Fiestas in Mexico.\" British Journal of Political Science [[44(1): 59]].",
+  "Atkinson, Matthew D., and Anthony Fowler. 2014. \"Social Capital and Voter Turnout: Evidence from Saint's Day Fiestas in Mexico.\" British Journal of Political Science 44(1): 41--59.",
+  paste("Crossref, doi 10.1017/s0007123412000713: pages 41--59. The reference list",
+        "abbreviates the second number of a range elsewhere, so a reader has no way to",
+        "read \"59\" as anything but a single page."),
+  "",
   NA_character_
 ) |>
   mutate(across(c(title, published, corrected, note, claim_ids, corrected_values),
@@ -464,10 +467,10 @@ if (!all(value_placed)) {
 }
 
 # An entry that moves a value maintained/in_text_claims.R PRINTS has to say what the value
-# becomes, and every other entry carries NA. Only "quantity" does so here. Entry 2 is classed
+# becomes, and every other entry carries NA. Only "quantity" does so here. Entry 6 is classed
 # "float": it corrects cells of appendix Table A2 and names three float rows the extraction
 # does not carry, so no block prints them. Entry 7 corrects a cross-reference whose claim is
-# a descriptive one, entries 8 and 9 correct a panel heading and a reference, and entry 10
+# a descriptive one, entries 8 and 10 correct a panel heading and a reference, and entry 9
 # corrects five cells of Tables 4 through 7 that no sentence of the article quotes.
 stopifnot(
   all(!is.na(entries$corrected_values[entries$class == "quantity"])),
@@ -491,15 +494,15 @@ This note lists `r spell(nrow(entries))` corrections to "Is Voting Habit Forming
 
 Every number in the corrected sentences and in the notes beneath them is computed from the deposited archive at the time this document is rendered. The code and output supporting the corrections are at [github.com/active-maintenance-aec/coppock_green_2016](https://github.com/active-maintenance-aec/coppock_green_2016).
 
-```{r entry-1, results="asis"}
-emit(1)
+```{r entries-1-5, results="asis"}
+walk(1:5, emit)
 ```
 
-```{r entry-2-heading, results="asis"}
-# Entry 2's corrected artifact is a table row rather than a sentence, so the entry is set
+```{r entry-6-heading, results="asis"}
+# Entry 6's corrected artifact is a table row rather than a sentence, so the entry is set
 # around the float instead of as a quoted pair. The moved cell is still read out of the
 # spine rather than recomputed here.
-e <- entries |> filter(entry == 2)
+e <- entries |> filter(entry == 6)
 changed <- function(x) str_match(x, "\\[\\[(.*?)\\]\\]")[, 2]
 cat("\n\n## ", e$entry, ". ", e$title, "\n\n",
     "Table A2's CACE 08-12 column holds each state's estimated effect of voting in 2008 on ",
@@ -516,12 +519,12 @@ kable(a2_corrected, booktabs = TRUE, linesep = "", align = "lrrrrr",
       caption = "Table A2 corrected: Migrants, Number of Compliers, and Associated Bias")
 ```
 
-```{r entry-2-note, results="asis"}
-cat(entries$note[entries$entry == 2], "\n", sep = "")
+```{r entry-6-note, results="asis"}
+cat(entries$note[entries$entry == 6], "\n", sep = "")
 ```
 
-```{r entries-3-onward, results="asis"}
-walk(entries$entry[entries$entry >= 3 & entries$source == "pipeline"], emit)
+```{r entries-7-9, results="asis"}
+walk(7:9, emit)
 ```
 
 # The reference list
@@ -541,5 +544,12 @@ walk(entries$entry[entries$source == "reference_audit"], function(n) {
 # The machine-readable spine, written wherever this document is rendered. Anything else
 # that needs these entries reads it rather than keeping its own copy, so the two cannot
 # drift.
+# The spine's vocabularies are closed (cleanup of 2026-11-07): a value outside them is a
+# typo, and the edition builders read these columns to shape every entry.
+stopifnot(
+  all(entries$class %in% c("quantity", "description", "interpretation", "definition", "label", "float", "cross_reference", "wording", "spelling", "typography", "bibliographic")),
+  all(entries$form %in% c("full", "brief", "note")),
+  all(entries$source %in% c("pipeline", "reading", "reference_audit", "publisher_record", "authors_archive", "proof"))
+)
 write_csv(entries, here("errata_entries.csv"))
 ```
