@@ -48,19 +48,12 @@ claim_row <- function(id) {
 errata_entries <- read_csv(here::here("errata_entries.csv"),
                            col_types = cols(.default = col_character()))
 
-# The extraction already records which claims cannot be compared at the precision the article
-# prints; it records it in the article's own vocabulary. That column is translated here rather
-# than duplicated, so `comparison` stays the single source both instruments read.
+# Every expectation other than a plain comparison is declared at its own call site. The
+# extraction's `expect` column records those declarations for a reader of the CSV, and
+# claim_start() does not read it. One claim the article hedges and the pipeline reaches,
+# the average CACE of "approximately 0.10", is declared expect = "range", because agreement
+# at printed precision is the wrong test for a hedge.
 #
-#   "=="      the article states a value, and it is compared
-#   "approx"  the article hedges ("approximately 0.10", "most falling between"), so agreement
-#             at printed precision is the wrong test
-#   "<", ">"  the article states a bound rather than a value, so equality against the bound is
-#             the wrong test for the same reason
-published_claims <- published_claims |>
-  mutate(expect = case_when(is.na(comparison) | comparison == "==" ~ "compare",
-                            comparison %in% c("approx", "<", ">") ~ "range"))
-
 # The scoring machinery comes from excheckr, which carries the verdict ladder, the typography
 # parser and the printed form this file used to define for itself, signed zero included.
 # format = "id" is the CLAIM <id> = <value> || [verdict] <label> line
@@ -82,8 +75,7 @@ published_claims <- published_claims |>
 # Table A8 is confidential and was never shipped. The other five are claims the article states
 # as loose characterisations, which the ground truth also records without a verdict: a range
 # most estimates fall inside, and a comparison against a figure taken from another article.
-claim_start(published = published_claims, errata = errata_entries, format = "id",
-            expect_column = "expect")
+claim_start(published = published_claims, errata = errata_entries, format = "id")
 
 # Pipeline output ------------------------------------------------------------------------
 
@@ -551,7 +543,8 @@ claim("env_battleground_factor", battleground_ratio,
 weighted_mean_cace <- weighted.mean(pair_metadata$cace, pair_metadata$weights)
 claim("disc_average_cace", weighted_mean_cace,
      str_glue("Precision-weighted mean CACE over {nrow(pair_metadata)} pairs is ",
-              "{sprintf('%.4f', weighted_mean_cace)}"))
+              "{sprintf('%.4f', weighted_mean_cace)}"),
+      expect = "range")
 claim("disc_fifty_votes", 100 * 5 * weighted_mean_cace,
      "A hundred compliers times five elections at that average")
 

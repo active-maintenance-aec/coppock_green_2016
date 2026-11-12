@@ -187,13 +187,13 @@ analysis_states <- setdiff(unique(str_remove(rd$state, "05$")), "meta")
 # its weights ARE the state standard errors the convention moves.
 leverage_tables <- c("Table 4", "Table 5", "Table 6", "Table 7", "Table A6", "Table A7")
 leverage_cells <- ground_truth |>
-  filter(table_figure %in% leverage_tables, match == 1, match_rewrite == 0) |>
-  arrange(table_figure, claim) |>
+  filter(location %in% leverage_tables, match == 1, match_rewrite == 0) |>
+  arrange(location, claim) |>
   mutate(
     label     = claim |> str_replace(", se$", ", SE") |> str_replace(", est$", ", estimate"),
-    published = str_glue("{table_figure}, {label}: [[{value_paper}]]"),
+    published = str_glue("{location}, {label}: [[{value_paper}]]"),
     corrected_value = sprintf(paste0("%.", digits, "f"), value_rewrite),
-    corrected = str_glue("{table_figure}, {label}: [[{corrected_value}]]")
+    corrected = str_glue("{location}, {label}: [[{corrected_value}]]")
   )
 # THE DENOMINATOR IS THE CELLS THESE TABLES PRINT, not every claim the ground truth files
 # under them. Its rows include in-text sentences filed under the table they quote, and
@@ -201,7 +201,7 @@ leverage_cells <- ground_truth |>
 # tables print 681 cells and the ground truth files 713 claims under them. A printed cell
 # is the one whose claim_id is built from the table's own grid.
 leverage_compared <- ground_truth |>
-  filter(table_figure %in% leverage_tables, str_starts(claim_id, "table_")) |>
+  filter(location %in% leverage_tables, str_starts(claim_id, "table_")) |>
   nrow()
 # A STATE'S OWN STANDARD ERROR, OR A POOLED QUANTITY BUILT OUT OF THEM, which is the
 # distinction the note has to draw. Keyed on claim_id, which is the ground truth's stable
@@ -462,6 +462,12 @@ value_placed <- pmap_lgl(quantified, function(...) {
     all(map_lgl(e$values, \(v) any(map_lgl(e$spans, \(s) str_detect(as_compared(s), fixed(v))))))
   }
 })
+
+# The gate's result is written to the spine as values_in_spans, one logical per entry and
+# NA for an entry with no corrected values, so a reader of the CSV sees it without
+# rerunning this document.
+entries <- entries |>
+  left_join(tibble(entry = quantified$entry, values_in_spans = value_placed), by = "entry")
 
 if (!all(value_placed)) {
   print(quantified |> filter(!value_placed) |> select(entry, title, corrected_values, corrected))

@@ -1,19 +1,19 @@
-float,published_numbers,covered,reproduced_by_rewrite,reproduced_by_archive
-table_1,123,123,123,116
-table_2,92,92,92,86
-table_3,78,78,78,78
-table_4,238,238,237,238
-table_5,198,198,197,198
-table_6,192,192,190,192
-table_7,53,53,52,51
-figure_a1,0,0,NA,NA
-table_a1,72,0,NA,NA
-table_a2,75,75,72,75
-table_a3,72,0,NA,NA
-table_a4,264,0,NA,NA
-table_a5,171,0,NA,NA
-table_a6,128,128,126,128
-table_a7,128,128,124,128
-figure_a2,0,0,NA,NA
-table_a8,40,0,NA,NA
-table_a9,24,24,24,24
+float,published_numbers,covered,reproduced_by_rewrite,reproduced_by_archive,plotted,plotted_reproduced,note
+Table 1,123,123,123,116,NA,NA,NA
+Table 2,92,92,92,86,NA,NA,NA
+Table 3,78,78,78,78,NA,NA,NA
+Table 4,238,238,237,238,NA,NA,NA
+Table 5,198,198,197,198,NA,NA,NA
+Table 6,192,192,190,192,NA,NA,NA
+Table 7,53,53,52,51,NA,NA,NA
+Figure A1,0,0,NA,NA,10,10,"Prints no number on its face; plotted counts the bias curves, one per complier count the legend labels."
+Table A1,72,0,NA,NA,NA,NA,Table A1 prints 72 numbers enumerating twelve types of residentially mobile voter. It is a typology written by hand rather than an analysis output; nothing in the deposit produces it.
+Table A2,75,75,72,75,NA,NA,NA
+Table A3,72,0,NA,NA,NA,NA,Table A3 prints 72 numbers enumerating twelve types of voter who move after both elections. Like Table A1 it is a typology rather than an analysis output.
+Table A4,264,0,NA,NA,NA,NA,"Table A4 prints 264 numbers: ten state panels of official turnout, votes on the voter file and the percentage on file. Official turnout comes from an external website and the counts are statewide, where the deposited file holds only birthdate cohorts near the eligibility cutoffs, so neither the deposit nor the rewrite can produce them."
+Table A5,171,0,NA,NA,NA,NA,Table A5 prints 171 numbers continuing Table A4 over nine more state panels. Same reason for zero coverage.
+Table A6,128,128,126,128,NA,NA,NA
+Table A7,128,128,124,128,NA,NA,NA
+Figure A2,0,0,NA,NA,719,719,Prints no number on its face; plotted counts the general-on-general and general-on-primary pairs appendix section 3 states.
+Table A8,40,0,NA,NA,NA,NA,"Table A8 prints 40 numbers. The deposit ships no code and no data for it: the ANES file it uses is confidential, which the deposit's README states."
+Table A9,24,24,24,24,NA,NA,NA

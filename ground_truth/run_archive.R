@@ -1,6 +1,7 @@
 # coppock_green_2016/ground_truth/run_archive.R
-# Output: one console log per deposited script, plus archive_run_status.csv, written
-#   into ARCHIVE_RUN_DIR (default: a scratch directory under tempdir()).
+# Output: one console log per deposited script, written into ARCHIVE_RUN_DIR (default: a
+#   scratch directory under tempdir()), plus ground_truth/archive_run_status.csv and
+#   ground_truth/archive_overwrites.csv.
 # Depends on: original/ (fetched by download_original.R).
 # Description: Run the deposit's own ten scripts and keep everything they print, so
 #   the archive column of the ground truth is read off the archive rather than typed.
@@ -22,6 +23,9 @@
 #   printed after the script returns. That is reading the archive's own result, not
 #   re-implementing its formatting: nothing here rebuilds a table the deposit did not
 #   already construct.
+#
+#   The deposit ships no intermediate objects, so there is nothing to withhold and the run
+#   is a single pass, recorded as as_shipped. A stripped pass would run the same files.
 #
 #   Usage: ARCHIVE_RUN_DIR=/path/to/scratch Rscript ground_truth/run_archive.R
 
@@ -86,8 +90,11 @@ write_lines(c(
   '    print(tryCatch(get(obj, envir = globalenv()), error = function(e) conditionMessage(e)))',
   '  }',
   '  cat("#### STATUS:", status, "\\n")',
+  '  status',
   '}',
-  'run_one()'
+  '# A script that stops exits non-zero, so the exit status records the failure as well as',
+  '# the marker does.',
+  'if (run_one() != "ok") quit(status = 1)'
 ), runner)
 
 log_path <- function(script) {
@@ -100,9 +107,18 @@ old_wd <- getwd()
 on.exit(setwd(old_wd), add = TRUE)
 setwd(wd)
 
-statuses <- map_chr(scripts, function(script) {
+# Each deposited file's checksum and modification time before the run, so a file the run
+# writes over can be told from one it leaves alone.
+deposited <- list.files(here::here("original"))
+before <- tibble(
+  file = deposited,
+  md5_before = unname(tools::md5sum(deposited)),
+  mtime_before = file.mtime(deposited)
+)
+
+runs <- map(scripts, function(script) {
   args <- c(runner, script, extra_prints[[script]])
-  system2(
+  exit_status <- system2(
     file.path(R.home("bin"), "Rscript"),
     args = c("--vanilla", shQuote(args)),
     stdout = log_path(script), stderr = log_path(script),
@@ -111,25 +127,56 @@ statuses <- map_chr(scripts, function(script) {
   # The marker is not always at the start of a line: a deposited print call can leave
   # the cursor mid-line, so the status is matched anywhere and read off the match.
   line <- str_subset(read_lines(log_path(script)), "#### STATUS: ")
-  if (length(line) == 0) {
+  status <- if (length(line) == 0) {
     "no status recorded"
   } else {
-    str_remove(line[1], "^.*#### STATUS: ")
+    str_trim(str_remove(line[1], "^.*#### STATUS: "))
   }
-})
+  tibble(script = script, exit_status = as.integer(exit_status), status = status)
+}) |>
+  list_rbind()
+
+after <- tibble(
+  file = deposited,
+  md5_after = unname(tools::md5sum(deposited)),
+  mtime_after = file.mtime(deposited)
+)
 
 setwd(old_wd)
 
 # Files a run of the deposit leaves behind, which is the reason it never runs in place
 strays <- setdiff(
   list.files(wd, recursive = TRUE, all.files = TRUE, no.. = TRUE),
-  c(list.files(here::here("original")),
-    file.path("Measurement Error", "interstatemovers.txt"))
+  c(deposited, file.path("Measurement Error", "interstatemovers.txt"))
 )
 
-status_table <- tibble(script = scripts, status = str_trim(statuses))
+# The two archive tables, in the canonical long form ----
+# Every deposited script produces published output, so each is an analysis script; the
+# deposit's helper file is only ever sourced by them and has no row of its own.
+run_status <- runs |>
+  transmute(
+    pass = "as_shipped",
+    script,
+    role = "analysis",
+    exit_status,
+    outcome = if_else(status == "ok", "clean", "error"),
+    stopped_at = if_else(status == "ok", NA_character_, str_remove(status, "^error: "))
+  )
 
-write_csv(status_table, here::here("ground_truth", "archive_run_status.csv"))
+overwrites <- bind_rows(
+  tibble(pass = "as_shipped", file = strays, effect = "added", matches_deposit = NA),
+  before |>
+    inner_join(after, by = "file") |>
+    filter(mtime_after != mtime_before | md5_after != md5_before) |>
+    transmute(pass = "as_shipped", file, effect = "overwritten",
+              matches_deposit = md5_after == md5_before)
+)
 
-print(status_table, n = Inf, width = 200)
-print(tibble(stray_file_written_by_the_run = strays))
+stopifnot(nrow(run_status) == length(scripts),
+          all(run_status$outcome == "clean" | run_status$exit_status != 0))
+
+write_csv(run_status, here::here("ground_truth", "archive_run_status.csv"))
+write_csv(overwrites, here::here("ground_truth", "archive_overwrites.csv"))
+
+print(run_status, n = Inf, width = 200)
+print(overwrites, n = Inf)

@@ -55,8 +55,11 @@ gt <- read_csv(here("ground_truth", "coppock_green_2016_ground_truth.csv"),
 claims <- read_csv(here("ground_truth", "published_claims.csv"),
                    col_types = cols(value_paper = col_character(), .default = col_guess()))
 coverage <- read_csv(here("ground_truth", "float_coverage.csv"), show_col_types = FALSE)
+# One row per deposited script per pass. The deposit ships no intermediates, so the only
+# pass is the one run as shipped.
 archive_status <- read_csv(here("ground_truth", "archive_run_status.csv"),
-                           show_col_types = FALSE)
+                           show_col_types = FALSE) |>
+  filter(pass == "as_shipped")
 
 n_rows <- nrow(gt)
 n_cells <- sum(coverage$covered)
@@ -140,7 +143,8 @@ The `r n_miss_rewrite` that do not divide into three groups. `r str_to_sentence(
 
 ```{r repro_table}
 archive_status |>
-  mutate(status = str_replace(status, "^error: ", "Error: ")) |>
+  transmute(script,
+            status = if_else(outcome == "clean", "ok", str_c("Error: ", stopped_at))) |>
   kable(
     booktabs = TRUE,
     col.names = c("Deposited script", "Status on a current R installation"),
@@ -203,8 +207,8 @@ tibble(
 
 ```{r coverage_table}
 coverage |>
-  mutate(float = str_to_title(str_replace_all(float, "_", " ")),
-         across(c(reproduced_by_rewrite, reproduced_by_archive),
+  select(float, published_numbers, covered, reproduced_by_rewrite, reproduced_by_archive) |>
+  mutate(across(c(reproduced_by_rewrite, reproduced_by_archive),
                 \(x) if_else(is.na(x), "--", as.character(x)))) |>
   kable(booktabs = TRUE,
         col.names = c("Float", "Numbers printed", "Covered", "Rewrite reproduces",
@@ -228,7 +232,7 @@ The article and its supporting information print `r format(n_published, big.mark
 gt |>
   filter((!is.na(match_rewrite) & match_rewrite == 0) | (!is.na(holds) & !holds) |
            (!is.na(match) & match == 0)) |>
-  transmute(table_figure, claim,
+  transmute(location, claim,
             Paper = if_else(is.na(value_paper), "--", value_paper),
             Rewrite = case_when(
               !is.na(holds) ~ as.character(holds),

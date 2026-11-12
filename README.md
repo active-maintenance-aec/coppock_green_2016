@@ -23,7 +23,10 @@
 - [Rewrite verification](#rewrite-verification)
 - [R environment](#r-environment)
 
-**Archived at Zenodo:** [doi:10.5281/zenodo.24168339](https://doi.org/10.5281/zenodo.24168339). This DOI always resolves to the latest release of the maintained version.
+**Archived at Zenodo:**
+[doi:10.5281/zenodo.24168339](https://doi.org/10.5281/zenodo.24168339).
+This DOI always resolves to the latest release of the maintained
+version.
 
 *Drafted by Claude Opus 5 under the supervision of Alex Coppock.*
 
@@ -344,14 +347,14 @@ than assumed:
 | Table A7 | Third-order Polynomial, 545 Days (No additional controls), est | 0.101 | 0.10049 | environment |
 | Table A7 | Second-order Polynomial, 90 Days (Controls for lagged vote totals), est | -0.006 | -0.0066084 | environment |
 | Table A7 | Third-order Polynomial, 90 Days (Controls for lagged vote totals), est | 0.002 | 0.0011334 | environment |
-| Table 4 | Positive midterm-on-presidential estimates | 50 | 51 | paper_internal |
-| Table 4 | Midterm-on-presidential state estimates | 54 | 55 | paper_internal |
-| Table 5 | Strongest 2008-12 estimates of the five that are in nonbattleground states | 4 | 3 | paper_internal |
-| Table 7 | Factor by which the battleground coefficient falls between columns 2 and 3 | 3 | 2.0742 | paper_internal |
-| Table A2 | States in Table A2 | 16 | 15 | paper_internal |
-| Table A2 | Table A2’s CACE column holds the 2008 on 2012 estimate of Tables 5 and 6 | – | FALSE | archive |
-| SI section 3 | Those pairs are the ones Table 6 of the main text reports | – | FALSE | paper_internal |
-| Figure A2 | Its robust standard error | 0.0010 | 0.0099495 | paper_internal |
+| Results (p. 1053) | Positive midterm-on-presidential estimates | 50 | 51 | paper_internal |
+| Results (p. 1053) | Midterm-on-presidential state estimates | 54 | 55 | paper_internal |
+| Is Persistence in Turnout Due to Environmental Influences? (p. 1059) | Strongest 2008-12 estimates of the five that are in nonbattleground states | 4 | 3 | paper_internal |
+| Is Persistence in Turnout Due to Environmental Influences? (p. 1059) | Factor by which the battleground coefficient falls between columns 2 and 3 | 3 | 2.0742 | paper_internal |
+| SI section 1.1.1 (p. 11) | States in Table A2 | 16 | 15 | paper_internal |
+| Table A2 column heading (SI p. 11) | Table A2’s CACE column holds the 2008 on 2012 estimate of Tables 5 and 6 | – | FALSE | archive |
+| SI section 3 (p. 19) | Those pairs are the ones Table 6 of the main text reports | – | FALSE | paper_internal |
+| SI section 3 (p. 21) | Its robust standard error | 0.0010 | 0.0099495 | paper_internal |
 
 Every row where the deposit or the rewrite disagrees with the published
 page, or where a claim does not hold.
@@ -597,6 +600,6 @@ served checksum and prints the disagreement.
 
 | Item      | Value                  |
 |:----------|:-----------------------|
-| R version | 4.6.1                  |
+| R version | 4.6.2                  |
 | Platform  | aarch64-apple-darwin23 |
-| Date run  | 2026-11-07             |
+| Date run  | 2026-11-12             |
